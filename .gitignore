@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+assets/raw
+assets/out
+refs
+docs/*
+!docs/proposal/
+proposal/_sample.html
+*.toc.json

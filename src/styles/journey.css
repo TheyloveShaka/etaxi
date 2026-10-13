@@ -1,0 +1,270 @@
+:root {
+  --beat-2: 110;
+  --beat-3: 360;
+  --cover: 100;
+  --wipe-share: 0.45;
+  --how-nudge: 2;
+}
+
+.journey {
+  --mid: 50%;
+  --road-w: clamp(120px, 12vw, 190px);
+  --road-cx: 50%;
+  --lane: calc(var(--road-w) / 4);
+  --turn: calc(var(--road-w) * 1.2);
+  --van-len: calc(var(--road-w) * 0.95);
+  --dash: calc(var(--road-w) * 0.07);
+  --pin-y: 45svh;
+  --side-gap: calc(var(--road-w) * 0.1);
+  position: relative;
+  height: calc((100 + var(--beat-2) + var(--beat-3) + var(--cover)) * 1svh);
+  background: var(--field);
+}
+
+.journey__view {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+  background: var(--field);
+}
+
+.journey__ruler {
+  position: absolute;
+  top: var(--pin-y);
+  left: var(--road-cx);
+  width: var(--road-w);
+  height: var(--lane);
+  max-width: var(--turn);
+  max-height: var(--van-len);
+  margin-left: var(--mid);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.journey__how {
+  position: absolute;
+  top: calc((var(--beat-2) + var(--how-nudge)) * 1svh);
+  left: 0;
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+}
+
+.world-clip {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  clip-path: inset(100% 0 0 0);
+  pointer-events: none;
+}
+
+.world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.world__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+}
+
+.world__road {
+  fill: none;
+  stroke: var(--road);
+  stroke-width: var(--road-w);
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.world__centre {
+  fill: none;
+  stroke: var(--blue-400);
+  stroke-width: var(--dash);
+  stroke-dasharray: var(--dash) var(--dash);
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+}
+
+.world__lane {
+  fill: none;
+  stroke: none;
+}
+
+.world__trail {
+  fill: none;
+  stroke: var(--charge);
+  stroke-width: calc(var(--dash) * 0.5);
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.world__van {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--van-len);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 900 / 374;
+  margin-top: calc(var(--van-len) * 374 / 900 / -2);
+  margin-left: calc(var(--van-len) / -2);
+}
+
+.traffic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: var(--n-700);
+}
+
+.traffic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.traffic--van {
+  width: calc(var(--road-w) * 0.4);
+}
+
+.traffic--saloon {
+  width: calc(var(--road-w) * 0.3);
+}
+
+.traffic--boda {
+  width: calc(var(--road-w) * 0.1);
+}
+
+.sign {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sign::after {
+  content: '';
+  width: var(--side-gap);
+  height: calc(var(--sp-1) / 2);
+  background: var(--ink);
+}
+
+.sign__plate {
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-input);
+  background: var(--blue-600);
+  color: var(--field);
+  font-family: var(--font-display);
+  font-size: var(--fs-13);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.arrival {
+  position: relative;
+  z-index: 2;
+  height: 160svh;
+  margin-top: -100svh;
+}
+
+.arrival__frame {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+  background: var(--n-100);
+}
+
+.arrival__picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: 50% 50%;
+}
+
+.arrival__picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.arrival__copy {
+  position: absolute;
+  top: 16svh;
+  right: 0;
+  left: 0;
+  padding: 0 var(--sp-6);
+  text-align: center;
+}
+
+.arrival__title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-44), 8vw, var(--fs-hero));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.arrival__line {
+  margin: var(--sp-3) 0 0;
+  color: var(--n-700);
+  font-family: var(--font-text);
+  font-size: var(--fs-20);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .journey {
+    --road-w: 88px;
+    --road-cx: 52px;
+    --lane: 0px;
+  }
+
+  .traffic--van,
+  .traffic--saloon,
+  .traffic--extra {
+    display: none;
+  }
+
+  .sign {
+    display: none;
+  }
+
+  .arrival__copy {
+    top: 12svh;
+  }
+}
+
+html[data-motion='on'] .arrival__copy > * {
+  opacity: 0;
+}
+
+@media (min-width: 1024px) {
+  .sign {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1359px) {
+  .sign {
+    display: none;
+  }
+}

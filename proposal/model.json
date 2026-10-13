@@ -1,0 +1,178 @@
+{
+ "constants": {
+  "ugx_per_usd": 3727,
+  "work_days": 312,
+  "petrol_kg_co2_per_l": 2.3,
+  "grid_kg_co2_per_kwh": 0.137,
+  "rate_ugx": 0.1826,
+  "rate_fx": 0.0709,
+  "life_years": 8,
+  "hiace_capital_ugx": 80000000,
+  "ac_charger_usd": 2500,
+  "dc_charger_usd": 35800,
+  "pack_usd_per_kwh": 108,
+  "e6_pack_kwh": 86.1,
+  "e6_pack_cost_usd_at_bnef": 9299
+ },
+ "assumptions": [
+  "Working days per year (312, six days a week) is an assumption, not a measured figure.",
+  "Daily distance is derived, not measured: 35,000 km a year from an old minibus survey spread over 312 days gives 112 km a day. The conservative and favourable cases use 130 and 150 km.",
+  "Fuel use is driver-reported litres per day from press interviews, treated as petrol.",
+  "Electric energy use of 0.39 and 0.50 kWh per km comes from the low end and a midpoint of published projections; the Joylong E6 maker claim implies 0.29.",
+  "Maintenance, insurance, driver pay, vehicle price and charger cost are excluded from the saving. Only energy is compared.",
+  "Present values use an eight-year life (the battery warranty term published for one comparable van) and Uganda average lending rates for shilling and foreign-currency loans.",
+  "Fleet phase sizes are planning targets set by this proposal, not forecasts."
+ ],
+ "scenarios": {
+  "conservative": {
+   "litres_day": 20.0,
+   "price_l": 5090,
+   "km_day": 130,
+   "kwh_km": 0.5,
+   "tariff": 666.5,
+   "note": "Lowest 2026 pump price seen, peak electricity tariff, heavier energy use.",
+   "fuel_cost_day": 101800,
+   "kwh_day": 65.0,
+   "power_cost_day": 43322,
+   "saving_day": 58478,
+   "saving_pct": 57.4,
+   "saving_year": 18244980,
+   "saving_year_usd": 4895,
+   "fuel_cost_km": 783,
+   "power_cost_km": 333,
+   "pv_saving_ugx_rate": 73799762,
+   "pv_saving_fx_rate": 108567265,
+   "pv_saving_ugx_rate_usd": 19801,
+   "pv_saving_fx_rate_usd": 29130,
+   "co2_petrol_t_year": 14.4,
+   "co2_grid_t_year": 2.8,
+   "co2_avoided_t_year": 11.6,
+   "litres_year": 6240
+  },
+  "base": {
+   "litres_day": 20.0,
+   "price_l": 5345,
+   "km_day": 112,
+   "kwh_km": 0.39,
+   "tariff": 562.1,
+   "note": "City routes, mid 2026 pump price, average commercial tariff.",
+   "fuel_cost_day": 106900,
+   "kwh_day": 43.7,
+   "power_cost_day": 24553,
+   "saving_day": 82347,
+   "saving_pct": 77.0,
+   "saving_year": 25692411,
+   "saving_year_usd": 6894,
+   "fuel_cost_km": 954,
+   "power_cost_km": 219,
+   "pv_saving_ugx_rate": 103924138,
+   "pv_saving_fx_rate": 152883413,
+   "pv_saving_ugx_rate_usd": 27884,
+   "pv_saving_fx_rate_usd": 41021,
+   "co2_petrol_t_year": 14.4,
+   "co2_grid_t_year": 1.9,
+   "co2_avoided_t_year": 12.5,
+   "litres_year": 6240
+  },
+  "favourable": {
+   "litres_day": 27.5,
+   "price_l": 5599,
+   "km_day": 150,
+   "kwh_km": 0.39,
+   "tariff": 429.7,
+   "note": "Outskirts routes, late May 2026 pump price, off-peak depot charging.",
+   "fuel_cost_day": 153972,
+   "kwh_day": 58.5,
+   "power_cost_day": 25137,
+   "saving_day": 128835,
+   "saving_pct": 83.7,
+   "saving_year": 40196536,
+   "saving_year_usd": 10785,
+   "fuel_cost_km": 1026,
+   "power_cost_km": 168,
+   "pv_saving_ugx_rate": 162592381,
+   "pv_saving_fx_rate": 239190611,
+   "pv_saving_ugx_rate_usd": 43626,
+   "pv_saving_fx_rate_usd": 64178,
+   "co2_petrol_t_year": 19.7,
+   "co2_grid_t_year": 2.5,
+   "co2_avoided_t_year": 17.2,
+   "litres_year": 8580
+  }
+ },
+ "fleet": [
+  {
+   "phase": "Pilot",
+   "window": "Months 0 to 12",
+   "vehicles": 30,
+   "fuel_saved_litres_year": 187200,
+   "energy_saving_ugx_bn_year": 0.77,
+   "energy_saving_usd_m_year": 0.21,
+   "co2_avoided_t_year": 375,
+   "seats": 420,
+   "kwh_day": 1311
+  },
+  {
+   "phase": "Corridor rollout",
+   "window": "Years 2 to 3",
+   "vehicles": 300,
+   "fuel_saved_litres_year": 1872000,
+   "energy_saving_ugx_bn_year": 7.71,
+   "energy_saving_usd_m_year": 2.07,
+   "co2_avoided_t_year": 3750,
+   "seats": 4200,
+   "kwh_day": 13110
+  },
+  {
+   "phase": "Network scale",
+   "window": "Years 4 to 6",
+   "vehicles": 2000,
+   "fuel_saved_litres_year": 12480000,
+   "energy_saving_ugx_bn_year": 51.38,
+   "energy_saving_usd_m_year": 13.79,
+   "co2_avoided_t_year": 25000,
+   "seats": 28000,
+   "kwh_day": 87400
+  }
+ ],
+ "price_curve": [
+  {
+   "price_l": 4500,
+   "saving_day": 65447
+  },
+  {
+   "price_l": 5000,
+   "saving_day": 75447
+  },
+  {
+   "price_l": 5500,
+   "saving_day": 85447
+  },
+  {
+   "price_l": 6000,
+   "saving_day": 95447
+  },
+  {
+   "price_l": 6500,
+   "saving_day": 105447
+  },
+  {
+   "price_l": 7000,
+   "saving_day": 115447
+  }
+ ],
+ "sources": {
+  "fuel_use": "https://monitor.co.ug/uganda/news/national/what-shs100-tax-levied-on-fuel-means-for-motorists-3388586",
+  "pump": "https://www.monitor.co.ug/uganda/news/national/fuel-price-snapshot-kampala-pump-prices-vary-5426166",
+  "tariff": "https://www.monitor.co.ug/uganda/news/national/uedcl-sets-new-power-tariffs-for-final-quarter-5620680",
+  "annual_km": "https://transport-links.com/fcdo-publications/urban-transport-services-in-sub-saharan-africa-recommendations-for-reform-in-uganda-codatu-x-conference-lome-togo-12-15-november-2002/",
+  "ev_kwh_km": "https://doaj.org/article/577a9283014a4f5fae423f9c85a19af1",
+  "e6": "https://www.busnews.com.au/detail/joylong-e6-1214-seater-full-electric-minibus-785503",
+  "lending": "https://eagle.co.ug/2026/04/23/ugandas-shilling-lending-rates-rise-to-18-73-in-february-2026/",
+  "fx": "https://currencyfreaks.com/historical/convert/2026-08-09/UGX/USD/5",
+  "grid": "https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20220811123519440/PSB0058_Final_Recommendation.pdf",
+  "hiace": "https://streamlinefeed.co.ke/news/how-to-start-taxi-business-uganda-costs-regulations",
+  "chargers": "https://www.monitor.co.ug/uganda/business/markets/govt-to-install-3-500-e-vehicle-charging-stations--4690636",
+  "bnef": "https://about.bnef.com/insights/commodities/lithium-ion-battery-pack-prices-fall-to-108-per-kilowatt-hour-despite-rising-metal-prices/"
+ }
+}

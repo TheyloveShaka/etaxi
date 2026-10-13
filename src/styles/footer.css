@@ -1,0 +1,123 @@
+.footer {
+  --dash-sq: 14px;
+  --footer-gutter: calc(var(--sp-4) + var(--sp-1));
+  position: relative;
+  padding: var(--sp-24) var(--footer-gutter) var(--sp-12);
+  background: var(--ink);
+  color: var(--field);
+}
+
+.footer__band {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--dash-sq);
+  background: repeating-linear-gradient(
+    to right,
+    var(--blue-400) 0 var(--dash-sq),
+    transparent var(--dash-sq) calc(var(--dash-sq) * 2)
+  );
+}
+
+.footer__line {
+  max-width: 20em;
+  font-family: var(--font-display);
+  font-size: var(--fs-28);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+
+.footer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4) var(--sp-6);
+  margin-top: var(--sp-8);
+}
+
+.btn--light {
+  background: var(--field);
+  color: var(--ink);
+}
+
+.btn--light:hover {
+  background: var(--blue-100);
+}
+
+.btn--light:focus-visible,
+.footer__link:focus-visible {
+  outline: 2px solid var(--blue-400);
+  outline-offset: var(--sp-1);
+}
+
+.footer__note {
+  color: var(--n-300);
+  line-height: 1.4;
+}
+
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-8);
+  margin-top: var(--sp-12);
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--sp-12);
+  color: var(--field);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--sp-1);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-6);
+  border-top: var(--line) solid var(--n-700);
+}
+
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.footer .logo__word {
+  color: var(--field);
+}
+
+.footer .logo__e {
+  color: var(--charge);
+}
+
+.footer__copy {
+  color: var(--n-300);
+  font-size: var(--fs-13);
+  line-height: 1.4;
+}
+
+@media (min-width: 481px) {
+  .footer {
+    padding-inline: 6vw;
+  }
+
+  .footer__line {
+    font-size: var(--fs-44);
+  }
+}

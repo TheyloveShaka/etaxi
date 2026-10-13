@@ -1,0 +1,11 @@
+Create ONE photorealistic studio product image.
+
+Vehicle: the exact van model in the first reference image (Toyota Hiace high-roof commuter minibus). Livery: taken from the second reference image, a Kampala public taxi, but brand new and spotless: gloss white body with a single horizontal row of sky-blue squares separated by equal white gaps, running along the beltline directly under the side windows for the full length of the van, from the front door to the rear corner.
+
+View: a perfect flat side elevation, like a technical side-view drawing photographed with a very long lens. The camera is exactly perpendicular to the side of the van at door-handle height. Zero perspective, no three-quarter angle, the front and rear faces of the van are NOT visible. Both wheels sit on the same perfectly horizontal line. The van faces LEFT: its front bumper and windscreen are at the left of the image, its rear at the right. This is the kerb side, so it shows the front passenger door and the long sliding passenger door.
+
+Details: dark tinted side windows, clean silver wheel covers, black tyres. On the centre of the roof, one plain blank white rectangular taxi sign box with NO text. Because it is electric: no exhaust pipe, and a small closed charging-port flap on the front wing. No bull bar, no roof rack, no people, no driver, no number plate, no logos, no lettering, no stickers anywhere.
+
+Background: one flat uniform pure magenta colour (#FF00FF) filling the entire frame edge to edge. NO shadow cast onto the background, no floor line, no reflection, no gradient. Soft, even, shadowless studio lighting on the van.
+
+Framing: the whole van is visible, centred, with clear magenta margin on all four sides. Wide 16:9 image.

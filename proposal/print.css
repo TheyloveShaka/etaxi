@@ -1,0 +1,512 @@
+@import url('../src/styles/tokens.css');
+
+@font-face {
+  font-family: "Panchang";
+  src: url("../public/fonts/panchang-600.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Panchang";
+  src: url("../public/fonts/panchang-700.woff2") format("woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("../public/fonts/switzer-variable.woff2") format("woff2");
+  font-weight: 100 900;
+}
+
+@page {
+  size: A4;
+  margin: 24mm 18mm 22mm;
+
+  @top-left {
+    content: "eTaxi";
+    font: 700 8pt "Panchang", sans-serif;
+    color: var(--blue-700);
+  }
+  @top-right {
+    content: "Concept proposal, October 2026";
+    font: 500 7.5pt "Switzer", sans-serif;
+    color: var(--n-500);
+  }
+  @bottom-left {
+    content: "Electric public taxis for Kampala";
+    font: 500 7.5pt "Switzer", sans-serif;
+    color: var(--n-500);
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 600 7.5pt "Switzer", sans-serif;
+    color: var(--ink);
+  }
+}
+
+@page :first {
+  margin: 0;
+  @top-left { content: none; }
+  @top-right { content: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 9.6pt;
+  line-height: 1.52;
+  font-variant-numeric: tabular-nums;
+}
+
+p {
+  margin: 0 0 7pt;
+  orphans: 3;
+  widows: 3;
+}
+
+a {
+  color: var(--blue-700);
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 210mm;
+  height: 297mm;
+  padding: 20mm 18mm 16mm;
+  background: var(--ink);
+  color: var(--field);
+  break-after: page;
+  overflow: hidden;
+}
+
+.cover__brand {
+  display: flex;
+  align-items: center;
+  gap: 8pt;
+}
+
+.cover__tile {
+  display: grid;
+  place-items: center;
+  width: 22pt;
+  height: 22pt;
+  border-radius: 5pt;
+  background: var(--blue-600);
+  font: 700 12pt var(--font-display);
+}
+
+.cover__word {
+  font: 700 15pt var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.cover__word i {
+  color: var(--charge);
+  font-style: normal;
+}
+
+.cover__tag {
+  margin-left: auto;
+  padding: 3pt 9pt;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 0.75pt var(--blue-400);
+  color: var(--blue-300);
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cover__kicker {
+  margin: 30mm 0 6mm;
+  max-width: 130mm;
+  color: var(--blue-300);
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cover__title {
+  margin: 0;
+  max-width: 160mm;
+  padding: 0;
+  background: none;
+  font: 700 30pt/1.04 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.cover__title em {
+  color: var(--blue-400);
+  font-style: normal;
+}
+
+.cover__sub {
+  margin: 8mm 0 0;
+  max-width: 125mm;
+  color: var(--n-300);
+  font-size: 12pt;
+  line-height: 1.45;
+}
+
+.cover__van {
+  position: absolute;
+  right: -12mm;
+  bottom: 51.2mm;
+  width: 150mm;
+}
+
+.cover__road {
+  position: absolute;
+  right: 0;
+  bottom: 47mm;
+  left: 0;
+  height: 4.5mm;
+  background: repeating-linear-gradient(to right, var(--blue-400) 0 4.5mm, transparent 4.5mm 9mm);
+}
+
+.cover__meta {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 10mm;
+  justify-content: start;
+  margin: auto 0 0;
+  font-size: 8pt;
+}
+
+.cover__meta dt {
+  color: var(--n-400);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cover__meta dd {
+  margin: 2pt 0 0;
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3 {
+  break-after: avoid;
+}
+
+h1 {
+  margin: 0 0 10pt;
+  padding-bottom: 8pt;
+  background: repeating-linear-gradient(to right, var(--blue-400) 0 2.4mm, transparent 2.4mm 4.8mm) left bottom / 100% 2.4mm no-repeat;
+  font: 700 19pt/1.08 var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+h1 .num {
+  display: block;
+  margin-bottom: 5pt;
+  color: var(--blue-700);
+  font: 600 8pt var(--font-text);
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  margin: 14pt 0 5pt;
+  font: 700 11pt/1.2 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  margin: 10pt 0 3pt;
+  color: var(--blue-700);
+  font: 600 9.8pt/1.3 var(--font-text);
+}
+
+.sec {
+  break-before: page;
+}
+
+.lead {
+  margin-bottom: 10pt;
+  color: var(--n-700);
+  font-size: 11.5pt;
+  line-height: 1.45;
+}
+
+ul,
+ol {
+  margin: 0 0 8pt;
+  padding-left: 14pt;
+}
+
+li {
+  margin-bottom: 2.5pt;
+}
+
+.toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin: 0;
+  border-bottom: 0.5pt solid var(--n-100);
+}
+
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  padding: 4.5pt 0;
+  color: var(--ink);
+}
+
+.toc .n {
+  width: 18pt;
+  color: var(--blue-700);
+  font-weight: 600;
+}
+
+.toc .t {
+  flex: 1;
+  font-weight: 500;
+}
+
+.toc .p {
+  color: var(--n-600);
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  margin: 6pt 0 10pt;
+  border-collapse: collapse;
+  font-size: 8.4pt;
+  line-height: 1.38;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+th {
+  padding: 5pt 6pt;
+  background: var(--ink);
+  color: var(--field);
+  font-size: 7.4pt;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+td {
+  padding: 4.5pt 6pt;
+  border-bottom: 0.5pt solid var(--n-200);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) td {
+  background: var(--n-50);
+}
+
+td.n,
+th.n {
+  text-align: right;
+  white-space: nowrap;
+}
+
+tr.total td {
+  border-top: 1pt solid var(--ink);
+  background: var(--blue-50);
+  font-weight: 600;
+}
+
+.callout {
+  margin: 8pt 0 10pt;
+  padding: 9pt 11pt;
+  border-left: 3pt solid var(--blue-600);
+  background: var(--blue-50);
+  break-inside: avoid;
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
+.callout .label {
+  display: block;
+  margin-bottom: 3pt;
+  color: var(--blue-700);
+  font-size: 7.4pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.callout--green {
+  border-left-color: var(--leaf);
+  background: color-mix(in srgb, var(--charge) 16%, var(--field));
+}
+
+.callout--green .label {
+  color: var(--leaf);
+}
+
+.callout--plain {
+  border-left-color: var(--n-400);
+  background: var(--n-50);
+}
+
+.callout--plain .label {
+  color: var(--n-600);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 8pt;
+  margin: 8pt 0 12pt;
+  break-inside: avoid;
+}
+
+.kpi {
+  padding: 9pt 10pt;
+  border-top: 2pt solid var(--blue-600);
+  background: var(--n-50);
+}
+
+.kpi b {
+  display: block;
+  color: var(--ink);
+  font: 700 14pt/1.1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.kpi > span {
+  display: block;
+  margin-top: 3pt;
+  color: var(--n-600);
+  font-size: 7.6pt;
+  line-height: 1.3;
+}
+
+.fig {
+  margin: 8pt 0 12pt;
+  break-inside: avoid;
+}
+
+.fig svg,
+.fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fig figcaption {
+  margin-top: 4pt;
+  color: var(--n-600);
+  font-size: 7.6pt;
+}
+
+.fig figcaption b {
+  color: var(--ink);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12pt;
+}
+
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10pt;
+}
+
+.card {
+  padding: 9pt 10pt;
+  background: var(--n-50);
+  break-inside: avoid;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+sup.ref {
+  color: var(--blue-700);
+  font-size: 6.6pt;
+  font-weight: 600;
+  line-height: 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 1pt 5pt;
+  border-radius: 999px;
+  background: var(--n-100);
+  color: var(--n-700);
+  font-size: 6.8pt;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 1pt;
+}
+
+.tag--est {
+  background: color-mix(in srgb, var(--charge) 30%, var(--field));
+  color: var(--leaf);
+}
+
+.sources {
+  padding-left: 18pt;
+  font-size: 7.6pt;
+  line-height: 1.4;
+}
+
+.sources li {
+  margin-bottom: 3pt;
+  overflow-wrap: anywhere;
+}
+
+.small {
+  color: var(--n-600);
+  font-size: 7.8pt;
+}
+
+.avoid {
+  break-inside: avoid;
+}
+
+.break {
+  break-before: page;
+}

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en-UG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The concept | eTaxi</title>
+  <meta name="description" content="The eTaxi concept proposal: privately operated, publicly regulated electric taxis for Kampala, the data they generate, and why the 2026 crackdown on unroadworthy taxis makes the case urgent.">
+  <meta name="theme-color" content="#0B1220">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://theyloveshaka.github.io/etaxi/concept.html">
+  <meta property="og:title" content="The eTaxi concept proposal">
+  <meta property="og:description" content="Privately operated, publicly regulated electric taxis for Kampala. Read the full proposal and the executive summary.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://theyloveshaka.github.io/etaxi/concept.html">
+  <meta property="og:image" content="https://theyloveshaka.github.io/etaxi/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/fonts/panchang-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/switzer-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="module" src="/src/concept.ts"></script>
+</head>
+<body class="concept">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav is-solid">
+    <div class="nav__brand">
+      <a class="logo" href="./" aria-label="eTaxi, back to the ride">
+        <span class="logo__tile" aria-hidden="true">T</span>
+        <span class="logo__word"><span class="logo__e">e</span>taxi</span>
+      </a>
+      <span class="nav__tag">Concept</span>
+    </div>
+    <nav class="nav__actions" aria-label="Primary">
+      <a class="nav__link" href="./">The ride</a>
+      <a class="nav__link" href="#read">Downloads</a>
+      <a class="btn btn--sm" href="docs/eTaxi-Proposal.pdf">PDF</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="c-hero" aria-labelledby="c-title">
+      <div class="c-hero__copy">
+        <p class="c-eyebrow c-eyebrow--light">Concept proposal, October 2026</p>
+        <h1 class="c-hero__title" id="c-title">A private, electric answer to Kampala's taxi problem.</h1>
+        <p class="c-hero__lead">eTaxi proposes electric 14-seater taxis that are privately financed and operated, publicly regulated, and tracked live on the rider's phone. This page is the short version. The two documents below carry the detail and every source.</p>
+        <div class="c-hero__actions">
+          <a class="btn btn--light" href="docs/eTaxi-Proposal.pdf">Full proposal (PDF)</a>
+          <a class="c-link c-link--light" href="docs/eTaxi-Executive-Summary.pdf">Executive summary (PDF)</a>
+        </div>
+      </div>
+      <img class="c-hero__van" src="/img/etaxi-side.webp" width="1760" height="829" alt="A white electric taxi van in Kampala's blue and white livery" fetchpriority="high">
+      <span class="c-hero__band" aria-hidden="true"></span>
+    </section>
+
+    <p class="c-notice"><strong>This is a concept.</strong> No eTaxis are running, no company has been registered and no money has been raised. Nothing here is an offer, and none of the organisations named have endorsed it. Figures marked indicative come from a published model with stated assumptions.</p>
+
+    <section class="c-sec" aria-labelledby="why">
+      <header class="c-sec__head">
+        <span class="c-sec__num">01</span>
+        <h2 class="c-sec__title" id="why">Why now</h2>
+      </header>
+      <div class="c-sec__body">
+        <p class="c-lead">On 24 August 2026 the Ministry of Works and Transport and the traffic police began Operation Ganyegenya, a 100-day crackdown on commuter taxis in dangerous mechanical condition across Greater Kampala.<sup><a href="#src-1">1</a></sup></p>
+        <div class="c-stats">
+          <div class="c-stat"><b>477</b><span>taxis seized by 2 October 2026</span></div>
+          <div class="c-stat"><b>69</b><span>repaired and passed the fitness test</span></div>
+          <div class="c-stat"><b>408</b><span>still grounded, plates confiscated</span></div>
+        </div>
+        <figure class="c-split" role="img" aria-label="Of 477 taxis seized by 2 October 2026, 69 were cleared after repair and 408 were still grounded.">
+          <div class="c-split__bar">
+            <span class="c-split__seg c-split__seg--cleared" style="flex-grow: 69"></span>
+            <span class="c-split__seg c-split__seg--grounded" style="flex-grow: 408"></span>
+          </div>
+          <figcaption class="c-split__legend">
+            <span><i class="c-dot c-dot--cleared" aria-hidden="true"></i>Cleared after repair, 69 (14%)</span>
+            <span><i class="c-dot c-dot--grounded" aria-hidden="true"></i>Still grounded, 408 (86%)</span>
+            <span class="c-split__src">Source: Ministry of Works and Transport, reported by Daily Monitor, 3 October 2026.<sup><a href="#src-1">1</a></sup></span>
+          </figcaption>
+        </figure>
+        <div class="c-cols">
+          <p>The test is the vehicle's condition, not its age. No age cap and no ban on 14-seaters was announced.<sup><a href="#src-2">2</a></sup> But the fleet is old, and on the second day a taxi leader estimated that about three quarters of taxis were off the road. Some fares doubled.<sup><a href="#src-3">3</a></sup></p>
+          <p>The crackdown removes unsafe vans. It does not replace them. No financing for owners to renew their vehicles was found in any 2026 report. eTaxi is a proposal for that missing half: a way for an owner with a condemned van to get back on the road in a clean one.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-sec" aria-labelledby="idea">
+      <header class="c-sec__head">
+        <span class="c-sec__num">02</span>
+        <h2 class="c-sec__title" id="idea">The idea</h2>
+      </header>
+      <div class="c-sec__body">
+        <div class="c-cards">
+          <article class="c-card">
+            <h3>The vehicle</h3>
+            <p>An electric van in the 14-seat class, in the blue and white Kampala already reads as a taxi. Charged at a depot, mostly off-peak.</p>
+          </article>
+          <article class="c-card">
+            <h3>The service</h3>
+            <p>The same stages and routes. The fare shown before boarding, paid by mobile money. A Masaawo button for your stop. Cameras and a trip link you can send home.</p>
+          </article>
+          <article class="c-card">
+            <h3>The model</h3>
+            <p>Private money and private operators under public rules. Taxi owners and their associations can lease to own, or hold shares in the operating company, as Cape Town did with its taxi licence holders.<sup><a href="#src-5">5</a></sup></p>
+          </article>
+          <article class="c-card">
+            <h3>The data</h3>
+            <p>Every trip, stop, fare and battery cycle is recorded with consent and protected by law. That record runs the fleet today and trains the systems of tomorrow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-sec c-sec--tint" aria-labelledby="numbers">
+      <header class="c-sec__head">
+        <span class="c-sec__num">03</span>
+        <h2 class="c-sec__title" id="numbers">The numbers</h2>
+      </header>
+      <div class="c-sec__body">
+        <p class="c-lead">An energy comparison for one taxi on city routes, base case. <span class="c-tag">Indicative</span></p>
+        <div class="c-stats c-stats--four">
+          <div class="c-stat"><b><i class="c-unit">UGX</i>106,900</b><span>petrol per day at mid 2026 pump prices</span></div>
+          <div class="c-stat"><b><i class="c-unit">UGX</i>24,553</b><span>electricity per day at the commercial tariff</span></div>
+          <div class="c-stat"><b>77%</b><span>lower energy cost, about UGX 25.7 million a year</span></div>
+          <div class="c-stat"><b>12.5 t</b><span>of CO2 avoided per taxi per year</span></div>
+        </div>
+        <p class="c-small">Energy only. Vehicle price, maintenance, wages and chargers are not in these figures, and no published price was found for a suitable van. Fuel use is driver-reported, daily distance is derived, and both will be measured in the pilot. Electricity at Shs562.1 per kWh for October to December 2026.<sup><a href="#src-4">4</a></sup> Over eight years the base-case saving is worth about USD 27,900 at Uganda's average shilling lending rate, or USD 41,000 at the foreign-currency rate. The method and every input are in Appendix A of the proposal.</p>
+      </div>
+    </section>
+
+    <section class="c-sec" aria-labelledby="data">
+      <header class="c-sec__head">
+        <span class="c-sec__num">04</span>
+        <h2 class="c-sec__title" id="data">Data that outlives the fleet</h2>
+      </header>
+      <div class="c-sec__body">
+        <p class="c-lead">An instrumented fleet is also a measuring instrument for the city. African roads are thin in the public datasets that driving systems learn from.<sup><a href="#src-7">7</a></sup></p>
+        <div class="c-cols">
+          <div>
+            <h3>From the first day</h3>
+            <ul class="c-list">
+              <li>Arrival times riders can trust</li>
+              <li>Demand forecasts and dispatch by stage and hour</li>
+              <li>Fleet management: uptime, charging, battery health</li>
+              <li>Driver coaching and crash analysis</li>
+            </ul>
+          </div>
+          <div>
+            <h3>As the record grows</h3>
+            <ul class="c-list">
+              <li>Origin and destination maps for city planners</li>
+              <li>Road condition and pothole mapping</li>
+              <li>Carbon measurement for climate finance</li>
+              <li>Training data for driver assistance and, later, automated vans</li>
+            </ul>
+          </div>
+        </div>
+        <p class="c-small">Location is personal data under Uganda's Data Protection and Privacy Act 2019.<sup><a href="#src-8">8</a></sup> The proposal sets out consent, retention, anonymisation and sharing terms. Kampala already has one open route feed for 14-seater taxis to build on.<sup><a href="#src-6">6</a></sup></p>
+      </div>
+    </section>
+
+    <section class="c-sec" aria-labelledby="plan">
+      <header class="c-sec__head">
+        <span class="c-sec__num">05</span>
+        <h2 class="c-sec__title" id="plan">The plan</h2>
+      </header>
+      <div class="c-sec__body">
+        <ol class="c-phases">
+          <li class="c-phase"><span class="c-phase__n">30</span><h3>Pilot</h3><p>One corridor, the first year. Measure real distance, energy, fares and demand.</p></li>
+          <li class="c-phase"><span class="c-phase__n">300</span><h3>Corridor rollout</h3><p>Years two to three. Owners join by lease or shares. Depots and charging follow the routes.</p></li>
+          <li class="c-phase"><span class="c-phase__n">2,000</span><h3>Network scale</h3><p>Years four to six. A franchise framework with the regulator, and data services for the city.</p></li>
+        </ol>
+        <p class="c-small">Fleet sizes are proposed planning targets, not forecasts. Each phase has a gate: the next one starts only if the last one met its measures.</p>
+      </div>
+    </section>
+
+    <section class="c-sec c-sec--ink" id="read" aria-labelledby="read-title">
+      <header class="c-sec__head">
+        <span class="c-sec__num">06</span>
+        <h2 class="c-sec__title" id="read-title">Read it</h2>
+      </header>
+      <div class="c-sec__body">
+        <div class="c-docs">
+          <a class="c-doc" href="docs/eTaxi-Proposal.pdf">
+            <span class="c-doc__kind">PDF, full document</span>
+            <span class="c-doc__name">The proposal</span>
+            <span class="c-doc__text">Background and history, the crackdown, the operating model, system architecture, data and machine learning roadmap, financial case, plan, risks and sources.</span>
+            <span class="c-doc__cta">Open the proposal</span>
+          </a>
+          <a class="c-doc" href="docs/eTaxi-Executive-Summary.pdf">
+            <span class="c-doc__kind">PDF, short read</span>
+            <span class="c-doc__name">Executive summary</span>
+            <span class="c-doc__text">The problem, the proposal, the numbers and the asks, for a reader with ten minutes.</span>
+            <span class="c-doc__cta">Open the summary</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-sec c-sec--sources" aria-labelledby="sources">
+      <header class="c-sec__head">
+        <span class="c-sec__num">07</span>
+        <h2 class="c-sec__title" id="sources">Sources on this page</h2>
+      </header>
+      <div class="c-sec__body">
+        <ol class="c-sources">
+          <li id="src-1">Daily Monitor, 3 October 2026. <a href="https://www.monitor.co.ug/uganda/news/national/only-69-impounded-taxis-cleared-to-return-to-kampala-roads-says-works-ministry-5618090">Only 69 impounded taxis cleared to return to Kampala roads, says Works ministry</a></li>
+          <li id="src-2">Daily Monitor, 20 August 2026. <a href="https://www.monitor.co.ug/uganda/news/national/govt-launches-100-day-crackdown-on-unroadworthy-taxis-in-greater-kampala-5564908">Govt launches 100-day crackdown on unroadworthy taxis in Greater Kampala</a></li>
+          <li id="src-3">Daily Monitor, 25 and 26 August 2026. <a href="https://www.monitor.co.ug/uganda/news/national/police-soften-dmc-taxi-crackdown-after-chaos-5571686">Police soften DMC taxi crackdown after chaos</a> and <a href="https://www.monitor.co.ug/uganda/news/national/commuters-stranded-in-travel-chaos-5570062">Commuters stranded in travel chaos</a></li>
+          <li id="src-4">Daily Monitor, 5 October 2026. <a href="https://www.monitor.co.ug/uganda/news/national/uedcl-sets-new-power-tariffs-for-final-quarter-5620680">UEDCL sets new power tariffs for final quarter</a></li>
+          <li id="src-5">World Bank PPP Resource Center. <a href="https://ppp.worldbank.org/node/8507">Cape Town MyCiTi and taxi industry transition</a></li>
+          <li id="src-6">Mobility Database, May 2025. <a href="https://mobilitydatabase.org/feeds/gtfs/mdb-1813">Kampala paratransit GTFS feed</a></li>
+          <li id="src-7">Engineering, Technology and Applied Science Research, 2026. <a href="https://etasr.com/index.php/ETASR/article/view/17251">Study on driving datasets and African road scenes</a></li>
+          <li id="src-8">DLA Piper, Data Protection Laws of the World. <a href="https://www.dlapiperdataprotection.com/?c=UG&amp;t=law">Uganda</a></li>
+        </ol>
+        <p class="c-small">The proposal cites its full source list. Indicative figures come from <code>scripts/model.py</code> in the project repository.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__band" aria-hidden="true"></span>
+    <p class="footer__line">Electric public taxis for Kampala.</p>
+    <div class="footer__actions">
+      <a class="btn btn--light" href="./">Take the ride</a>
+      <p class="footer__note">This is a concept site. No eTaxis are running yet.</p>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__brand">
+        <span class="logo__tile" aria-hidden="true">T</span>
+        <span class="logo__word"><span class="logo__e">e</span>taxi</span>
+      </span>
+      <p class="footer__copy">&copy; eTaxi <span data-year>2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

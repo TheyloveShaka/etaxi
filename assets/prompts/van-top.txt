@@ -1,0 +1,9 @@
+Create ONE photorealistic studio product image of the SAME van shown in the reference image (white Toyota Hiace high-roof commuter minibus, Kampala taxi livery), seen from DIRECTLY ABOVE.
+
+View: an exact top-down plan view, like an architectural roof plan photographed by a drone hovering straight overhead with a very long lens. Zero perspective. The sides of the van are NOT visible at all, only the roof, the bonnet edge, the windscreen glass and the two door mirrors sticking out. The van is perfectly horizontal in the frame and faces LEFT: windscreen and front bumper at the left, rear at the right. The outline is a clean rounded rectangle.
+
+Roof: gloss white, with shallow lengthwise roof ribs. Painted along the centre line of the roof, one single row of sky-blue squares with equal white gaps, running front to back, the same squares as on the side of the van. In the middle of the roof, a small rectangular taxi sign box seen from above: left third solid blue, the rest white, no text. Dark tinted windscreen at the front. No roof rack, no people, no text, no logos.
+
+Background: one flat uniform pure magenta colour (#FF00FF) filling the entire frame. NO shadow on the background, no floor, no gradient. Soft, even, shadowless lighting.
+
+Framing: whole van visible and centred with clear magenta margin on all sides. Wide 16:9 image.
