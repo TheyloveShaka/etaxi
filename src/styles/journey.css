@@ -100,8 +100,9 @@
 
 .world__trail {
   fill: none;
+  opacity: 0.45;
   stroke: var(--charge);
-  stroke-width: calc(var(--dash) * 0.5);
+  stroke-width: calc(var(--dash) * 0.3);
   stroke-linecap: butt;
   stroke-linejoin: round;
 }
@@ -132,15 +133,76 @@
 }
 
 .traffic--van {
-  width: calc(var(--road-w) * 0.4);
+  width: calc(var(--road-w) * 0.38);
 }
 
-.traffic--saloon {
-  width: calc(var(--road-w) * 0.3);
+.traffic--car {
+  width: calc(var(--road-w) * 0.28);
 }
 
-.traffic--boda {
-  width: calc(var(--road-w) * 0.1);
+.traffic__glass {
+  fill: var(--n-600);
+}
+
+.smoke {
+  position: absolute;
+  top: 92%;
+  left: 18%;
+  width: 54%;
+  pointer-events: none;
+}
+
+.smoke i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--n-300);
+  opacity: 0;
+  animation: smoke-puff 1.8s linear infinite;
+}
+
+.smoke i:nth-child(2) {
+  animation-delay: -0.45s;
+}
+
+.smoke i:nth-child(3) {
+  animation-delay: -0.9s;
+}
+
+.smoke i:nth-child(4) {
+  animation-delay: -1.35s;
+}
+
+@keyframes smoke-puff {
+  0% {
+    opacity: 0.8;
+    transform: translate(0, 0) scale(0.35);
+  }
+
+  70% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-35%, 330%) scale(1.9);
+  }
+}
+
+.world__icon {
+  fill: var(--charge);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke {
+    display: none;
+  }
 }
 
 .sign {
@@ -238,10 +300,12 @@
     --lane: 0px;
   }
 
-  .traffic--van,
-  .traffic--saloon,
-  .traffic--extra {
+  .traffic--wide {
     display: none;
+  }
+
+  .traffic--van {
+    width: calc(var(--road-w) * 0.3);
   }
 
   .sign {

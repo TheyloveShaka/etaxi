@@ -1,0 +1,181 @@
+<!-- data-renumbered -->
+<section class="sec" id="s7">
+  <h1><span class="num">Section 7</span>Technology and system architecture</h1>
+  <p class="lead">One platform connects riders, drivers, vehicles, chargers and regulators. It is designed to work on cheap phones and weak networks, to publish open data, and to protect personal data from the first line of code.</p>
+  <h2>7.1 Scope</h2>
+  <p>In scope: the rider app, the driver app, the vehicle telematics unit and onboard sensors, payment integration, charging management, the fleet operations console, the data platform and the open interfaces that publish schedules and live positions. Out of scope: vehicle manufacture, grid works beyond the depot meter, and any change to government systems. <span class="tag">Proposed</span> Every requirement below is a design target, not a measured result.</p>
+  <h2>7.2 Layered architecture</h2>
+  <figure class="fig">
+    <svg viewBox="0 0 640 388" role="img" aria-label="Layered architecture of the eTaxi platform, from interfaces down to depot and partners">
+      <g fill="var(--n-50)"><rect x="0" y="8" width="640" height="60"/><rect x="0" y="86" width="640" height="60"/><rect x="0" y="164" width="640" height="60"/><rect x="0" y="242" width="640" height="60"/><rect x="0" y="320" width="640" height="60"/></g>
+      <path d="M178 68v18M280 68v18M382 68v18M484 68v18M586 68v18M178 146v18M280 146v18M382 146v18M484 146v18M586 146v18M178 224v18M280 224v18M382 224v18M484 224v18M586 224v18M178 302v18M280 302v18M382 302v18M484 302v18M586 302v18" stroke="var(--blue-400)" stroke-width="1.5" fill="none"/>
+      <g font-family="Switzer" font-size="11" font-weight="600" fill="var(--blue-700)">
+        <text x="12" y="35"><tspan x="12">Interfaces</tspan><tspan x="12" dy="14">and users</tspan></text>
+        <text x="12" y="113"><tspan x="12">Platform</tspan><tspan x="12" dy="14">services</tspan></text>
+        <text x="12" y="191"><tspan x="12">Data</tspan><tspan x="12" dy="14">platform</tspan></text>
+        <text x="12" y="269"><tspan x="12">Vehicle and</tspan><tspan x="12" dy="14">connectivity</tspan></text>
+        <text x="12" y="347"><tspan x="12">Depot, energy</tspan><tspan x="12" dy="14">and partners</tspan></text>
+      </g>
+      <g fill="var(--field)" stroke="var(--blue-400)" stroke-width="1">
+        <rect x="130" y="16" width="96" height="44" rx="4"/><rect x="232" y="16" width="96" height="44" rx="4"/><rect x="334" y="16" width="96" height="44" rx="4"/><rect x="436" y="16" width="96" height="44" rx="4"/><rect x="538" y="16" width="96" height="44" rx="4"/>
+        <rect x="130" y="94" width="96" height="44" rx="4"/><rect x="232" y="94" width="96" height="44" rx="4"/><rect x="334" y="94" width="96" height="44" rx="4"/><rect x="436" y="94" width="96" height="44" rx="4"/><rect x="538" y="94" width="96" height="44" rx="4"/>
+        <rect x="130" y="172" width="96" height="44" rx="4"/><rect x="232" y="172" width="96" height="44" rx="4"/><rect x="334" y="172" width="96" height="44" rx="4"/><rect x="436" y="172" width="96" height="44" rx="4"/><rect x="538" y="172" width="96" height="44" rx="4"/>
+        <rect x="130" y="250" width="96" height="44" rx="4"/><rect x="232" y="250" width="96" height="44" rx="4"/><rect x="334" y="250" width="96" height="44" rx="4"/><rect x="436" y="250" width="96" height="44" rx="4"/><rect x="538" y="250" width="96" height="44" rx="4"/>
+        <rect x="130" y="328" width="96" height="44" rx="4"/><rect x="232" y="328" width="96" height="44" rx="4"/><rect x="334" y="328" width="96" height="44" rx="4"/><rect x="436" y="328" width="96" height="44" rx="4"/><rect x="538" y="328" width="96" height="44" rx="4"/>
+      </g>
+      <g font-family="Switzer" font-size="10" fill="var(--ink)" text-anchor="middle">
+        <text x="178" y="35"><tspan x="178">Rider app</tspan><tspan x="178" dy="13">Android, web</tspan></text>
+        <text x="280" y="35"><tspan x="280">Driver app</tspan><tspan x="280" dy="13">tablet, phone</tspan></text>
+        <text x="382" y="35"><tspan x="382">Fleet operations</tspan><tspan x="382" dy="13">console</tspan></text>
+        <text x="484" y="35"><tspan x="484">Regulator and</tspan><tspan x="484" dy="13">city portal</tspan></text>
+        <text x="586" y="35"><tspan x="586">Open feeds</tspan><tspan x="586" dy="13">GTFS, GTFS Realtime</tspan></text>
+        <text x="178" y="113"><tspan x="178">Trips, fares</tspan><tspan x="178" dy="13">and arrival times</tspan></text>
+        <text x="280" y="113"><tspan x="280">Payments</tspan><tspan x="280" dy="13">mobile money</tspan></text>
+        <text x="382" y="113"><tspan x="382">Identity and</tspan><tspan x="382" dy="13">consent</tspan></text>
+        <text x="484" y="113"><tspan x="484">Dispatch and</tspan><tspan x="484" dy="13">scheduling</tspan></text>
+        <text x="586" y="113"><tspan x="586">Charging</tspan><tspan x="586" dy="13">management</tspan></text>
+        <text x="178" y="191"><tspan x="178">Stream</tspan><tspan x="178" dy="13">ingestion</tspan></text>
+        <text x="280" y="191"><tspan x="280">Data lake and</tspan><tspan x="280" dy="13">warehouse</tspan></text>
+        <text x="382" y="191"><tspan x="382">Feature store</tspan><tspan x="382" dy="13">and models</tspan></text>
+        <text x="484" y="191"><tspan x="484">Analytics and</tspan><tspan x="484" dy="13">reporting</tspan></text>
+        <text x="586" y="191"><tspan x="586">Governance,</tspan><tspan x="586" dy="13">audit, retention</tspan></text>
+        <text x="178" y="269"><tspan x="178">Telematics unit</tspan><tspan x="178" dy="13">GPS, CAN, battery</tspan></text>
+        <text x="280" y="269"><tspan x="280">Onboard cameras</tspan><tspan x="280" dy="13">and sensors</tspan></text>
+        <text x="382" y="269"><tspan x="382">Masaawo button</tspan><tspan x="382" dy="13">driver display</tspan></text>
+        <text x="484" y="269"><tspan x="484">Mobile network</tspan><tspan x="484" dy="13">offline buffer</tspan></text>
+        <text x="586" y="269"><tspan x="586">Stage boards</tspan><tspan x="586" dy="13">and kiosks</tspan></text>
+        <text x="178" y="347"><tspan x="178">Chargers</tspan><tspan x="178" dy="13">OCPP</tspan></text>
+        <text x="280" y="347"><tspan x="280">Depot energy</tspan><tspan x="280" dy="13">metering</tspan></text>
+        <text x="382" y="347"><tspan x="382">Mobile money</tspan><tspan x="382" dy="13">operators</tspan></text>
+        <text x="484" y="347"><tspan x="484">Grid utility</tspan><tspan x="484" dy="13">and regulator</tspan></text>
+        <text x="586" y="347"><tspan x="586">KCCA, ministry</tspan><tspan x="586" dy="13">data exchange</tspan></text>
+      </g>
+    </svg>
+    <figcaption><b>Figure 6.</b> Proposed layered architecture. Events flow up from vehicles and chargers; commands and schedules flow down. All boxes are proposed components; none exists yet. Source: this proposal.</figcaption>
+  </figure>
+  <h2>7.3 Components</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Function</th><th>Main users</th></tr></thead>
+    <tbody>
+      <tr><td>Rider app</td><td>Route search, fare shown first, live arrival, mobile money payment, Masaawo, trip sharing, incident report</td><td>Riders</td></tr>
+      <tr><td>Driver app</td><td>Roster, route, stop list, alerts, charge status, fault reporting</td><td>Drivers</td></tr>
+      <tr><td>Telematics unit</td><td>GPS position, vehicle bus and battery data, camera control, local buffer</td><td>Platform, maintenance</td></tr>
+      <tr><td>Payments</td><td>Mobile money collection, reconciliation, refunds, driver and owner payouts</td><td>Riders, finance</td></tr>
+      <tr><td>Operations console</td><td>Live fleet map, headway view, charging, incidents, complaints</td><td>Control room</td></tr>
+      <tr><td>Data platform</td><td>Storage, features, models, anonymised exports, audit</td><td>Analysts, planners</td></tr>
+      <tr><td>Open interfaces</td><td>GTFS schedules, GTFS Realtime positions, partner APIs</td><td>Third-party apps, city</td></tr>
+    </tbody>
+  </table>
+  <h2>7.4 Standards</h2>
+  <p>The General Transit Feed Specification (GTFS) and its Realtime extension are community-governed and maintained by MobilityData; a 2013 community effort extended GTFS to informal services with changing routes.<cite data-u="https://digitalmatatus.com/post5.html" data-t="Digital Matatus, date not shown"></cite><cite data-u="https://msi.dublincore.org/standards/gtfs" data-t="Dublin Core Metadata Initiative, date not shown"></cite> A volunteer-built GTFS dataset for Kampala exists,<cite data-u="https://hub.tumidata.org/dataset/gtfs_kampala_kampala" data-t="TUMI Data Hub, date not shown"></cite> and the MobilityDatabase lists a Kampala feed covering a 14-seater paratransit operator and buses from two operators, with no errors and six warnings in its May 2025 quality report.<cite data-u="https://mobilitydatabase.org/feeds/gtfs/mdb-1813" data-t="MobilityDatabase, May 2025"></cite> No real-time feed for Kampala paratransit was found. The Mobility Data Specification is built for micromobility such as e-scooters, so it is not a ready fit for 14-seaters.<cite data-u="https://civictech.guide/projects/digital-public-goods-standard" data-t="Civic Tech Guide, date not shown"></cite> The Open Charge Point Protocol (OCPP) is proposed as a procurement requirement for chargers so that no single supplier controls charging; the research behind this document retrieved no source on OCPP, so it is named here as a requirement, not described.</p>
+  <h2>7.5 Requirements</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Functional requirement</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td>F1</td><td>Rider sees the full fare before boarding and before paying.</td><td>Must</td></tr>
+      <tr><td>F2</td><td>Rider sees the next vehicle and a live arrival estimate for the stage.</td><td>Must</td></tr>
+      <tr><td>F3</td><td>Payment by MTN Mobile Money and Airtel Money, by app and by USSD.</td><td>Must</td></tr>
+      <tr><td>F4</td><td>Masaawo stop request reaches the driver display and logs the stop.</td><td>Must</td></tr>
+      
+      <tr><td>F6</td><td>Console shows fleet position, headways, charge level and open faults.</td><td>Must</td></tr>
+      <tr><td>F7</td><td>Platform publishes GTFS and GTFS Realtime for all routes.</td><td>Must</td></tr>
+      <tr><td>F8</td><td>Consent, access and deletion requests handled in the app.</td><td>Must</td></tr>
+      
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>Area</th><th>Non-functional requirement <span class="tag">Proposed</span></th></tr></thead>
+    <tbody>
+      <tr><td>Availability</td><td>Rider services available 99.5% of each month; the console has a documented manual fallback.</td></tr>
+      <tr><td>Latency</td><td>Arrival estimates refresh at least every 15 seconds; 95% of app requests answered within 1 second on a 3G connection.</td></tr>
+      <tr><td>Offline tolerance</td><td>App shows cached routes and fares without data; the vehicle unit stores 48 hours of records and uploads when reconnected.</td></tr>
+      <tr><td>Low-end devices</td><td>Runs on low-cost Android phones with 2 GB of memory; install size under 30 MB; a web version and USSD fallback.</td></tr>
+      <tr><td>Data cost</td><td>A typical trip uses under 200 KB of mobile data; map tiles are cached.</td></tr>
+      <tr><td>Security</td><td>Encryption in transit and at rest, role-based access, audit logs, independent penetration test before any launch.</td></tr>
+      <tr><td>Privacy by design</td><td>Data minimisation, purpose limits, retention schedule and anonymised exports built in; impact assessment before the pilot.</td></tr>
+    </tbody>
+  </table>
+  <h2>7.6 Build versus buy</h2>
+  <p><span class="tag">Proposed</span> Buy what is commodity and build what carries the service. Payments would be integrated through the mobile money operators or a licensed aggregator. Telematics hardware and the camera units would be bought to a specification. The charging-management layer would use OCPP-compliant software, bought or open source. The rider app, driver app, data platform and models would be built, because the local fare, stop and consent rules are the product. </p>
+  <h2>7.7 Delivery approach and environments</h2>
+  <p><span class="tag">Proposed</span> Delivery would run in two-week cycles with four environments: development, test, staging and production. The pilot would run in shadow mode first, with the platform predicting arrivals for existing taxis along a chosen corridor, so the models learn local movement before electric vehicles arrive. </p>
+</section>
+
+<section class="sec" id="s8">
+  <h1><span class="num">Section 8</span>Data strategy and machine learning roadmap</h1>
+  <p class="lead">Every vehicle is a sensor. The strategy is to collect only what each use case needs, put the earliest value in rider service and cost control, and share anonymised data with the city under written terms.</p>
+  <h2>8.1 What the fleet generates</h2>
+  <table>
+    <thead><tr><th>Data stream</th><th>Used for</th><th>Volume driver</th><th>Sensitivity</th></tr></thead>
+    <tbody>
+      <tr><td>GPS traces</td><td>Arrival estimates, route and demand analysis</td><td>Vehicles and sampling rate</td><td>High: location</td></tr>
+      
+      <tr><td>Payments and fares</td><td>Revenue, reconciliation, fraud checks</td><td>Paid trips</td><td>High: financial</td></tr>
+      <tr><td>Vehicle bus and battery</td><td>Maintenance, battery health</td><td>Vehicles and signals logged</td><td>Low</td></tr>
+      <tr><td>Charging sessions</td><td>Smart charging, load planning</td><td>Charges per day</td><td>Low</td></tr>
+      <tr><td>Driver events</td><td>Coaching, safety</td><td>Driving hours</td><td>High: employee</td></tr>
+      <tr><td>Onboard and road video</td><td>Incidents, road condition, driver assistance data</td><td>Camera hours</td><td>Very high: faces</td></tr>
+      
+    </tbody>
+  </table>
+  <h2>8.2 Use cases in priority order</h2>
+  <p>The order follows value, data readiness and risk. Where the research found no result from a comparable setting, the table says so.</p>
+  <table>
+    <thead><tr><th>#</th><th>Use case</th><th>Horizon</th><th>Evidence found</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Arrival prediction</td><td>0 to 12 months</td><td>Floating car data on nine Kampala minibus taxis shows irregular movement;<cite data-u="https://nru.uncst.go.ug/handle/123456789/3670" data-t="Uganda National Research Repository, date not shown"></cite> no measured arrival accuracy found.</td></tr>
+      <tr><td>2</td><td>Demand forecasting and dispatch</td><td>6 to 18 months</td><td>Route-level forecasts with random forest and XGBoost report accuracy, not savings.<cite data-u="https://orbilu.uni.lu/bitstream/10993/67355/1/Bus%20Station%20Demand%20Prediction.pdf" data-t="University of Luxembourg, date not shown"></cite></td></tr>
+      <tr><td>3</td><td>Headway control</td><td>12 to 24 months</td><td>No source retrieved.</td></tr>
+      <tr><td>4</td><td>Predictive maintenance</td><td>12 to 24 months</td><td>New York City Transit is implementing machine learning prognostics on over 5,800 buses; no outcome figures.<cite data-u="https://www.uitp.org/case-studies/expanding-prognostics-and-integrating-machine-learning-with-bus-telematics/" data-t="UITP, date not shown"></cite> A vendor claim of a 73% fall in roadside failures has no method and is not relied on.<cite data-u="https://oxmaint.com/industries/education/school-bus-predictive-maintenance" data-t="Oxmaint (vendor), date not shown"></cite></td></tr>
+      <tr><td>5</td><td>Battery health and smart charging</td><td>12 to 30 months</td><td>No source on charging sessions retrieved; one comparable van carries an 8 year or 400,000 km battery warranty.<cite data-u="https://www.basi-go.com/ma3e" data-t="BasiGo, date not shown"></cite></td></tr>
+      <tr><td>6</td><td>Driver coaching and safety</td><td>12 to 24 months</td><td>A New York university plan models breakdown risk from speed and fault codes; a plan, not a result.<cite data-u="https://engineering.nyu.edu/research-innovation/centers/cusp/research/capstone-projects/directory/telematics-nyc-school-buses" data-t="NYU Tandon, date not shown"></cite></td></tr>
+      <tr><td>7</td><td>Fleet management</td><td>0 to 12 months</td><td>Africa fleet management services are estimated at USD 370 million in 2025 in a single paid report.<cite data-u="https://www.kenresearch.com/industry-reports/africa-fleet-management-services-market" data-t="Ken Research, date not shown"></cite></td></tr>
+      <tr><td>8</td><td>Origin and destination matrices for planners</td><td>12 to 36 months</td><td>A 2020 study recorded 1,492 trips and 587 routes at matatu stages using video and machine learning.<cite data-u="https://transportforcairo.com/wp-content/uploads/2024/12/GKMA_task-final-report_Obj_1-2_fixed.pdf" data-t="Transport for Cairo, Dec 2024"></cite></td></tr>
+      <tr><td>9</td><td>Road condition mapping</td><td>18 to 36 months</td><td>A regional dataset of 3,236 images includes potholes and unmarked speed bumps.<cite data-u="https://etasr.com/index.php/ETASR/article/view/17251" data-t="ETASR, 2026"></cite></td></tr>
+      <tr><td>10</td><td>Carbon measurement for climate finance</td><td>6 to 18 months</td><td>Verra revised a methodology for new electric vehicles displacing fossil ones;<cite data-u="https://verra.org/?p=65566" data-t="Verra, date not shown"></cite> BasiGo obtained Gold Standard certification for e-bus credits.<cite data-u="https://www.ecofinagency.com/news-industry/1304-54628-kenyan-e-mobility-firm-basigo-certified-to-sell-carbon-credits-from-buses" data-t="Ecofin Agency, date not shown"></cite></td></tr>
+      <tr><td>11</td><td>Training data for driver assistance and automated vans</td><td>36 months and later</td><td>Public driving datasets under-represent African roads;<cite data-u="https://etasr.com/index.php/ETASR/article/view/17251" data-t="ETASR, 2026"></cite> no driver assistance or automated pilot on African roads was found.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout--plain"><span class="label">The proposal's view on automation</span><p>Boston Consulting Group expects robotaxis to reach emerging markets significantly later than the leading cities, perhaps only after 2040.<cite data-u="https://web-assets.bcg.com/pdf-src/prod-live/here-at-last-the-evolution-of-the-robotaxi.pdf" data-t="Boston Consulting Group, date not shown"></cite> eTaxi should not plan for driverless operation in Kampala before 2040. The near-term value is driver assistance, safety analytics and a labelled record of African road scenes that others lack.</p></div>
+  <figure class="fig">
+    <svg viewBox="0 0 640 320" role="img" aria-label="Data flywheel diagram: more vehicles produce more data, which improves models, service and cost, which attracts more riders, owners and funders">
+      <defs><marker id="fw-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--blue-600)"/></marker></defs>
+      <g fill="none" stroke="var(--blue-600)" stroke-width="1.8" marker-end="url(#fw-arrow)">
+        <path d="M390 55 Q529 55 529 103"/>
+        <path d="M529 157 Q529 254 521 254"/>
+        <path d="M379 254 L263 254"/>
+        <path d="M121 254 Q111 254 111 159"/>
+        <path d="M111 105 Q111 55 248 55"/>
+      </g>
+      <g fill="var(--field)" stroke="var(--blue-600)" stroke-width="1.5">
+        <rect x="250" y="29" width="140" height="52" rx="6"/><rect x="459" y="105" width="140" height="52" rx="6"/><rect x="379" y="228" width="140" height="52" rx="6"/><rect x="121" y="228" width="140" height="52" rx="6"/><rect x="41" y="105" width="140" height="52" rx="6"/>
+      </g>
+      <g font-family="Switzer" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="middle">
+        <text x="320" y="52"><tspan x="320">More vehicles</tspan><tspan x="320" dy="14">and trips</tspan></text>
+        <text x="529" y="128"><tspan x="529">More data from</tspan><tspan x="529" dy="14">every trip</tspan></text>
+        <text x="449" y="251"><tspan x="449">Better models</tspan><tspan x="449" dy="14">arrivals, demand, upkeep</tspan></text>
+        <text x="191" y="251"><tspan x="191">Better service and</tspan><tspan x="191" dy="14">lower cost per km</tspan></text>
+        <text x="111" y="128"><tspan x="111">More riders, owners</tspan><tspan x="111" dy="14">and funders</tspan></text>
+      </g>
+      <g font-family="Switzer" font-size="11" fill="var(--n-600)" text-anchor="middle">
+        <text x="320" y="128" font-weight="600" fill="var(--blue-700)">Outputs for the city</text>
+        <text x="320" y="146">Open schedule and live feeds</text>
+        <text x="320" y="162">Anonymised planning data</text>
+        <text x="320" y="178">Measured carbon savings</text>
+      </g>
+    </svg>
+    <figcaption><b>Figure 7.</b> The proposed data flywheel. Each loop only works if riders and drivers trust how data is used (Section 8.3). Source: this proposal.</figcaption>
+  </figure>
+  <h2>8.3 Data governance</h2>
+  <p>The Data Protection and Privacy Act 2019 commenced on 3 May 2019 and its Regulations took effect on 12 March 2021; consent is a central principle and the Personal Data Protection Office sits within the National Information Technology Authority (NITA-U).<cite data-u="https://www.dlapiperdataprotection.com/?c=UG&amp;t=law" data-t="DLA Piper, date not shown"></cite> Controllers must register and renew annually.<cite data-u="https://ulii.org/en/akn/ug/act/2019/9/eng@2019-05-03" data-t="ULII, 2019"></cite> Location is treated as an identifier, so vehicle position tied to a driver or rider may be personal data, and Regulation 30(2) bars onward transfer of personal data processed abroad to a third country without the data subject's consent.<cite data-u="https://ulii.org/akn/ug/act/2019/9/eng@2019-05-03/source" data-t="ULII, 3 May 2019"></cite> In July 2025 the regulator said prior permission for each cross-border transfer is not required but records of legal basis and safeguards must be kept.<cite data-u="https://privacymatters.dlapiper.com/2025/08/uganda-data-protection-regulator-clarifies-compliance-requirements-for-offshore-entities" data-t="DLA Piper Privacy Matters, Aug 2025"></cite> </p>
+  <p>No source tying the Act to CCTV in public vehicles or to taxi trip data was found, and no rule on anonymising trip data. <span class="tag">Proposed</span> eTaxi would therefore adopt the following rules and seek the regulator's view on them in the first 90 days.</p>
+  <ul>
+    <li><strong>Consent and notice.</strong> Location and trip sharing are opt-in in the app; vehicles display camera notices; drivers sign a policy on cameras and driver events.</li>
+    <li><strong>Retention.</strong> Camera footage kept for a short fixed period unless tied to an incident; trip records identifiable for the shortest period needed, then aggregated.</li>
+    <li><strong>Anonymisation.</strong> Planning exports are aggregated by area and hour with minimum counts so no individual can be singled out.</li>
+    <li><strong>Sharing terms.</strong> Three tiers: open schedules and live positions; aggregated data for agencies under a data-sharing agreement; research access under signed terms. Individual-level data is never sold.</li>
+    <li><strong>Accountability.</strong> A named data protection officer, registration with the regulator and an impact assessment before the pilot.</li>
+  </ul>
+  <h2>8.4 Partnerships</h2>
+  <p>Makerere University's AirQo project combines low-cost sensors, weather data and artificial intelligence, with sensors on buildings, schools and boda bodas.<cite data-u="https://about.google/intl/en_uk/stories/clean-air-for-kampala/" data-t="Google, date not shown"></cite> eTaxi could carry sensors on routes and share the readings. Digital Transport for Africa states that at least 105 million people in African cities lack reliable transit information.<cite data-u="https://www.wri.org/initiatives/digital-transport-africa" data-t="World Resources Institute, date not shown"></cite> No sizing of vehicle-data revenue in Africa was found, so the financial case in Section 11 assumes none.</p>
+</section>

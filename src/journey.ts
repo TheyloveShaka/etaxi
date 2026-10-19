@@ -20,6 +20,11 @@ const LANE_END_RUN = 0.5;
 const ROAD_HEAD = 2;
 const ROAD_TAIL = 1;
 const PHONE_ONCOMING = 0.3;
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const ICON_SIZE = 0.24;
+const ICON_GAP = 0.85;
+const ICON_RAMP = 0.35;
+const ICON_POP = 0.4;
 const FACT_AT = 0.5;
 const FACT_SPAN = 8;
 const COPY_AT = 1;
@@ -66,6 +71,13 @@ interface Geo {
   exitY: number;
 }
 
+interface TrailIcon {
+  el: SVGUseElement;
+  at: number;
+  ramp: number;
+  t: number;
+}
+
 interface Traffic {
   el: HTMLElement;
   pass: number;
@@ -100,6 +112,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   const centrePath = find<SVGPathElement>('[data-centre]', world);
   const lanePath = find<SVGPathElement>('[data-lane]', world);
   const trailPath = find<SVGPathElement>('[data-trail]', world);
+  const iconLayer = find<SVGGElement>('[data-trail-icons]', world);
   const vanTop = find<HTMLElement>('[data-van-top]', world);
   const signs = Array.from(world.querySelectorAll<HTMLElement>('[data-sign]'));
   const trafficAll = Array.from(world.querySelectorAll<HTMLElement>('[data-traffic]'));
@@ -120,6 +133,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   let geo: Geo;
   let raw: ReturnType<typeof MotionPathPlugin.getRawPath> = [];
   let traffic: Traffic[] = [];
+  let icons: TrailIcon[] = [];
   let wheelBase: number[] | null = null;
   let activeStage = -1;
 
@@ -216,6 +230,23 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       });
     });
 
+    const iconSize = road * ICON_SIZE;
+    const iconGap = road * ICON_GAP;
+    const vanLength = parseFloat(getComputedStyle(world).getPropertyValue('--van-len')) || road * 0.95;
+    iconLayer.replaceChildren();
+    icons = [];
+    for (let y = turn + iconGap * 0.6, i = 0; y < laneEndY - iconGap * 0.5; y += iconGap, i += 1) {
+      const el = document.createElementNS(SVG_NS, 'use');
+      el.setAttribute('href', i % 2 ? '#icon-leaf' : '#icon-bolt');
+      el.setAttribute('x', String(lane - iconSize / 2));
+      el.setAttribute('y', String(y - iconSize / 2));
+      el.setAttribute('width', String(iconSize));
+      el.setAttribute('height', String(iconSize));
+      el.setAttribute('class', 'world__icon');
+      iconLayer.appendChild(el);
+      icons.push({ el, at: straightIn + arcLength + (y - turn) + vanLength * 0.6, ramp: road * ICON_RAMP, t: -1 });
+    }
+
     const oncomingX = -(lane > 0 ? lane : road * PHONE_ONCOMING);
     traffic = trafficAll
       .filter((el) => getComputedStyle(el).display !== 'none')
@@ -260,6 +291,13 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       force3D: false,
     });
     trailPath.style.strokeDashoffset = String(g.laneLength - distance);
+    for (const icon of icons) {
+      const t = clamp01((distance - icon.at) / icon.ramp);
+      if (t === icon.t) continue;
+      icon.t = t;
+      icon.el.style.opacity = String(t);
+      icon.el.style.transform = `scale(${ICON_POP + (1 - ICON_POP) * t})`;
+    }
 
     const edgeY = lerp(g.bandTop, g.roadTop, wipe);
     const bandEndY = lerp(g.bandBottom, g.roadBottom, wipe);

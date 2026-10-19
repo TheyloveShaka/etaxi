@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en-UG">
+<head>
+<meta charset="utf-8">
+<title>eTaxi concept proposal</title>
+<link rel="stylesheet" href="print.css">
+</head>
+<body>
+<section class="cover">
+  <div class="cover__brand"><span class="cover__tile">T</span><span class="cover__word"><i>e</i>taxi</span><span class="cover__tag">Concept proposal</span></div>
+  <p class="cover__kicker">Business and IT proposal</p>
+  <h1 class="cover__title">Electric public taxis <em>for Kampala</em></h1>
+  <p class="cover__sub">A concept proposal for privately operated, publicly regulated electric 14-seater taxis, with a rider app and a fleet data platform.</p>
+  <img class="cover__van" src="../public/img/etaxi-side.webp" alt="">
+  <span class="cover__road"></span>
+  <dl class="cover__meta"><div><dt>Version</dt><dd>1.0</dd></div><div><dt>Date</dt><dd>19 October 2026</dd></div><div><dt>Status</dt><dd>Concept for discussion</dd></div><div><dt>Classification</dt><dd>Public</dd></div></dl>
+</section>
+
+<div class="break">
+  <h1><span class="num">Document control</span>Document control</h1>
+  <h2>Purpose</h2>
+  <p>This document sets out the business case, operating model, technology architecture, data strategy, financial logic and delivery plan for eTaxi: a network of electric 14-seater public taxis for Kampala, privately financed and operated under public regulation. Its purpose is to let public bodies, taxi operators, financiers and technology partners decide whether to take the concept to a funded pilot.</p>
+  <h2>Intended readers</h2>
+  <ul>
+    <li>Ministry of Works and Transport, as licensing and standards authority.</li>
+    <li>Kampala Capital City Authority (KCCA), as route, stage and park authority.</li>
+    <li>Taxi operator associations and individual vehicle owners.</li>
+    <li>Development finance institutions and private investors.</li>
+    <li>Technology, vehicle, energy and research partners.</li>
+  </ul>
+  <h2>Version history</h2>
+  <table>
+    <thead><tr><th>Version</th><th>Date</th><th>Status</th><th>Change</th></tr></thead>
+    <tbody><tr><td>1.0</td><td>19 October 2026</td><td>Concept for discussion</td><td>First issue</td></tr></tbody>
+  </table>
+  <div class="callout callout--plain"><span class="label">Notice</span>
+    <p><strong>eTaxi is a concept.</strong> No vehicle is operating, no company is registered and no funding has been raised. Every figure for cost, saving, emissions and fleet size is indicative: it comes from a transparent model of energy costs only, described in Appendix A, and not from a full business plan or a quotation.</p>
+    <p>This document is not an offer of securities and is not a commitment by any named institution. Ministries, agencies, operators, associations, companies and funds named in it are cited as sources of public information. None has endorsed, reviewed or agreed to this proposal.</p>
+  </div>
+  <h2>How to read this document</h2>
+  <p>Each factual claim about the world carries a numbered reference, listed in Appendix D with its web address. Where the evidence was weak, conflicting or missing, the text says so. The tag <span class="tag tag--est">Indicative</span> marks model outputs. The tag <span class="tag">Proposed</span> marks targets, plans and design choices that are this proposal's own and have not been agreed with anyone. Statements of opinion are introduced as the proposal's view.</p>
+</div>
+
+<div class="break">
+  <h1><span class="num">Contents</span>Contents</h1>
+  <ol class="toc">
+<li><a href="#s1"><span class="n">1</span><span class="t">Executive summary</span></a></li>
+<li><a href="#s2"><span class="n">2</span><span class="t">Background: how Kampala got here</span></a></li>
+<li><a href="#s3"><span class="n">3</span><span class="t">Problem statement</span></a></li>
+<li><a href="#s4"><span class="n">4</span><span class="t">Strategic fit and policy alignment</span></a></li>
+<li><a href="#s5"><span class="n">5</span><span class="t">Proposed solution</span></a></li>
+<li><a href="#s6"><span class="n">6</span><span class="t">Operating and privatisation model</span></a></li>
+<li><a href="#s7"><span class="n">7</span><span class="t">Technology and system architecture</span></a></li>
+<li><a href="#s8"><span class="n">8</span><span class="t">Data strategy and machine learning roadmap</span></a></li>
+<li><a href="#s9"><span class="n">9</span><span class="t">Market and demand</span></a></li>
+<li><a href="#s10"><span class="n">10</span><span class="t">Environmental and social impact</span></a></li>
+<li><a href="#s11"><span class="n">11</span><span class="t">Financial case</span></a></li>
+<li><a href="#s12"><span class="n">12</span><span class="t">Implementation plan</span></a></li>
+<li><a href="#s13"><span class="n">13</span><span class="t">Risk register</span></a></li>
+<li><a href="#s14"><span class="n">14</span><span class="t">Regulatory and compliance path</span></a></li>
+<li><a href="#s15"><span class="n">15</span><span class="t">Performance indicators and evaluation</span></a></li>
+<li><a href="#s16"><span class="n">16</span><span class="t">What we are asking for and next steps</span></a></li>
+<li><a href="#a1"><span class="n">A</span><span class="t">Model assumptions and method</span></a></li>
+<li><a href="#a2"><span class="n">B</span><span class="t">Outlook and projections to 2040</span></a></li>
+<li><a href="#a3"><span class="n">C</span><span class="t">Glossary</span></a></li>
+<li><a href="#a4"><span class="n">D</span><span class="t">Sources</span></a></li>
+</ol>
+</div>
+
+<section class="sec" id="s1">
+  <h1><span class="num">Section 1</span>Executive summary</h1>
+  <p class="lead">eTaxi is a concept for electric 14-seater public taxis in Kampala, privately financed and operated under public regulation, with a rider app and a fleet data platform. It is a concept only: nothing is operating, no company is registered and no funding has been raised.</p>
+  <div class="kpis">
+    <div class="kpi"><b>82,347</b><span>UGX of energy cost saved per vehicle per day, base case <span class="tag tag--est">Indicative</span></span></div>
+    <div class="kpi"><b>77.0%</b><span>lower energy cost than petrol, base case</span></div>
+    <div class="kpi"><b>12.5 t</b><span>CO2 avoided per vehicle per year, base case</span></div>
+    <div class="kpi"><b>2,000</b><span>vehicles at network scale, after a pilot of 30 and a corridor phase of 300 <span class="tag">Proposed</span></span></div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><b>477</b><span>taxis seized by 2 October 2026<sup class="ref">[1]</sup></span></div>
+    <div class="kpi"><b>69</b><span>repaired and passed the automated fitness test</span></div>
+    <div class="kpi"><b>408</b><span>still grounded</span></div>
+    <div class="kpi"><b>100 days</b><span>planned length of the crackdown from 24 August 2026</span></div>
+  </div>
+  <p><strong>The problem.</strong> On 24 August 2026 the Ministry of Works and Transport and the Uganda Police Traffic Directorate began a 100-day crackdown on commuter taxis in dangerous mechanical condition across Greater Kampala.<sup class="ref">[1]</sup> The test is vehicle condition, not age. It still removes supply that commuters depend on, and operators say they cannot afford replacements.<sup class="ref">[2]</sup> No scrappage or fleet-renewal loan scheme was found in the research behind this proposal.</p>
+  <p><strong>The proposal.</strong> A licensed operating company, in which existing taxi owners and associations can hold shares or lease vehicles, would run electric 14-seaters on fixed routes from existing stages, with the fare shown before boarding, payment by mobile money and a stop-request button called Masaawo. A data platform would give riders arrival times and give regulators and planners trip and condition data they do not have today. The state-backed electric buses serve trunk corridors; eTaxis would serve feeder and cross-town routes and give condemned 14-seaters a renewal path.</p>
+  <p><strong>The numbers.</strong> This is an energy cost comparison, not a business plan. In the base case a petrol 14-seater spends UGX 106,900 a day on fuel and an electric one UGX 24,553 on electricity. The saving is worth about UGX 103.9 million over eight years at the average shilling lending rate, and about UGX 152.9 million at the foreign-currency rate. The price of an electric 14-seater in Uganda is not known; the pilot would establish it.</p>
+  <p><strong>The plan.</strong> A pilot of 30 vehicles in months 0 to 12, a corridor rollout of 300 in years 2 to 3 and network scale of 2,000 in years 4 to 6, with a gate between phases. At 2,000 vehicles the model gives about 25,000 tonnes of CO2 avoided a year.</p>
+  <div class="callout"><span class="label">What we ask</span><p>Government: a pilot licence and stage access. Operators: co-design and first shareholding. Financiers: pilot and feasibility funding. Technology and research partners: platform, data and evaluation support. Section 16 sets out the asks and a 90-day plan.</p></div>
+</section>
+
+<section class="sec" id="s2">
+  <h1><span class="num">Section 2</span>Background: how Kampala got here</h1>
+  <p class="lead">Kampala moves mainly on privately owned 14-seater taxis that were never given routes, timetables or fares. Three attempts to replace them with buses have failed or stalled, and a fourth, state-backed, began in May 2026.</p>
+  <h2>2.1 From state buses to private minibuses</h2>
+  <p>In 1972 a private bus company was nationalised to form the Uganda Transport Company, serving mainly Kampala and western Uganda; the report is seen only in summary.<sup class="ref">[3]</sup> That company and the People's Transport Company collapsed in the early 1990s after vandalised and cannibalised parts and fare fraud, which opened the market to private minibus operators.<sup class="ref">[4]</sup> Since then 14-seaters have been licensed with no fixed routes, timetables, fares or formal stops.<sup class="ref">[5]</sup></p>
+  <h2>2.2 The taxi associations and KCCA</h2>
+  <p>The sector is already private. Drivers hire the minibus from an owner for a daily charge and pay fuel and terminal fees.<sup class="ref">[6]</sup> For nearly 30 years the taxi association UTODA managed taxis and parks under a KCCA contract; the start (about 1986) and end (about 2012) dates could not be confirmed.<sup class="ref">[7]</sup> Reports conflict on how it ended: one says KCCA cancelled the contract in 2011,<sup class="ref">[8]</sup> another that a KCCA email extended its management to 31 October 2014.<sup class="ref">[9]</sup> KCCA then took over the parks and set a monthly fee of UGX 155,000 per taxi in place of daily dues; UTODA had collected over UGX 1 billion a month from about 7,000 taxis.<sup class="ref">[10]</sup></p>
+  <h2>2.3 The bus attempts</h2>
+  <p>Pioneer Easy Bus began in 2012 under a special regulation, with fares fixed at UGX 500 in the city centre and UGX 1,000 outside. It planned 500 buses, about 100 arrived at first, the bus lanes and terminals the state was to build never appeared, and the service failed within about a year.<sup class="ref">[11]</sup> Tondeka Metro, announced on 12 December 2019 with 980 buses, did not materialise because ownership, financing, operation and regulation were unclear.<sup class="ref">[12]</sup> </p>
+  
+  
+  <h2>2.4 The electric buses of May 2026</h2>
+  <p>E-Bus Xpress, run by Kiira Motors Corporation through a subsidiary, began scheduled cashless electric bus service in Kampala in May 2026 on City Square to Ntinda; the launch date of 4 May comes from a search summary.<sup class="ref">[13]</sup> Fares run from UGX 800 to UGX 1,800 and the government plans 100 electric buses in the Greater Kampala Metropolitan Area (GKMA) by December 2026 and at least 300 by December 2027.<sup class="ref">[14]</sup> The fleet size is reported inconsistently as 21, 23 or 30 buses, and passenger capacity as 42 or up to 90; this proposal does not resolve either conflict. Taxi operators were not consulted before the launch, their vice chairperson said, adding:</p>
+  <p class="small">"We need to be part of the conversation."<sup class="ref">[15]</sup> Mustapha Mayambala, UTOF vice chairperson (administration), 5 May 2026.</p>
+  <h2>2.5 Timeline</h2>
+  <table>
+    <thead><tr><th>Date</th><th>Event</th></tr></thead>
+    <tbody>
+      <tr><td>1972</td><td>Uganda Transport Company formed by nationalisation (summary source).<sup class="ref">[3]</sup></td></tr>
+      
+      <tr><td>2012 to 2013</td><td>Pioneer Easy Bus starts and fails within about a year.<sup class="ref">[11]</sup></td></tr>
+      <tr><td>1 Oct 2018</td><td>Import ban on vehicles 15 years old or older takes effect.<sup class="ref">[16]</sup></td></tr>
+      <tr><td>12 Dec 2019</td><td>Government announces 980 buses (Tondeka Metro); they do not arrive.<sup class="ref">[17]</sup></td></tr>
+      <tr><td>May to Jun 2020</td><td>Taxi registration by park; route numbers and route charts issued.<sup class="ref">[18]</sup></td></tr>
+      
+      <tr><td>12 Jun to 12 Jul 2025</td><td>Automated fines suspended after taxi strike threats; suspension later extended.<sup class="ref">[19]</sup></td></tr>
+      <tr><td>5 and 23 Dec 2025</td><td>Ministry takes over vehicle inspection from SGS; reduced fees published.<sup class="ref">[20]</sup></td></tr>
+      <tr><td>18 to 19 Mar 2026</td><td>20-day directive on unroadworthy taxis, removals to begin 8 April.<sup class="ref">[21]</sup></td></tr>
+      
+      <tr><td>May 2026</td><td>E-Bus Xpress electric buses begin service.<sup class="ref">[13]</sup></td></tr>
+      <tr><td>13 Aug 2026</td><td>Union Transport Alliance says first electric taxis could run before end-2026.<sup class="ref">[22]</sup></td></tr>
+      <tr><td>24 Aug 2026</td><td>Operation Ganyegenya, the 100-day crackdown, begins.<sup class="ref">[1]</sup></td></tr>
+      <tr><td>2 Oct 2026</td><td>Ministry reports 477 taxis seized, 69 cleared, 408 grounded.<sup class="ref">[1]</sup></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="s3">
+  <h1><span class="num">Section 3</span>Problem statement</h1>
+  <p class="lead">The fleet is old, renewal is unfinanced, fuel is a volatile cost and commuters have no arrival information. A crackdown that tests vehicle condition has exposed all four at once.</p>
+  <h2>3.1 An ageing fleet</h2>
+  <p>The Daily Monitor reported in March 2023 that most Kampala taxis were up to 30 years old and gave no average.<sup class="ref">[23]</sup> A 2025 remote-sensing study of Kampala found that diesel minibus taxis averaged 25 years old and emitted nitrogen oxides more than nine times the Euro 4 limit.<sup class="ref">[24]</sup> The current number of taxis is not known: 2020 registration counts range from 7,340 to over 15,000 and a trade-press summary suggests 15,000 to 25,000 14-seaters in the GKMA.<sup class="ref">[25]</sup> The pilot would count them.</p>
+  <p>Operators blame the age on the 2018 ban on importing vehicles 15 years or older, on the cost of newer vans and on exclusion from reforms.<sup class="ref">[2]</sup> In March 2023 the chairman of UTOF said a legally importable used Toyota Hiace costs UGX 80 million to UGX 90 million and a new one carries at least UGX 28 million in taxes.<sup class="ref">[23]</sup> A 2026 bill would lower the import limit from 15 to 13 years with a 50% environmental levy above that age; a minority report argues it would raise prices, and whether it passed is unconfirmed.<sup class="ref">[26]</sup></p>
+  <h2>3.2 Operation Ganyegenya: what it is</h2>
+  <p>The Ministry of Works and Transport launched a 100-day joint operation with the Uganda Police Traffic Directorate, announced at a Kampala press briefing by Minister Fred Byamukama on 20 August 2026 (articles vary on his title) and started on Monday 24 August 2026.<sup class="ref">[27]</sup><sup class="ref">[1]</sup> It covers Kampala, Wakiso and Mukono, with checkpoints on Gayaza, Jinja and Hoima Roads.<sup class="ref">[28]</sup></p>
+  <div class="callout"><span class="label">Be exact: condition, not age</span><p>The operation targets taxis in dangerous mechanical condition (DMC), described as "beyond repair". Well-kept newer vans are not targeted.<sup class="ref">[27]</sup> No taxi age cap and no 14-seater ban was found in any 2026 source. The article of 20 August refers to an earlier proposal to phase out 14-seaters in favour of high-capacity buses; no current official plan to do so was found.</p></div>
+  <p>Police listed worn tyres, defunct brakes and headlights, and broken or rusty bodies; some vehicles were judged by sight and drivers were sent home, not arrested.<sup class="ref">[28]</sup> Number plates of impounded vehicles were confiscated, and a vehicle returns only after re-inspection and a Certificate of Fitness at the government inspection facilities.<sup class="ref">[1]</sup> </p>
+  <h2>3.3 Numbers so far</h2>
+  <p>On day one police reported 178 vehicles impounded,<sup class="ref">[28]</sup> while another report said more than 400 were impounded and about half retained; the two conflict and the articles do not say why.<sup class="ref">[2]</sup> The 100 days run to about 2 December 2026, the proposal's arithmetic from the start date, as no official end date was found.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 640 226" role="img" aria-label="Bar chart of taxis seized, repaired and still grounded by 2 October 2026">
+      <g stroke="var(--n-200)" stroke-width="1"><line x1="170" y1="28" x2="170" y2="172"/><line x1="256" y1="28" x2="256" y2="172"/><line x1="342" y1="28" x2="342" y2="172"/><line x1="428" y1="28" x2="428" y2="172"/><line x1="514" y1="28" x2="514" y2="172"/><line x1="600" y1="28" x2="600" y2="172"/></g>
+      <g font-family="Switzer" font-size="11" fill="var(--n-600)" text-anchor="middle"><text x="170" y="190">0</text><text x="256" y="190">100</text><text x="342" y="190">200</text><text x="428" y="190">300</text><text x="514" y="190">400</text><text x="600" y="190">500</text></g>
+      <g font-family="Switzer" font-size="12" fill="var(--ink)" text-anchor="end"><text x="160" y="64">Seized since launch</text><text x="160" y="109">Repaired and passed</text><text x="160" y="154">Still grounded</text></g>
+      <rect x="170" y="46" width="410.2" height="28" rx="4" fill="var(--blue-600)"/>
+      <rect x="170" y="91" width="59.3" height="28" rx="4" fill="var(--leaf)"/>
+      <rect x="170" y="136" width="350.9" height="28" rx="4" fill="var(--n-400)"/>
+      <g font-family="Switzer" font-size="12" font-weight="600" fill="var(--ink)"><text x="588" y="64">477</text><text x="237" y="109">69</text><text x="529" y="154">408</text></g>
+      <text x="170" y="214" font-family="Switzer" font-size="11" fill="var(--n-600)">Number of commuter taxis</text>
+    </svg>
+    <figcaption><b>Figure 1.</b> Operation Ganyegenya status on 2 October 2026, as reported by the Ministry of Works and Transport. Source: Daily Monitor, 3 October 2026.<sup class="ref">[1]</sup></figcaption>
+  </figure>
+  <p>A later ministry update reported inspection results for the taxis taken to the government centres at Namanve and Kawanda: by 15 October 2026, 531 had been tested, 423 (79.7 percent) had failed for dangerous mechanical condition and 108 had passed. The listed defects were brakes, steering, tyres, suspension and lights.<sup class="ref">[29]</sup><sup class="ref">[30]</sup> Police also extended the operation into night hours after grounded taxis were found working after dark.<sup class="ref">[31]</sup> Four in five of the vans that reach a test fail it, which is the clearest sign yet that repair alone will not return the grounded fleet to service.</p>
+  <p>The run-up is thinly documented. On 18 to 19 March 2026 the Works State Minister issued a 20-day directive with removals to begin on 8 April, and the UTOF chairman said he learned of it from the media.<sup class="ref">[21]</sup> What happened on or after 8 April is not known from the sources used. The minister has said the government will not back down; the same report notes that past crackdowns were often suspended after pressure from operators.<sup class="ref">[27]</sup> The result of the review meeting promised on 26 August is not known.</p>
+  <h2>3.4 The supply shock and fares</h2>
+  <p>A Mukono taxi leader estimated that about 75% of taxis stayed off the road by 26 August; this is his estimate, not a count.<sup class="ref">[2]</sup> Many operators parked vehicles on the advice of UTOF before they could be impounded.<sup class="ref">[32]</sup> Commuters waited more than 40 minutes, and only two taxis were seen heading to Kisaasi from the city centre in one hour.<sup class="ref">[32]</sup> Uganda Railways Corporation capacity is about 4,000 passengers a day and it had added no services by 26 August.<sup class="ref">[2]</sup></p>
+  <table>
+    <thead><tr><th>Route and mode</th><th class="n">Before</th><th class="n">After</th></tr></thead>
+    <tbody>
+      <tr><td>Kasubi to Kampala, taxi</td><td class="n">UGX 1,000</td><td class="n">UGX 2,000<sup class="ref">[32]</sup></td></tr>
+      <tr><td>Bwaise to Kampala, taxi</td><td class="n">UGX 2,000</td><td class="n">UGX 4,000</td></tr>
+      <tr><td>Najjera to Kampala, shared car</td><td class="n">not given</td><td class="n">UGX 5,000</td></tr>
+      <tr><td>Boda boda, various routes</td><td class="n">not given</td><td class="n">up to UGX 3,000 more</td></tr>
+    </tbody>
+  </table>
+  <h2>3.5 Fleet renewal has no finance</h2>
+  <p>No scrappage scheme and no fleet-renewal loan was found. Impounded vehicles are held until repaired and certified, not scrapped.<sup class="ref">[1]</sup> The average shilling lending rate was 18.26% in April 2026 against a Central Bank Rate of 9.75% held on 13 August 2026; a commercial vehicle loan rate was not found, so the average rate is used as a proxy.<sup class="ref">[33]</sup><sup class="ref">[34]</sup> </p>
+  <h2>3.6 Fuel cost exposure</h2>
+  <p>Drivers reported using about 20 litres a day on routes of about 12 km to and from the city and 25 to 30 litres on outskirts routes.<sup class="ref">[35]</sup> Kampala petrol cost UGX 5,090 to UGX 5,400 a litre in April 2026 and UGX 5,140 to UGX 5,599 in a later survey.<sup class="ref">[36]</sup> A highest recorded rate of UGX 6,499 for premium petrol on 15 June 2026 was also reported; it is a maximum, not an average, and the source page was not identified. Pump prices are deregulated, and the 2026 rise was linked to disruption at the Strait of Hormuz.<sup class="ref">[37]</sup> </p>
+  <h2>3.7 Air quality, safety and information</h2>
+  <p>Kampala's 2025 annual average PM2.5 was 44.2 micrograms per cubic metre, tenth among world capitals, against a World Health Organization guideline of 5.<sup class="ref">[38]</sup> Police recorded 26,044 road crashes and 5,383 deaths in 2025; no national breakdown for taxis was found.<sup class="ref">[39]</sup> Riders cannot see when a taxi will arrive. A volunteer-built GTFS feed for Kampala exists, but no real-time feed for paratransit was found.<sup class="ref">[40]</sup></p>
+  <div class="callout callout--plain"><span class="label">The proposal's view</span><p>The crackdown is a symptom. It removes the worst vehicles but offers no route to better ones, so the likely result is repaired old vans, higher fares and a repeat in the next campaign. An independent commentator made a similar point, calling bad taxis "not the disease; they are the fever".<sup class="ref">[41]</sup></p></div>
+</section>
+
+<section class="sec" id="s4">
+  <h1><span class="num">Section 4</span>Strategic fit and policy alignment</h1>
+  <p class="lead">eTaxi fits the stated direction of national e-mobility policy and fills a gap in the state-backed electric bus programme. It does not depend on any policy that has yet to be confirmed.</p>
+  <h2>4.1 National e-mobility policy and incentives</h2>
+  <p>The National E-Mobility Strategy aims to make Uganda a net source of e-mobility solutions, with local production capacity of half a million vehicles by 2030 at 65% local content, and to electrify public transport such as buses, motorcycles and light rail.<sup class="ref">[42]</sup> Sources disagree on whether it launched in 2023 or 2024.<sup class="ref">[43]</sup> Its incentives include a ten-year income tax exemption for makers of vehicles, batteries and charging equipment, and VAT exemptions for locally made electric vehicles and for charging equipment and services.<sup class="ref">[44]</sup> </p>
+  <p>The tax position of an imported 14-seat electric minibus is not known. Fully built electric vehicles attract 25% import duty,<sup class="ref">[42]</sup> yet the 2024/25 budget was reported to exempt electric vehicles from VAT, stamp duty and income tax,<sup class="ref">[45]</sup> and one report says an earlier duty waiver was reversed.<sup class="ref">[46]</sup> The reports conflict and Section 14 treats the question as a ruling to obtain from the Uganda Revenue Authority.</p>
+  <h2>4.2 National Development Plan IV and Vision 2040</h2>
+  <p>The transport targets of the fourth National Development Plan (NDP IV), of Vision 2040 and of the National Transport Master Plan were not retrieved in the research for this proposal, so alignment with them is not claimed. Checking each target is a task in the first 90 days (Section 16). The 2010 JICA study recommended a metropolitan transport authority and a shift from paratransit to mass transit; this proposal's operating model is compatible with both.<sup class="ref">[47]</sup></p>
+  <h2>4.3 Greater Kampala programmes</h2>
+  <ul>
+    <li><strong>GKMA Urban Development Programme.</strong> Parliament cleared a World Bank loan headlined at USD 556 million, mainly for roads, drainage and markets;<sup class="ref">[48]</sup> at least 74.5 km of roads are to be upgraded.<sup class="ref">[49]</sup> Better roads help any vehicle, and the programme is not a transport operator.</li>
+    
+    <li><strong>Light rail.</strong> A memorandum with Orascom Construction began an 18-month feasibility study in March 2026 for routes including Kampala to Entebbe, Kira and Wakiso.<sup class="ref">[50]</sup></li>
+    
+  </ul>
+  <h2>4.4 Complementing the state-backed electric buses</h2>
+  <p>E-Bus Xpress runs on trunk corridors such as City Square to Ntinda and from Ntinda to Kira, with a target of at least 300 buses by December 2027.<sup class="ref">[14]</sup> Taxi operators complained that tax-exempt, government-funded buses create an unlevel playing field (a summary of the report).<sup class="ref">[51]</sup> The proposal's view is that the two serve different jobs and should be planned together.</p>
+  <table>
+    <thead><tr><th>Service</th><th>Best used for</th><th>Role in the network</th></tr></thead>
+    <tbody>
+      <tr><td>Large electric buses</td><td>High-demand trunk corridors with stops and priority</td><td>Backbone, state-backed</td></tr>
+      <tr><td>eTaxi 14-seaters</td><td>Feeder routes, cross-town links, areas buses do not reach</td><td>Feeder and distributor, privately operated</td></tr>
+      <tr><td>eTaxi as renewal path</td><td>Replacing condemned 14-seaters on routes they already serve</td><td>Owners move into the new fleet</td></tr>
+      
+    </tbody>
+  </table>
+  <p><span class="tag">Proposed</span> eTaxi franchises would avoid duplicating a trunk corridor unless the regulator decides otherwise, and fare and timetable data would be published in the same open format so riders can plan trips across both services.</p>
+</section>
+
+<section class="sec" id="s5">
+  <h1><span class="num">Section 5</span>Proposed solution</h1>
+  <p class="lead">An electric 14-seater that looks and works like the taxi Kampala knows, with fixed routes, fares shown first, mobile money and arrival times, charged at depots overnight.</p>
+  <h2>5.1 Vehicle class and candidate models</h2>
+  <p>The 14-seater is the existing class, so stages, drivers and passenger habits carry over. No model has been selected, and the proposal has no agreement with any manufacturer. The table lists what the research found.</p>
+  <table>
+    <thead><tr><th>Candidate</th><th>Seats</th><th>Battery and range (claimed)</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>Joylong E6</td><td class="n">12 to 14</td><td>86.1 kWh LFP, about 300 km city, 280 km highway; a dealer listing gives a different battery figure<sup class="ref">[52]</sup><sup class="ref">[53]</sup></td><td>No African price found</td></tr>
+      <tr><td>BasiGo Ma3e</td><td class="n">16 or 19</td><td>Up to 300 km, about 1.5 hours to recharge, 8 years or 400,000 km battery warranty; battery size not stated<sup class="ref">[54]</sup></td><td>Not published</td></tr>
+      <tr><td>Higer H5C EV and H6C</td><td class="n">15 and 18</td><td>Explored by Uganda taxi operators after a visit to China<sup class="ref">[25]</sup></td><td>Not found</td></tr>
+      
+      <tr><td>Converted Toyota Hiace</td><td class="n">14</td><td>A Kenyan converter targets matatus; no Hiace result found<sup class="ref">[55]</sup></td><td>Not found</td></tr>
+    </tbody>
+  </table>
+  <p>No electric Toyota Hiace was found in any source; the Joylong E6 is described as a copy of the high-roof Hiace.<sup class="ref">[56]</sup> <span class="tag">Proposed</span> A competitive tender among at least three manufacturers, with a conversion option, would select the pilot vehicle.</p>
+  <h2>5.2 What is and is not known about price</h2>
+  <p>The price of an electric 14-seater in Uganda is not known. The nearest figures are a conventional Hiace taxi at about UGX 74 million, with tyres and conversion work taking total capital above UGX 80 million,<sup class="ref">[57]</sup> and a global average battery pack price of USD 108 a kilowatt hour in 2025, with LFP packs at USD 81.<sup class="ref">[58]</sup> At the average price an 86.1 kWh pack is worth about USD 9,299 <span class="tag tag--est">Indicative</span>; that is a component price, not a vehicle price. BasiGo bus operators were reported to acquire vehicles for around USD 7,700 in Kenya and USD 8,800 in Rwanda before paying mileage-based fees, but this is a bus programme.<sup class="ref">[59]</sup> The pilot's tender would produce the first Ugandan price.</p>
+  
+  <h2>5.3 Depot charging</h2>
+  <p><span class="tag">Proposed</span> Vehicles would charge overnight at depots on alternating-current chargers, with a few direct-current fast chargers for a midday top-up at busy terminals. The model puts a base-case vehicle at 43.7 kWh a day, so a pilot of 30 needs about 1,311 kWh a day <span class="tag tag--est">Indicative</span>. A slow station is reported at about USD 2,500 and a fast station with permits at about USD 35,800.<sup class="ref">[60]</sup></p>
+  <p>The Q4 2026 commercial tariff averages UGX 562.1 a kWh (peak 666.5, off-peak 429.7) and the medium industrial tariff averages UGX 363.8; the schedule has no category for electric vehicle charging.<sup class="ref">[61]</sup> Kiira Motors asked in 2023 for a flat UGX 270 a unit at charging points; whether it was adopted was not found.<sup class="ref">[62]</sup></p>
+  
+  <h2>5.4 The service</h2>
+  <div class="three">
+    <div class="card"><h3>Before the trip</h3><p>Routes start at existing stages. The fare for the whole trip is shown in the app and on the stage board before boarding. The app shows the next vehicle and a live arrival time, and works on low-end Android phones.</p></div>
+    <div class="card"><h3>On the trip</h3><p>Payment is by mobile money or card. Riders press Masaawo, the stop-request button, instead of calling out. Onboard cameras and a trip-sharing link let a rider send a live trip to a contact.</p></div>
+    <div class="card"><h3>Optional extras</h3><p>Door-to-door pickup is offered at a premium on selected routes. Its price is not set; the pilot would test willingness to pay. A rider can rate the trip and report a fault.</p></div>
+  </div>
+  <p>Cashless payment has a local precedent: E-Bus Xpress takes only MTN Mobile Money, Airtel Money and wristbands.<sup class="ref">[14]</sup> <span class="tag">Proposed</span> eTaxi would accept cash at staffed stage kiosks during the pilot until usage data shows it can be dropped. Fares would be set with the regulator; current reference points are UGX 1,000 to 2,000 for short taxi trips before the crackdown<sup class="ref">[32]</sup> and UGX 800 to 1,800 on E-Bus Xpress. Masaawo is this proposal's name for the button, taken from the stop call; riders would test the name in the pilot.</p>
+  <h2>5.5 Proposed features</h2>
+  <p>The features below are proposed, not built. They are grouped by who uses them and the phase in which each would ship. Pilot features are the minimum needed to run one corridor and measure it; the rest follow only if the pilot meets its gates (Section 12). <span class="tag">Proposed</span></p>
+  <table>
+    <thead><tr><th>Feature</th><th>For</th><th>What it does</th><th>Phase</th></tr></thead>
+    <tbody>
+<tr><td><strong>Route search and saved routes</strong></td><td>Rider</td><td>Finds the route from the nearest stage and remembers daily trips.</td><td>Pilot</td></tr>
+<tr><td><strong>Live beacon and arrival time</strong></td><td>Rider</td><td>Shows every eTaxi on the route and the minutes to your stage.</td><td>Pilot</td></tr>
+<tr><td><strong>Find-me-an-eTaxi alerts</strong></td><td>Rider</td><td>Keeps watching in the background, pings when the chosen eTaxi is close, and stops once you board. The server watches the vehicle, so the phone does not track the rider.</td><td>Pilot</td></tr>
+<tr><td><strong>Fare shown first</strong></td><td>Rider</td><td>A fixed fare per trip, shown before boarding.</td><td>Pilot</td></tr>
+<tr><td><strong>Mobile money wallet</strong></td><td>Rider</td><td>Pay by MTN MoMo or Airtel Money, with receipts in the app.</td><td>Pilot</td></tr>
+<tr><td><strong>Masaawo stop request</strong></td><td>Rider, driver</td><td>Request your stop from your seat; it appears on the driver’s dash.</td><td>Pilot</td></tr>
+<tr><td><strong>Trip sharing and alert button</strong></td><td>Rider</td><td>Send a live trip link home; one tap reaches the operations desk.</td><td>Pilot</td></tr>
+<tr><td><strong>Driver dash</strong></td><td>Driver</td><td>Next stops, stop requests, headway guidance and charge level.</td><td>Pilot</td></tr>
+<tr><td><strong>Earnings and lease ledger</strong></td><td>Driver, owner</td><td>Daily takings, pay-as-you-drive deductions and the balance to ownership.</td><td>Pilot</td></tr>
+<tr><td><strong>Fleet console</strong></td><td>Operator</td><td>Live map, uptime, incidents, and camera review on request under the access policy.</td><td>Pilot</td></tr>
+<tr><td><strong>Door-to-door pickup</strong></td><td>Rider</td><td>Premium pickup at the rider’s gate on selected routes.</td><td>Rollout</td></tr>
+<tr><td><strong>Low-data and USSD mode</strong></td><td>Rider</td><td>Arrival times and payment on basic phones and slow networks.</td><td>Rollout</td></tr>
+<tr><td><strong>Smart charging scheduler</strong></td><td>Operator</td><td>Moves depot charging into off-peak tariff hours.</td><td>Rollout</td></tr>
+<tr><td><strong>Open data feed</strong></td><td>City, developers</td><td>GTFS and GTFS Realtime for routes, stops and live positions.</td><td>Rollout</td></tr>
+<tr><td><strong>Planner dashboards</strong></td><td>KCCA, Ministry</td><td>Anonymised origin and destination, demand and reliability reports.</td><td>Scale</td></tr>
+    </tbody>
+  </table>
+  <h2>5.6 User flows</h2>
+  <p>Three journeys carry most of the value: a rider catching an eTaxi from a stage, a rider booking the premium door-to-door pickup, and a taxi owner whose van has been grounded moving onto an electric vehicle. Each is shown as a proposed flow; the pilot would test every step with real users before anything is fixed.</p>
+  <figure class="fig">
+<svg viewBox="0 0 646 154" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--blue-600)"/></marker></defs>
+<line x1="144" y1="33.0" x2="167" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="310" y1="33.0" x2="333" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="476" y1="33.0" x2="499" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M572.0 62 V77.0 H74.0 V89" fill="none" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="144" y1="121.0" x2="167" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="310" y1="121.0" x2="333" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="476" y1="121.0" x2="499" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="4" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="19" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">1</text>
+<text x="34" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Open the app</text>
+<text x="16" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">routes remembered</text>
+<rect x="170" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="185" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="185" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">2</text>
+<text x="200" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Pick a route</text>
+<text x="182" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">Ntinda to City Square</text>
+<rect x="336" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="351" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="351" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">3</text>
+<text x="366" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">See the beacon</text>
+<text x="348" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">live eTaxis, minutes away</text>
+<rect x="502" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="517" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="517" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">4</text>
+<text x="532" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Get a ping</text>
+<text x="514" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">when it is 2 min out</text>
+<rect x="4" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="19" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">5</text>
+<text x="34" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Walk to the stage</text>
+<text x="16" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">and board</text>
+<rect x="170" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="185" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="185" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">6</text>
+<text x="200" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Fare confirmed</text>
+<text x="182" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">paid by mobile money</text>
+<rect x="336" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="351" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="351" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">7</text>
+<text x="366" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Press Masaawo</text>
+<text x="348" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">stop shows on the dash</text>
+<rect x="502" y="92" width="140" height="58" rx="6" fill="var(--blue-600)" stroke="var(--n-200)" stroke-width="0"/>
+<circle cx="517" cy="108" r="9" fill="var(--field)"/>
+<text x="517" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--blue-700)">8</text>
+<text x="532" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--field)">Arrive</text>
+<text x="514" y="136" font-family="Switzer" font-size="9.5" fill="var(--blue-100)">receipt, rating, share</text>
+</svg>
+    <figcaption><b>Figure 2.</b> Rider: catch an eTaxi. Proposed flow.</figcaption>
+  </figure>
+  <figure class="fig">
+<svg viewBox="0 0 646 154" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--blue-600)"/></marker></defs>
+<line x1="144" y1="33.0" x2="167" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="310" y1="33.0" x2="333" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="476" y1="33.0" x2="499" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M572.0 62 V77.0 H74.0 V89" fill="none" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="144" y1="121.0" x2="167" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="4" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="19" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">1</text>
+<text x="34" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Switch on</text>
+<text x="16" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">door to door</text>
+<rect x="170" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="185" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="185" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">2</text>
+<text x="200" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Set the pickup</text>
+<text x="182" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">your gate on the map</text>
+<rect x="336" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="351" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="351" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">3</text>
+<text x="366" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">See the premium</text>
+<text x="348" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">before confirming</text>
+<rect x="502" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="517" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="517" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">4</text>
+<text x="532" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Pay</text>
+<text x="514" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">by mobile money</text>
+<rect x="4" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="19" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">5</text>
+<text x="34" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Track the eTaxi</text>
+<text x="16" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">to your gate</text>
+<rect x="170" y="92" width="140" height="58" rx="6" fill="var(--blue-600)" stroke="var(--n-200)" stroke-width="0"/>
+<circle cx="185" cy="108" r="9" fill="var(--field)"/>
+<text x="185" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--blue-700)">6</text>
+<text x="200" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--field)">Drop-off</text>
+<text x="182" y="136" font-family="Switzer" font-size="9.5" fill="var(--blue-100)">at the destination</text>
+</svg>
+    <figcaption><b>Figure 3.</b> Rider: door-to-door pickup. Proposed flow.</figcaption>
+  </figure>
+  <figure class="fig">
+<svg viewBox="0 0 646 154" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--blue-600)"/></marker></defs>
+<line x1="144" y1="33.0" x2="167" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="310" y1="33.0" x2="333" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="476" y1="33.0" x2="499" y2="33.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M572.0 62 V77.0 H74.0 V89" fill="none" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="144" y1="121.0" x2="167" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="310" y1="121.0" x2="333" y2="121.0" stroke="var(--blue-600)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="4" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="19" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">1</text>
+<text x="34" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Van grounded</text>
+<text x="16" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">fails the DMC test</text>
+<rect x="170" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="185" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="185" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">2</text>
+<text x="200" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Apply</text>
+<text x="182" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">route and driver checks</text>
+<rect x="336" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="351" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="351" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">3</text>
+<text x="366" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Choose a path</text>
+<text x="348" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">lease to own, or shares</text>
+<rect x="502" y="4" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="517" cy="20" r="9" fill="var(--blue-600)"/>
+<text x="517" y="23.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">4</text>
+<text x="532" y="24" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Driver training</text>
+<text x="514" y="48" font-family="Switzer" font-size="9.5" fill="var(--n-600)">safety and the app</text>
+<rect x="4" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="19" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="19" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">5</text>
+<text x="34" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">eTaxi assigned</text>
+<text x="16" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">on an approved route</text>
+<rect x="170" y="92" width="140" height="58" rx="6" fill="var(--n-50)" stroke="var(--n-200)" stroke-width="1"/>
+<circle cx="185" cy="108" r="9" fill="var(--blue-600)"/>
+<text x="185" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--field)">6</text>
+<text x="200" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)">Pay as you drive</text>
+<text x="182" y="136" font-family="Switzer" font-size="9.5" fill="var(--n-600)">from daily takings</text>
+<rect x="336" y="92" width="140" height="58" rx="6" fill="var(--blue-600)" stroke="var(--n-200)" stroke-width="0"/>
+<circle cx="351" cy="108" r="9" fill="var(--field)"/>
+<text x="351" y="111.5" text-anchor="middle" font-family="Switzer" font-size="10" font-weight="700" fill="var(--blue-700)">7</text>
+<text x="366" y="112" font-family="Switzer" font-size="11" font-weight="600" fill="var(--field)">Ownership</text>
+<text x="348" y="136" font-family="Switzer" font-size="9.5" fill="var(--blue-100)">or dividends</text>
+</svg>
+    <figcaption><b>Figure 4.</b> Owner: from a condemned van to an eTaxi. Proposed flow.</figcaption>
+  </figure>
+  <h2>5.7 App screens</h2>
+  <p>The screens below are concept designs taken from the eTaxi site. They show the rider’s side of the pilot features: the beacon with live arrival times, the on-board view with the Masaawo stop request before and after it is pressed, and the fare screen with and without door-to-door pickup. Fares are examples, not proposed prices.</p>
+  <figure class="fig">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7pt;align-items:start">
+      <div><img src="../public/img/screens/beacon.png" alt="Beacon: live eTaxis and arrival time" style="display:block;width:100%;height:auto"><span class="small" style="display:block;margin-top:4pt;line-height:1.3">Beacon: live eTaxis and arrival time</span></div>
+      <div><img src="../public/img/screens/masaawo.png" alt="On board: next stage and Masaawo" style="display:block;width:100%;height:auto"><span class="small" style="display:block;margin-top:4pt;line-height:1.3">On board: next stage and Masaawo</span></div>
+      <div><img src="../public/img/screens/masaawo-pressed.png" alt="Masaawo pressed: stop requested" style="display:block;width:100%;height:auto"><span class="small" style="display:block;margin-top:4pt;line-height:1.3">Masaawo pressed: stop requested</span></div>
+      <div><img src="../public/img/screens/fare.png" alt="Fare shown before boarding" style="display:block;width:100%;height:auto"><span class="small" style="display:block;margin-top:4pt;line-height:1.3">Fare shown before boarding</span></div>
+      <div><img src="../public/img/screens/fare-door.png" alt="Door to door switched on" style="display:block;width:100%;height:auto"><span class="small" style="display:block;margin-top:4pt;line-height:1.3">Door to door switched on</span></div>
+    </div>
+    <figcaption><b>Figure 5.</b> Concept app screens. Fares shown are examples.</figcaption>
+  </figure>
+</section>
+
+<section class="sec" id="s6">
+  <h1><span class="num">Section 6</span>Operating and privatisation model</h1>
+  <p class="lead">Kampala's taxi sector is already privately owned, so the aim is structured private delivery under public regulation: franchises, service standards and an operating company the existing owners can join.</p>
+  <h2>6.1 What the term means here</h2>
+  <p>Drivers hire vehicles from private owners for a daily charge,<sup class="ref">[6]</sup> yet the sector has no routes, timetables or fares to enforce.<sup class="ref">[5]</sup> In this proposal, privatisation means three things: the public authority sets routes, fares, safety and data standards; a private operating company delivers the service against those standards; and existing owners can take part as shareholders or lessees rather than be displaced. The only franchise-like precedent found is Pioneer's 2012 route allocation, and no 2026 official statement on franchising taxi routes was found.<sup class="ref">[41]</sup> </p>
+  <h2>6.2 Structure</h2>
+  <ul>
+    <li><strong>Route or area franchises</strong> <span class="tag">Proposed</span>: awarded by the regulator for fixed terms, with fare bands, service standards and data-sharing duties written into the contract.</li>
+    <li><strong>An operating company</strong> <span class="tag">Proposed</span>: not yet registered, owning or leasing vehicles and depots. Existing owners could surrender a condemned taxi for shares, or lease vehicles with an option to own.</li>
+    <li><strong>Pay-as-you-drive leasing</strong> <span class="tag">Proposed</span>: BasiGo describes a simple mileage-based fee, with no amount published for the Ma3e;<sup class="ref">[54]</sup> an eTaxi fee would bundle energy, maintenance and a share of vehicle cost, and its level is not known.</li>
+  </ul>
+  <table>
+    <thead><tr><th>Party</th><th>Role</th><th>Accountable for</th></tr></thead>
+    <tbody>
+      <tr><td>Ministry of Works and Transport, Police</td><td>Licensing, inspection, driver standards</td><td>Safety and roadworthiness</td></tr>
+      <tr><td>KCCA</td><td>Route, stage and park allocation; franchise contract in Kampala</td><td>Service standards, fares, stages</td></tr>
+      <tr><td>Operating company</td><td>Vehicles, depots, drivers, customer service</td><td>Daily service and fleet availability</td></tr>
+      <tr><td>Owners and associations</td><td>Shareholding, route consultation, driver supply</td><td>Fair entry and conduct of members</td></tr>
+      <tr><td>Financiers</td><td>Debt and equity for vehicles and depots</td><td>Capital, with agreed reporting</td></tr>
+      <tr><td>Platform provider</td><td>App, telematics, payments, data platform</td><td>Uptime, security, data protection</td></tr>
+      <tr><td>Power utility and regulator</td><td>Grid connections, charging tariff</td><td>Reliable, fairly priced supply</td></tr>
+    </tbody>
+  </table>
+  <h2>6.3 Lessons from elsewhere</h2>
+  <table>
+    <thead><tr><th>Place</th><th>What happened</th><th>Lesson</th></tr></thead>
+    <tbody>
+      <tr><td>Cape Town</td><td>All affected licence holders accepted compensation; owners could take shares in a vehicle operating company or a lump sum, with 12-year contracts.<sup class="ref">[63]</sup> In Dunoon, removing minibus services led to illegal operators.<sup class="ref">[64]</sup></td><td>Offer shares and cash; do not remove service before replacing it</td></tr>
+      <tr><td>South Africa</td><td>The scrapping programme removed about 77,763 taxis against a first-phase target of 135,894, paying over R5 billion; the allowance was judged too low.<sup class="ref">[65]</sup><sup class="ref">[66]</sup></td><td>Scrappage alone is slow and underfunded</td></tr>
+      <tr><td>Kigali</td><td>Operators moved to service agreements paid on outcomes, with penalties; officials report daily ridership rising from about 150,000 to 240,000, not independently evaluated.<sup class="ref">[67]</sup></td><td>Pay for service quality, not for vehicles</td></tr>
+      <tr><td>Dakar</td><td>A 100% electric bus rapid transit line was financed at EUR 135 million with loans, grants and equity; the 300,000 daily passengers are a projection, not a measurement.<sup class="ref">[68]</sup></td><td>Concessional blends carry foreign-exchange risk</td></tr>
+      
+      
+      
+      <tr><td>Kampala</td><td>Pioneer lacked promised lanes and terminals; Tondeka lacked clarity on ownership and financing (Section 2).</td><td>Fix the state's side of the deal before launch</td></tr>
+    </tbody>
+  </table>
+  <h2>6.4 A just transition for drivers and conductors</h2>
+  <p>The number of drivers and conductors in the Kampala taxi sector, and their earnings, were not found; the pilot would survey them. <span class="tag">Proposed</span> The plan has four parts. First, drivers of surrendered vehicles get priority for training and employment; Kiira Motors has trained about 400 drivers for its buses, which shows the training can be done.<sup class="ref">[14]</sup> Second, conductors, whose cash handling falls with mobile money, are offered roles as stage hosts, charging attendants and safety marshals. Third, driver vetting and refresher training follow the rules set for buses in August 2026, which include one-year badges and biometric log-in; whether they apply to 14-seaters is not stated.<sup class="ref">[69]</sup> </p>
+</section>
+
+<!-- data-renumbered -->
+<section class="sec" id="s7">
+  <h1><span class="num">Section 7</span>Technology and system architecture</h1>
+  <p class="lead">One platform connects riders, drivers, vehicles, chargers and regulators. It is designed to work on cheap phones and weak networks, to publish open data, and to protect personal data from the first line of code.</p>
+  <h2>7.1 Scope</h2>
+  <p>In scope: the rider app, the driver app, the vehicle telematics unit and onboard sensors, payment integration, charging management, the fleet operations console, the data platform and the open interfaces that publish schedules and live positions. Out of scope: vehicle manufacture, grid works beyond the depot meter, and any change to government systems. <span class="tag">Proposed</span> Every requirement below is a design target, not a measured result.</p>
+  <h2>7.2 Layered architecture</h2>
+  <figure class="fig">
+    <svg viewBox="0 0 640 388" role="img" aria-label="Layered architecture of the eTaxi platform, from interfaces down to depot and partners">
+      <g fill="var(--n-50)"><rect x="0" y="8" width="640" height="60"/><rect x="0" y="86" width="640" height="60"/><rect x="0" y="164" width="640" height="60"/><rect x="0" y="242" width="640" height="60"/><rect x="0" y="320" width="640" height="60"/></g>
+      <path d="M178 68v18M280 68v18M382 68v18M484 68v18M586 68v18M178 146v18M280 146v18M382 146v18M484 146v18M586 146v18M178 224v18M280 224v18M382 224v18M484 224v18M586 224v18M178 302v18M280 302v18M382 302v18M484 302v18M586 302v18" stroke="var(--blue-400)" stroke-width="1.5" fill="none"/>
+      <g font-family="Switzer" font-size="11" font-weight="600" fill="var(--blue-700)">
+        <text x="12" y="35"><tspan x="12">Interfaces</tspan><tspan x="12" dy="14">and users</tspan></text>
+        <text x="12" y="113"><tspan x="12">Platform</tspan><tspan x="12" dy="14">services</tspan></text>
+        <text x="12" y="191"><tspan x="12">Data</tspan><tspan x="12" dy="14">platform</tspan></text>
+        <text x="12" y="269"><tspan x="12">Vehicle and</tspan><tspan x="12" dy="14">connectivity</tspan></text>
+        <text x="12" y="347"><tspan x="12">Depot, energy</tspan><tspan x="12" dy="14">and partners</tspan></text>
+      </g>
+      <g fill="var(--field)" stroke="var(--blue-400)" stroke-width="1">
+        <rect x="130" y="16" width="96" height="44" rx="4"/><rect x="232" y="16" width="96" height="44" rx="4"/><rect x="334" y="16" width="96" height="44" rx="4"/><rect x="436" y="16" width="96" height="44" rx="4"/><rect x="538" y="16" width="96" height="44" rx="4"/>
+        <rect x="130" y="94" width="96" height="44" rx="4"/><rect x="232" y="94" width="96" height="44" rx="4"/><rect x="334" y="94" width="96" height="44" rx="4"/><rect x="436" y="94" width="96" height="44" rx="4"/><rect x="538" y="94" width="96" height="44" rx="4"/>
+        <rect x="130" y="172" width="96" height="44" rx="4"/><rect x="232" y="172" width="96" height="44" rx="4"/><rect x="334" y="172" width="96" height="44" rx="4"/><rect x="436" y="172" width="96" height="44" rx="4"/><rect x="538" y="172" width="96" height="44" rx="4"/>
+        <rect x="130" y="250" width="96" height="44" rx="4"/><rect x="232" y="250" width="96" height="44" rx="4"/><rect x="334" y="250" width="96" height="44" rx="4"/><rect x="436" y="250" width="96" height="44" rx="4"/><rect x="538" y="250" width="96" height="44" rx="4"/>
+        <rect x="130" y="328" width="96" height="44" rx="4"/><rect x="232" y="328" width="96" height="44" rx="4"/><rect x="334" y="328" width="96" height="44" rx="4"/><rect x="436" y="328" width="96" height="44" rx="4"/><rect x="538" y="328" width="96" height="44" rx="4"/>
+      </g>
+      <g font-family="Switzer" font-size="10" fill="var(--ink)" text-anchor="middle">
+        <text x="178" y="35"><tspan x="178">Rider app</tspan><tspan x="178" dy="13">Android, web</tspan></text>
+        <text x="280" y="35"><tspan x="280">Driver app</tspan><tspan x="280" dy="13">tablet, phone</tspan></text>
+        <text x="382" y="35"><tspan x="382">Fleet operations</tspan><tspan x="382" dy="13">console</tspan></text>
+        <text x="484" y="35"><tspan x="484">Regulator and</tspan><tspan x="484" dy="13">city portal</tspan></text>
+        <text x="586" y="35"><tspan x="586">Open feeds</tspan><tspan x="586" dy="13">GTFS, GTFS Realtime</tspan></text>
+        <text x="178" y="113"><tspan x="178">Trips, fares</tspan><tspan x="178" dy="13">and arrival times</tspan></text>
+        <text x="280" y="113"><tspan x="280">Payments</tspan><tspan x="280" dy="13">mobile money</tspan></text>
+        <text x="382" y="113"><tspan x="382">Identity and</tspan><tspan x="382" dy="13">consent</tspan></text>
+        <text x="484" y="113"><tspan x="484">Dispatch and</tspan><tspan x="484" dy="13">scheduling</tspan></text>
+        <text x="586" y="113"><tspan x="586">Charging</tspan><tspan x="586" dy="13">management</tspan></text>
+        <text x="178" y="191"><tspan x="178">Stream</tspan><tspan x="178" dy="13">ingestion</tspan></text>
+        <text x="280" y="191"><tspan x="280">Data lake and</tspan><tspan x="280" dy="13">warehouse</tspan></text>
+        <text x="382" y="191"><tspan x="382">Feature store</tspan><tspan x="382" dy="13">and models</tspan></text>
+        <text x="484" y="191"><tspan x="484">Analytics and</tspan><tspan x="484" dy="13">reporting</tspan></text>
+        <text x="586" y="191"><tspan x="586">Governance,</tspan><tspan x="586" dy="13">audit, retention</tspan></text>
+        <text x="178" y="269"><tspan x="178">Telematics unit</tspan><tspan x="178" dy="13">GPS, CAN, battery</tspan></text>
+        <text x="280" y="269"><tspan x="280">Onboard cameras</tspan><tspan x="280" dy="13">and sensors</tspan></text>
+        <text x="382" y="269"><tspan x="382">Masaawo button</tspan><tspan x="382" dy="13">driver display</tspan></text>
+        <text x="484" y="269"><tspan x="484">Mobile network</tspan><tspan x="484" dy="13">offline buffer</tspan></text>
+        <text x="586" y="269"><tspan x="586">Stage boards</tspan><tspan x="586" dy="13">and kiosks</tspan></text>
+        <text x="178" y="347"><tspan x="178">Chargers</tspan><tspan x="178" dy="13">OCPP</tspan></text>
+        <text x="280" y="347"><tspan x="280">Depot energy</tspan><tspan x="280" dy="13">metering</tspan></text>
+        <text x="382" y="347"><tspan x="382">Mobile money</tspan><tspan x="382" dy="13">operators</tspan></text>
+        <text x="484" y="347"><tspan x="484">Grid utility</tspan><tspan x="484" dy="13">and regulator</tspan></text>
+        <text x="586" y="347"><tspan x="586">KCCA, ministry</tspan><tspan x="586" dy="13">data exchange</tspan></text>
+      </g>
+    </svg>
+    <figcaption><b>Figure 6.</b> Proposed layered architecture. Events flow up from vehicles and chargers; commands and schedules flow down. All boxes are proposed components; none exists yet. Source: this proposal.</figcaption>
+  </figure>
+  <h2>7.3 Components</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Function</th><th>Main users</th></tr></thead>
+    <tbody>
+      <tr><td>Rider app</td><td>Route search, fare shown first, live arrival, mobile money payment, Masaawo, trip sharing, incident report</td><td>Riders</td></tr>
+      <tr><td>Driver app</td><td>Roster, route, stop list, alerts, charge status, fault reporting</td><td>Drivers</td></tr>
+      <tr><td>Telematics unit</td><td>GPS position, vehicle bus and battery data, camera control, local buffer</td><td>Platform, maintenance</td></tr>
+      <tr><td>Payments</td><td>Mobile money collection, reconciliation, refunds, driver and owner payouts</td><td>Riders, finance</td></tr>
+      <tr><td>Operations console</td><td>Live fleet map, headway view, charging, incidents, complaints</td><td>Control room</td></tr>
+      <tr><td>Data platform</td><td>Storage, features, models, anonymised exports, audit</td><td>Analysts, planners</td></tr>
+      <tr><td>Open interfaces</td><td>GTFS schedules, GTFS Realtime positions, partner APIs</td><td>Third-party apps, city</td></tr>
+    </tbody>
+  </table>
+  <h2>7.4 Standards</h2>
+  <p>The General Transit Feed Specification (GTFS) and its Realtime extension are community-governed and maintained by MobilityData; a 2013 community effort extended GTFS to informal services with changing routes.<sup class="ref">[70]</sup><sup class="ref">[71]</sup> A volunteer-built GTFS dataset for Kampala exists,<sup class="ref">[72]</sup> and the MobilityDatabase lists a Kampala feed covering a 14-seater paratransit operator and buses from two operators, with no errors and six warnings in its May 2025 quality report.<sup class="ref">[40]</sup> No real-time feed for Kampala paratransit was found. The Mobility Data Specification is built for micromobility such as e-scooters, so it is not a ready fit for 14-seaters.<sup class="ref">[73]</sup> The Open Charge Point Protocol (OCPP) is proposed as a procurement requirement for chargers so that no single supplier controls charging; the research behind this document retrieved no source on OCPP, so it is named here as a requirement, not described.</p>
+  <h2>7.5 Requirements</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Functional requirement</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td>F1</td><td>Rider sees the full fare before boarding and before paying.</td><td>Must</td></tr>
+      <tr><td>F2</td><td>Rider sees the next vehicle and a live arrival estimate for the stage.</td><td>Must</td></tr>
+      <tr><td>F3</td><td>Payment by MTN Mobile Money and Airtel Money, by app and by USSD.</td><td>Must</td></tr>
+      <tr><td>F4</td><td>Masaawo stop request reaches the driver display and logs the stop.</td><td>Must</td></tr>
+      
+      <tr><td>F6</td><td>Console shows fleet position, headways, charge level and open faults.</td><td>Must</td></tr>
+      <tr><td>F7</td><td>Platform publishes GTFS and GTFS Realtime for all routes.</td><td>Must</td></tr>
+      <tr><td>F8</td><td>Consent, access and deletion requests handled in the app.</td><td>Must</td></tr>
+      
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>Area</th><th>Non-functional requirement <span class="tag">Proposed</span></th></tr></thead>
+    <tbody>
+      <tr><td>Availability</td><td>Rider services available 99.5% of each month; the console has a documented manual fallback.</td></tr>
+      <tr><td>Latency</td><td>Arrival estimates refresh at least every 15 seconds; 95% of app requests answered within 1 second on a 3G connection.</td></tr>
+      <tr><td>Offline tolerance</td><td>App shows cached routes and fares without data; the vehicle unit stores 48 hours of records and uploads when reconnected.</td></tr>
+      <tr><td>Low-end devices</td><td>Runs on low-cost Android phones with 2 GB of memory; install size under 30 MB; a web version and USSD fallback.</td></tr>
+      <tr><td>Data cost</td><td>A typical trip uses under 200 KB of mobile data; map tiles are cached.</td></tr>
+      <tr><td>Security</td><td>Encryption in transit and at rest, role-based access, audit logs, independent penetration test before any launch.</td></tr>
+      <tr><td>Privacy by design</td><td>Data minimisation, purpose limits, retention schedule and anonymised exports built in; impact assessment before the pilot.</td></tr>
+    </tbody>
+  </table>
+  <h2>7.6 Build versus buy</h2>
+  <p><span class="tag">Proposed</span> Buy what is commodity and build what carries the service. Payments would be integrated through the mobile money operators or a licensed aggregator. Telematics hardware and the camera units would be bought to a specification. The charging-management layer would use OCPP-compliant software, bought or open source. The rider app, driver app, data platform and models would be built, because the local fare, stop and consent rules are the product. </p>
+  <h2>7.7 Delivery approach and environments</h2>
+  <p><span class="tag">Proposed</span> Delivery would run in two-week cycles with four environments: development, test, staging and production. The pilot would run in shadow mode first, with the platform predicting arrivals for existing taxis along a chosen corridor, so the models learn local movement before electric vehicles arrive. </p>
+</section>
+
+<section class="sec" id="s8">
+  <h1><span class="num">Section 8</span>Data strategy and machine learning roadmap</h1>
+  <p class="lead">Every vehicle is a sensor. The strategy is to collect only what each use case needs, put the earliest value in rider service and cost control, and share anonymised data with the city under written terms.</p>
+  <h2>8.1 What the fleet generates</h2>
+  <table>
+    <thead><tr><th>Data stream</th><th>Used for</th><th>Volume driver</th><th>Sensitivity</th></tr></thead>
+    <tbody>
+      <tr><td>GPS traces</td><td>Arrival estimates, route and demand analysis</td><td>Vehicles and sampling rate</td><td>High: location</td></tr>
+      
+      <tr><td>Payments and fares</td><td>Revenue, reconciliation, fraud checks</td><td>Paid trips</td><td>High: financial</td></tr>
+      <tr><td>Vehicle bus and battery</td><td>Maintenance, battery health</td><td>Vehicles and signals logged</td><td>Low</td></tr>
+      <tr><td>Charging sessions</td><td>Smart charging, load planning</td><td>Charges per day</td><td>Low</td></tr>
+      <tr><td>Driver events</td><td>Coaching, safety</td><td>Driving hours</td><td>High: employee</td></tr>
+      <tr><td>Onboard and road video</td><td>Incidents, road condition, driver assistance data</td><td>Camera hours</td><td>Very high: faces</td></tr>
+      
+    </tbody>
+  </table>
+  <h2>8.2 Use cases in priority order</h2>
+  <p>The order follows value, data readiness and risk. Where the research found no result from a comparable setting, the table says so.</p>
+  <table>
+    <thead><tr><th>#</th><th>Use case</th><th>Horizon</th><th>Evidence found</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Arrival prediction</td><td>0 to 12 months</td><td>Floating car data on nine Kampala minibus taxis shows irregular movement;<sup class="ref">[74]</sup> no measured arrival accuracy found.</td></tr>
+      <tr><td>2</td><td>Demand forecasting and dispatch</td><td>6 to 18 months</td><td>Route-level forecasts with random forest and XGBoost report accuracy, not savings.<sup class="ref">[75]</sup></td></tr>
+      <tr><td>3</td><td>Headway control</td><td>12 to 24 months</td><td>No source retrieved.</td></tr>
+      <tr><td>4</td><td>Predictive maintenance</td><td>12 to 24 months</td><td>New York City Transit is implementing machine learning prognostics on over 5,800 buses; no outcome figures.<sup class="ref">[76]</sup> A vendor claim of a 73% fall in roadside failures has no method and is not relied on.<sup class="ref">[77]</sup></td></tr>
+      <tr><td>5</td><td>Battery health and smart charging</td><td>12 to 30 months</td><td>No source on charging sessions retrieved; one comparable van carries an 8 year or 400,000 km battery warranty.<sup class="ref">[54]</sup></td></tr>
+      <tr><td>6</td><td>Driver coaching and safety</td><td>12 to 24 months</td><td>A New York university plan models breakdown risk from speed and fault codes; a plan, not a result.<sup class="ref">[78]</sup></td></tr>
+      <tr><td>7</td><td>Fleet management</td><td>0 to 12 months</td><td>Africa fleet management services are estimated at USD 370 million in 2025 in a single paid report.<sup class="ref">[79]</sup></td></tr>
+      <tr><td>8</td><td>Origin and destination matrices for planners</td><td>12 to 36 months</td><td>A 2020 study recorded 1,492 trips and 587 routes at matatu stages using video and machine learning.<sup class="ref">[80]</sup></td></tr>
+      <tr><td>9</td><td>Road condition mapping</td><td>18 to 36 months</td><td>A regional dataset of 3,236 images includes potholes and unmarked speed bumps.<sup class="ref">[81]</sup></td></tr>
+      <tr><td>10</td><td>Carbon measurement for climate finance</td><td>6 to 18 months</td><td>Verra revised a methodology for new electric vehicles displacing fossil ones;<sup class="ref">[82]</sup> BasiGo obtained Gold Standard certification for e-bus credits.<sup class="ref">[83]</sup></td></tr>
+      <tr><td>11</td><td>Training data for driver assistance and automated vans</td><td>36 months and later</td><td>Public driving datasets under-represent African roads;<sup class="ref">[81]</sup> no driver assistance or automated pilot on African roads was found.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout--plain"><span class="label">The proposal's view on automation</span><p>Boston Consulting Group expects robotaxis to reach emerging markets significantly later than the leading cities, perhaps only after 2040.<sup class="ref">[84]</sup> eTaxi should not plan for driverless operation in Kampala before 2040. The near-term value is driver assistance, safety analytics and a labelled record of African road scenes that others lack.</p></div>
+  <figure class="fig">
+    <svg viewBox="0 0 640 320" role="img" aria-label="Data flywheel diagram: more vehicles produce more data, which improves models, service and cost, which attracts more riders, owners and funders">
+      <defs><marker id="fw-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--blue-600)"/></marker></defs>
+      <g fill="none" stroke="var(--blue-600)" stroke-width="1.8" marker-end="url(#fw-arrow)">
+        <path d="M390 55 Q529 55 529 103"/>
+        <path d="M529 157 Q529 254 521 254"/>
+        <path d="M379 254 L263 254"/>
+        <path d="M121 254 Q111 254 111 159"/>
+        <path d="M111 105 Q111 55 248 55"/>
+      </g>
+      <g fill="var(--field)" stroke="var(--blue-600)" stroke-width="1.5">
+        <rect x="250" y="29" width="140" height="52" rx="6"/><rect x="459" y="105" width="140" height="52" rx="6"/><rect x="379" y="228" width="140" height="52" rx="6"/><rect x="121" y="228" width="140" height="52" rx="6"/><rect x="41" y="105" width="140" height="52" rx="6"/>
+      </g>
+      <g font-family="Switzer" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="middle">
+        <text x="320" y="52"><tspan x="320">More vehicles</tspan><tspan x="320" dy="14">and trips</tspan></text>
+        <text x="529" y="128"><tspan x="529">More data from</tspan><tspan x="529" dy="14">every trip</tspan></text>
+        <text x="449" y="251"><tspan x="449">Better models</tspan><tspan x="449" dy="14">arrivals, demand, upkeep</tspan></text>
+        <text x="191" y="251"><tspan x="191">Better service and</tspan><tspan x="191" dy="14">lower cost per km</tspan></text>
+        <text x="111" y="128"><tspan x="111">More riders, owners</tspan><tspan x="111" dy="14">and funders</tspan></text>
+      </g>
+      <g font-family="Switzer" font-size="11" fill="var(--n-600)" text-anchor="middle">
+        <text x="320" y="128" font-weight="600" fill="var(--blue-700)">Outputs for the city</text>
+        <text x="320" y="146">Open schedule and live feeds</text>
+        <text x="320" y="162">Anonymised planning data</text>
+        <text x="320" y="178">Measured carbon savings</text>
+      </g>
+    </svg>
+    <figcaption><b>Figure 7.</b> The proposed data flywheel. Each loop only works if riders and drivers trust how data is used (Section 8.3). Source: this proposal.</figcaption>
+  </figure>
+  <h2>8.3 Data governance</h2>
+  <p>The Data Protection and Privacy Act 2019 commenced on 3 May 2019 and its Regulations took effect on 12 March 2021; consent is a central principle and the Personal Data Protection Office sits within the National Information Technology Authority (NITA-U).<sup class="ref">[85]</sup> Controllers must register and renew annually.<sup class="ref">[86]</sup> Location is treated as an identifier, so vehicle position tied to a driver or rider may be personal data, and Regulation 30(2) bars onward transfer of personal data processed abroad to a third country without the data subject's consent.<sup class="ref">[87]</sup> In July 2025 the regulator said prior permission for each cross-border transfer is not required but records of legal basis and safeguards must be kept.<sup class="ref">[88]</sup> </p>
+  <p>No source tying the Act to CCTV in public vehicles or to taxi trip data was found, and no rule on anonymising trip data. <span class="tag">Proposed</span> eTaxi would therefore adopt the following rules and seek the regulator's view on them in the first 90 days.</p>
+  <ul>
+    <li><strong>Consent and notice.</strong> Location and trip sharing are opt-in in the app; vehicles display camera notices; drivers sign a policy on cameras and driver events.</li>
+    <li><strong>Retention.</strong> Camera footage kept for a short fixed period unless tied to an incident; trip records identifiable for the shortest period needed, then aggregated.</li>
+    <li><strong>Anonymisation.</strong> Planning exports are aggregated by area and hour with minimum counts so no individual can be singled out.</li>
+    <li><strong>Sharing terms.</strong> Three tiers: open schedules and live positions; aggregated data for agencies under a data-sharing agreement; research access under signed terms. Individual-level data is never sold.</li>
+    <li><strong>Accountability.</strong> A named data protection officer, registration with the regulator and an impact assessment before the pilot.</li>
+  </ul>
+  <h2>8.4 Partnerships</h2>
+  <p>Makerere University's AirQo project combines low-cost sensors, weather data and artificial intelligence, with sensors on buildings, schools and boda bodas.<sup class="ref">[89]</sup> eTaxi could carry sensors on routes and share the readings. Digital Transport for Africa states that at least 105 million people in African cities lack reliable transit information.<sup class="ref">[90]</sup> No sizing of vehicle-data revenue in Africa was found, so the financial case in Section 11 assumes none.</p>
+</section>
+
+<!-- data-renumbered -->
+<section class="sec" id="s9">
+  <h1><span class="num">Section 9</span>Market and demand</h1>
+  <p class="lead">Demand for taxi trips in Greater Kampala is large and growing, but the number of taxis, the daily trips by mode and the share of income spent on transport are not known. The pilot would measure them.</p>
+  <table>
+    <thead><tr><th>Indicator</th><th>What the sources say</th></tr></thead>
+    <tbody>
+      <tr><td>Population</td><td>Uganda 45.9 million (2024 census).<sup class="ref">[91]</sup> Preliminary counts: Kampala about 1.8 million, Wakiso about 3.3 million, Mukono 932,672.<sup class="ref">[92]</sup> The sum, about 6.0 million, is the proposal's arithmetic and not an official GKMA total.</td></tr>
+      
+      <tr><td>Mode split</td><td>An undated ministry document gives walking 48%, taxi 33%, boda boda 10%, other 9%.<sup class="ref">[5]</sup> A study of workers gives 50, 30, 10 and 10% for walking, taxi, boda boda and private car.<sup class="ref">[93]</sup> A third source gives motorcycles 47%, cars 26% and buses 12% on a different basis.<sup class="ref">[94]</sup> The sources conflict.</td></tr>
+      <tr><td>Congestion</td><td>Congestion cost the metropolitan area USD 1.5 million a day, 4.2% of daily output.<sup class="ref">[95]</sup> Time lost is reported as about 90 minutes a day in one source and 2.5 hours in another.<sup class="ref">[96]</sup></td></tr>
+      
+      <tr><td>Daily trips by mode</td><td>Not known: no current total was found.</td></tr>
+      <tr><td>Household transport spending</td><td>Not known: no household figure was found.</td></tr>
+    </tbody>
+  </table>
+  <h2>9.1 Fares and the fleet</h2>
+  <p>Taxi fares are short-distance and cash-based: UGX 1,000 from Kasubi to Kampala and UGX 2,000 from Bwaise before the crackdown,<sup class="ref">[32]</sup> against UGX 800 to 1,800 on electric buses. E-Bus Xpress ridership was not found.</p>
+  <p>The number of 14-seaters is not known. Registration snapshots from 2020 conflict: KCCA reported over 15,000 registered and the ministry 14,000 with route charts, while other counts were 12,184, 13,301 route numbers and 7,340 registered out of 13,000 captured.<sup class="ref">[18]</sup><sup class="ref">[97]</sup><sup class="ref">[98]</sup> A trade-press summary suggests 15,000 to 25,000 today.<sup class="ref">[25]</sup> <span class="tag">Proposed</span> The pilot would count taxis on its corridor with stage surveys. Against the lowest of those estimates, 2,000 vehicles would be about 13%, the proposal's arithmetic; the pilot of 30 vehicles carries 420 seats and cannot affect the market.</p>
+</section>
+
+<section class="sec" id="s10">
+  <h1><span class="num">Section 10</span>Environmental and social impact</h1>
+  <p class="lead">Because Uganda's grid is largely hydropower, each electric 14-seater avoids most of the carbon of a petrol one. Local air and safety benefits are plausible but not yet quantified for minibus taxis.</p>
+  <h2>10.1 Carbon</h2>
+  <p>In the base case one petrol 14-seater emits 14.4 tonnes of CO2 a year, while an electric one charged from the grid accounts for 1.9 tonnes, so 12.5 tonnes are avoided per vehicle per year <span class="tag tag--est">Indicative</span>. The conservative and favourable cases give 11.6 and 17.2 tonnes. The model uses 2.3 kg of CO2 per litre of petrol, from fleet-software references because primary IPCC, EPA or DEFRA tables were not retrieved,<sup class="ref">[99]</sup> and a grid factor of 0.137 tonnes per megawatt hour, the combined margin in a United Nations standardised baseline.<sup class="ref">[100]</sup></p>
+  <figure class="fig">
+    <svg viewBox="0 0 640 238" role="img" aria-label="Bar chart of tonnes of CO2 avoided per year at the three fleet phases">
+      <line x1="90" y1="190" x2="550" y2="190" stroke="var(--n-400)" stroke-width="1"/>
+      <rect x="120" y="187.9" width="100" height="2.1" rx="1" fill="var(--leaf)"/>
+      <rect x="270" y="169" width="100" height="21" rx="4" fill="var(--leaf)"/>
+      <rect x="420" y="50" width="100" height="140" rx="4" fill="var(--leaf)"/>
+      <g font-family="Switzer" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle"><text x="170" y="181">375 t</text><text x="320" y="163">3,750 t</text><text x="470" y="44">25,000 t</text></g>
+      <g font-family="Switzer" font-size="12" fill="var(--ink)" text-anchor="middle"><text x="170" y="208">Pilot</text><text x="320" y="208">Corridor rollout</text><text x="470" y="208">Network scale</text></g>
+      <g font-family="Switzer" font-size="11" fill="var(--n-600)" text-anchor="middle"><text x="170" y="223">30 vehicles</text><text x="320" y="223">300 vehicles</text><text x="470" y="223">2,000 vehicles</text></g>
+    </svg>
+    <figcaption><b>Figure 8.</b> Indicative CO2 avoided per year, tonnes, by proposed fleet phase, base case. Source: eTaxi model (Appendix A), model.json fleet table.</figcaption>
+  </figure>
+  <p>One caution applies: grid factors differ by vintage: an older Ugandan study reports an operating margin of about 0.614 and a combined margin of about 0.550,<sup class="ref">[101]</sup> and the hydro share is reported as 85%<sup class="ref">[102]</sup> against 68.5% for hydro and bagasse in 2008 to 2012.<sup class="ref">[103]</sup> The older factor would narrow the saving considerably, so the pilot should measure the grid factor at the depot supply. </p>
+  <h2>10.2 Air quality and noise</h2>
+  <p>An electric van has no exhaust. Kampala's PM2.5 level in 2025 was 44.2 micrograms per cubic metre against a guideline of 5 (Section 3), and the national environment authority attributes about 60% of air pollution to transport, a calculation that is unverified.<sup class="ref">[104]</sup> A University of Michigan model of electric boda bodas found CO2 down 36% and nitrogen oxides down 58%, but PM2.5 up 97% because of bagasse and heavy-fuel-oil power plants.<sup class="ref">[105]</sup> No study quantifying the health benefit of electric minibus taxis was found. Noise has not been measured; the pilot would record it.</p>
+  <h2>10.3 Safety, jobs and inclusion</h2>
+  <p>Police recorded 5,383 road deaths in 2025.<sup class="ref">[39]</sup> eTaxi cannot claim a reduction in advance. <span class="tag">Proposed</span> It would instead measure incidents per million vehicle kilometres from the first day, use camera and telematics data for driver coaching, and publish the result. Jobs cannot be counted yet because current driver and conductor numbers are not known; the transition plan in Section 6.4 sets the intent. For inclusion, <span class="tag">Proposed</span> the pilot would test: a cash and USSD route for riders without smartphones; concession fares for pupils, following the school pass precedent set by E-Bus Xpress;<sup class="ref">[14]</sup> well-lit stages and visible driver identity for women riders; and step and seat design that suits older riders and people with disabilities, written into the vehicle tender.</p>
+</section>
+
+<section class="sec" id="s11">
+  <h1><span class="num">Section 11</span>Financial case</h1>
+  <div class="callout callout--plain"><span class="label">What this section is</span><p>This is an energy cost comparison, not a full business plan. It compares what a petrol and an electric 14-seater spend on energy. It leaves out vehicle price, maintenance, insurance, driver pay and charger cost, none of which could be priced from the sources found. Nothing here is a quotation, a forecast or a return on investment.</p></div>
+  <h2>11.1 Three scenarios</h2>
+  <p>The model compares driver-reported fuel use with electricity use at published tariffs <span class="tag tag--est">Indicative</span>. The base case uses city routes, a mid-2026 pump price and the average commercial tariff. The conservative case uses the lowest 2026 pump price seen, the peak tariff and heavier energy use. The favourable case uses outskirts routes, the late-May 2026 pump price and off-peak depot charging. Appendix A lists every input.</p>
+  <table>
+    <thead><tr><th>Item</th><th class="n">Conservative</th><th class="n">Base</th><th class="n">Favourable</th></tr></thead>
+    <tbody>
+      <tr><td>Petrol per day (litres)</td><td class="n">20.0</td><td class="n">20.0</td><td class="n">27.5</td></tr>
+      <tr><td>Pump price (UGX per litre)</td><td class="n">5,090</td><td class="n">5,345</td><td class="n">5,599</td></tr>
+      <tr><td>Distance (km per day)</td><td class="n">130</td><td class="n">112</td><td class="n">150</td></tr>
+      <tr><td>Electric use (kWh per km)</td><td class="n">0.50</td><td class="n">0.39</td><td class="n">0.39</td></tr>
+      <tr><td>Tariff (UGX per kWh)</td><td class="n">666.5</td><td class="n">562.1</td><td class="n">429.7</td></tr>
+      <tr><td>Petrol cost per day (UGX)</td><td class="n">101,800</td><td class="n">106,900</td><td class="n">153,972</td></tr>
+      <tr><td>Electricity cost per day (UGX)</td><td class="n">43,322</td><td class="n">24,553</td><td class="n">25,137</td></tr>
+      <tr class="total"><td>Saving per day (UGX)</td><td class="n">58,478</td><td class="n">82,347</td><td class="n">128,835</td></tr>
+      <tr><td>Saving (%)</td><td class="n">57.4%</td><td class="n">77.0%</td><td class="n">83.7%</td></tr>
+      <tr><td>Saving per year (UGX)</td><td class="n">18,244,980</td><td class="n">25,692,411</td><td class="n">40,196,536</td></tr>
+      <tr><td>Saving per year (USD)</td><td class="n">4,895</td><td class="n">6,894</td><td class="n">10,785</td></tr>
+      <tr><td>Energy cost per km, petrol / electric (UGX)</td><td class="n">783 / 333</td><td class="n">954 / 219</td><td class="n">1,026 / 168</td></tr>
+      <tr><td>CO2 avoided per year (tonnes)</td><td class="n">11.6</td><td class="n">12.5</td><td class="n">17.2</td></tr>
+    </tbody>
+  </table>
+  <p class="small">Sources for inputs: fuel use, Daily Monitor;<sup class="ref">[35]</sup> pump prices, Daily Monitor;<sup class="ref">[36]</sup> tariffs, Daily Monitor, 5 October 2026.<sup class="ref">[61]</sup></p>
+  <figure class="fig">
+    <svg viewBox="0 0 640 256" role="img" aria-label="Grouped bar chart of daily energy cost for petrol and electric 14-seaters in three scenarios">
+      <g stroke="var(--n-200)" stroke-width="1"><line x1="70" y1="172.5" x2="610" y2="172.5"/><line x1="70" y1="135" x2="610" y2="135"/><line x1="70" y1="97.5" x2="610" y2="97.5"/><line x1="70" y1="60" x2="610" y2="60"/></g>
+      <line x1="70" y1="210" x2="610" y2="210" stroke="var(--n-400)" stroke-width="1"/>
+      <g font-family="Switzer" font-size="10.5" fill="var(--n-600)" text-anchor="end"><text x="62" y="214">0</text><text x="62" y="176.5">40,000</text><text x="62" y="139">80,000</text><text x="62" y="101.5">120,000</text><text x="62" y="64">160,000</text></g>
+      <rect x="70" y="14" width="10" height="10" rx="2" fill="var(--n-500)"/><text x="86" y="23" font-family="Switzer" font-size="11" fill="var(--ink)">Petrol, fuel cost per day</text>
+      <rect x="260" y="14" width="10" height="10" rx="2" fill="var(--blue-600)"/><text x="276" y="23" font-family="Switzer" font-size="11" fill="var(--ink)">Electric, electricity cost per day</text>
+      <g fill="var(--n-500)"><rect x="102" y="114.6" width="56" height="95.4" rx="4"/><rect x="282" y="109.8" width="56" height="100.2" rx="4"/><rect x="462" y="65.7" width="56" height="144.3" rx="4"/></g>
+      <g fill="var(--blue-600)"><rect x="162" y="169.4" width="56" height="40.6" rx="4"/><rect x="342" y="187" width="56" height="23" rx="4"/><rect x="522" y="186.4" width="56" height="23.6" rx="4"/></g>
+      <g font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)" text-anchor="middle"><text x="130" y="109.6">101,800</text><text x="190" y="164.4">43,322</text><text x="310" y="104.8">106,900</text><text x="370" y="182">24,553</text><text x="490" y="60.7">153,972</text><text x="550" y="181.4">25,137</text></g>
+      <g font-family="Switzer" font-size="12" fill="var(--ink)" text-anchor="middle"><text x="160" y="230">Conservative</text><text x="340" y="230">Base</text><text x="520" y="230">Favourable</text></g>
+      <g font-family="Switzer" font-size="11" font-weight="600" fill="var(--blue-700)" text-anchor="middle"><text x="160" y="246">Saving 58,478 (57.4%)</text><text x="340" y="246">Saving 82,347 (77.0%)</text><text x="520" y="246">Saving 128,835 (83.7%)</text></g>
+    </svg>
+    <figcaption><b>Figure 9.</b> Indicative daily energy cost per vehicle, UGX, petrol versus electric, three scenarios. Source: eTaxi model (Appendix A), using Daily Monitor fuel, pump price and tariff reports.</figcaption>
+  </figure>
+  <figure class="fig">
+    <svg viewBox="0 0 640 252" role="img" aria-label="Line chart of daily energy saving per vehicle against petrol pump price, base case">
+      <rect x="210.4" y="40" width="103.8" height="160" fill="var(--blue-50)"/>
+      <g stroke="var(--n-200)" stroke-width="1"><line x1="90" y1="146.7" x2="600" y2="146.7"/><line x1="90" y1="93.3" x2="600" y2="93.3"/><line x1="90" y1="40" x2="600" y2="40"/></g>
+      <line x1="90" y1="200" x2="600" y2="200" stroke="var(--n-400)" stroke-width="1"/>
+      <g font-family="Switzer" font-size="10.5" fill="var(--n-600)" text-anchor="end"><text x="82" y="204">60,000</text><text x="82" y="150.7">80,000</text><text x="82" y="97.3">100,000</text><text x="82" y="44">120,000</text></g>
+      <g font-family="Switzer" font-size="10.5" fill="var(--n-600)" text-anchor="middle"><text x="90" y="220">4,500</text><text x="192" y="220">5,000</text><text x="294" y="220">5,500</text><text x="396" y="220">6,000</text><text x="498" y="220">6,500</text><text x="600" y="220">7,000</text></g>
+      <text x="90" y="22" font-family="Switzer" font-size="11" fill="var(--n-600)">Daily saving, UGX per vehicle</text>
+      <text x="262" y="34" font-family="Switzer" font-size="10" fill="var(--n-600)" text-anchor="middle">Surveyed April to May 2026</text>
+      <polyline points="90,185.5 192,158.8 294,132.1 396,105.5 498,78.8 600,52.1" fill="none" stroke="var(--blue-600)" stroke-width="2"/>
+      <g fill="var(--blue-600)" stroke="var(--field)" stroke-width="2"><circle cx="90" cy="185.5" r="4"/><circle cx="192" cy="158.8" r="4"/><circle cx="294" cy="132.1" r="4"/><circle cx="396" cy="105.5" r="4"/><circle cx="498" cy="78.8" r="4"/><circle cx="600" cy="52.1" r="4"/></g>
+      <g font-family="Switzer" font-size="11" font-weight="600" fill="var(--ink)" text-anchor="middle"><text x="90" y="175.5">65,447</text><text x="192" y="148.8">75,447</text><text x="294" y="122.1">85,447</text><text x="396" y="95.5">95,447</text><text x="498" y="68.8">105,447</text><text x="600" y="42.1">115,447</text></g>
+      <circle cx="262.4" cy="140.4" r="6" fill="var(--ink)" stroke="var(--field)" stroke-width="2"/>
+      <line x1="263" y1="147" x2="275" y2="164" stroke="var(--n-400)" stroke-width="1"/>
+      <g font-family="Switzer" font-size="11" fill="var(--ink)"><text x="279" y="172" font-weight="600">Base case: pump price 5,345</text><text x="279" y="186">saving 82,347 a day</text></g>
+      <text x="345" y="242" font-family="Switzer" font-size="11" fill="var(--n-600)" text-anchor="middle">Petrol pump price, UGX per litre</text>
+    </svg>
+    <figcaption><b>Figure 10.</b> Indicative daily energy saving per vehicle against the petrol pump price, base case (20 litres, 112 km, 0.39 kWh per km, UGX 562.1 per kWh). The shaded band is the 2026 pump price range in the surveys cited in Section 3. Source: eTaxi model price curve.</figcaption>
+  </figure>
+  <p>Each UGX 500 rise in the pump price adds UGX 10,000 to the daily saving. The electricity cost in the base case is fixed at UGX 24,553 a day, so the saving remains large across the whole 2026 price range.</p>
+  <h2>11.2 What the saving can finance</h2>
+  <p>If the whole energy saving serviced a loan over the model's eight-year life, it would support extra upfront cost up to its present value at the lending rate. The model uses the average shilling lending rate of 18.26% (April 2026) and the average foreign-currency rate of 7.09% (February 2026).<sup class="ref">[33]</sup><sup class="ref">[106]</sup> A commercial vehicle loan rate was not found, so these are proxies.</p>
+  <table>
+    <thead><tr><th>Present value of eight years of saving</th><th class="n">Conservative</th><th class="n">Base</th><th class="n">Favourable</th></tr></thead>
+    <tbody>
+      <tr><td>At 18.26% shilling rate (UGX)</td><td class="n">73,799,762</td><td class="n">103,924,138</td><td class="n">162,592,381</td></tr>
+      <tr><td>At 7.09% foreign-currency rate (UGX)</td><td class="n">108,567,265</td><td class="n">152,883,413</td><td class="n">239,190,611</td></tr>
+      <tr><td>At 18.26% (USD)</td><td class="n">19,801</td><td class="n">27,884</td><td class="n">43,626</td></tr>
+      <tr><td>At 7.09% (USD)</td><td class="n">29,130</td><td class="n">41,021</td><td class="n">64,178</td></tr>
+    </tbody>
+  </table>
+  <p>In the base case the saving could service about UGX 103.9 million of extra capital at the shilling rate, or about UGX 152.9 million at the foreign-currency rate. For scale, a conventional taxi is reported at about UGX 74 million, with total capital above UGX 80 million.<sup class="ref">[57]</sup> The electric price is not known, so no payback period is stated. The foreign-currency rate carries exchange-rate risk: in 2026 the shilling traded between 3,457.9 and 3,787.9 to the dollar.<sup class="ref">[107]</sup><sup class="ref">[108]</sup></p>
+  <h2>11.3 Capital items</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Known figure</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Conventional 14-seater, reference</td><td>About UGX 74 million; used legal-age Hiace UGX 80 to 90 million; new Hiace carries at least UGX 28 million in taxes</td><td>Reported; 2023 and undated<sup class="ref">[23]</sup></td></tr>
+      <tr><td>Electric 14-seater</td><td>Not known</td><td>Pilot tender</td></tr>
+      <tr><td>Battery pack, 86.1 kWh</td><td>USD 9,299 at the 2025 global average</td><td>Component only</td></tr>
+      <tr><td>Slow charger</td><td>About USD 2,500</td><td>National strategy figure<sup class="ref">[60]</sup></td></tr>
+      <tr><td>Fast charger, installed</td><td>About USD 35,800</td><td>National strategy figure</td></tr>
+      
+      
+      <tr><td>Depot land, grid connection, telematics, cameras, platform build, insurance, duty and VAT</td><td>No price found</td><td>To be quoted</td></tr>
+    </tbody>
+  </table>
+  <h2>11.4 Revenue streams</h2>
+  <p>Fares are the base. <span class="tag">Proposed</span> Further streams are a door-to-door premium, lease and mileage fees from owners using company vehicles, charging services, advertising, anonymised data services to agencies and carbon credits. None is quantified. Advertising was not researched. No price for electric bus credits was found. BasiGo obtained Gold Standard certification for its electric bus project and expects to sell its first credits, which shows the route exists.<sup class="ref">[83]</sup></p>
+  <h2>11.5 Funding structure options</h2>
+  <table>
+    <thead><tr><th>Source</th><th>Evidence from the research</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Development finance debt</td><td>Dakar's electric bus line used a EUR 85.4 million loan split equally between Proparco and EAIF.<sup class="ref">[68]</sup> BasiGo took USD 17.5 million of debt from British International Investment and the US DFC.<sup class="ref">[109]</sup></td><td>Vehicles and depots</td></tr>
+      <tr><td>Growth equity</td><td>BasiGo raised USD 24 million of Series A equity led by Africa50; totals are reported as USD 42 million or 41.5 million.<sup class="ref">[110]</sup></td><td>Operating company</td></tr>
+      <tr><td>Concessional climate finance</td><td>The Global Environment Facility approved USD 13.46 million for an African Development Bank-led green mobility facility, at concept stage.<sup class="ref">[111]</sup> An undated page lists seven target countries, which do not include Uganda.<sup class="ref">[112]</sup> Uganda's eligibility is not known.</td><td>First-loss, local-currency tranche</td></tr>
+      
+      
+    </tbody>
+  </table>
+  <h2>11.6 Sensitivities and what would break the case</h2>
+  <p>The energy saving is robust: it stays above UGX 58,000 a day in the conservative case. The case is decided by what the saving must pay for. It would break if the electric vehicle premium over a petrol one exceeds the present value in the table above; if lending is dearer than 18.26% or dollar debt meets a weaker shilling; if utilisation falls well below the modelled 112 km a day; if the battery fails before the eight-year life; if the electricity tariff for charging is reclassified upward; or if franchises and stage access are not granted. Energy use is the largest technical unknown, since published projections span 0.39 to 0.93 kWh per kilometre. Each is a pilot measurement.</p>
+</section>
+
+<!-- data-renumbered -->
+<section class="sec" id="s12">
+  <h1><span class="num">Section 12</span>Implementation plan</h1>
+  <p class="lead">Three phases, each larger than the last, with a gate between them. No phase starts until the evidence from the one before meets agreed thresholds.</p>
+  <p>The phase sizes are planning targets set by this proposal, not forecasts <span class="tag">Proposed</span>. Figures for fuel, energy and carbon are indicative model outputs <span class="tag tag--est">Indicative</span>, base case.</p>
+  <table>
+    <thead><tr><th>Phase</th><th>Window</th><th class="n">Vehicles</th><th class="n">Seats</th><th class="n">Saving (UGX bn a year)</th><th class="n">CO2 avoided (t a year)</th></tr></thead>
+    <tbody>
+      <tr><td>Pilot</td><td>Months 0 to 12</td><td class="n">30</td><td class="n">420</td><td class="n">0.77</td><td class="n">375</td></tr>
+      <tr><td>Corridor rollout</td><td>Years 2 to 3</td><td class="n">300</td><td class="n">4,200</td><td class="n">7.71</td><td class="n">3,750</td></tr>
+      <tr><td>Network scale</td><td>Years 4 to 6</td><td class="n">2,000</td><td class="n">28,000</td><td class="n">51.38</td><td class="n">25,000</td></tr>
+    </tbody>
+  </table>
+  
+  <h2>12.1 Gates</h2>
+  <div class="two">
+    <div class="card"><h3>Gate 1: pilot to corridor</h3><ul><li>Measured energy use at or below 0.50 kWh per km.</li><li>Vehicle availability at least 95%.</li><li>First Ugandan vehicle price, maintenance and charger costs known and in the model.</li><li>Franchise terms agreed and association agreements signed.</li><li>Financing term sheets for 300 vehicles.</li></ul></div>
+    <div class="card"><h3>Gate 2: corridor to network</h3><ul><li>Corridor performance against the model's base case, with variances explained.</li><li>Unit economics shown with measured costs and the loan terms available.</li><li>Grid capacity confirmed for the proposed depots.</li><li>Carbon method and verifier agreed.</li><li>Funding identified for the next 1,700 vehicles.</li></ul></div>
+  </div>
+  <p class="small">All gate thresholds are proposed and would be agreed with the regulator and financiers before the pilot begins.</p>
+  <h2>12.2 Workplan</h2>
+  <table>
+    <thead><tr><th>Workstream</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Years 4 to 6</th></tr></thead>
+    <tbody>
+      <tr><td>Pilot fleet, 30</td><td style="background:var(--blue-300)">Tender, depot, operate</td><td></td><td></td><td></td></tr>
+      <tr><td>Corridor fleet, 300</td><td style="background:var(--blue-50)">Plan</td><td style="background:var(--blue-300)">Roll out</td><td style="background:var(--blue-300)">Complete</td><td></td></tr>
+      <tr><td>Network fleet, 2,000</td><td></td><td></td><td style="background:var(--blue-50)">Plan</td><td style="background:var(--blue-300)">Roll out</td></tr>
+      <tr><td>Platform and data</td><td style="background:var(--blue-300)">Release 1, shadow mode</td><td style="background:var(--blue-300)">Prediction models</td><td style="background:var(--blue-300)">Open data, planners</td><td style="background:var(--blue-300)">Safety and driver assistance data</td></tr>
+      <tr><td>Regulation and franchise</td><td style="background:var(--blue-300)">Pilot licence, tax ruling</td><td style="background:var(--blue-300)">Franchise award</td><td style="background:var(--blue-50)">Renewals</td><td style="background:var(--blue-50)">Network franchises</td></tr>
+      <tr><td>Financing</td><td style="background:var(--blue-300)">Grants, pilot debt</td><td style="background:var(--blue-300)">Corridor financing</td><td style="background:var(--blue-50)">Refinance</td><td style="background:var(--blue-300)">Network financing</td></tr>
+    </tbody>
+  </table>
+  <h2>12.3 Milestones</h2>
+  <table>
+    <thead><tr><th>When</th><th>Milestone</th><th>Lead</th></tr></thead>
+    <tbody>
+      <tr><td>Months 0 to 3</td><td>Pilot licence application, tax ruling request, data regulator guidance, association working group</td><td>Sponsor with ministry, KCCA, URA</td></tr>
+      <tr><td>Months 3 to 6</td><td>Vehicle tender, depot site and grid connection, platform release 1 running in shadow mode on existing taxis</td><td>Sponsor, platform provider</td></tr>
+      <tr><td>Months 6 to 9</td><td>First vehicles in service on the pilot corridor</td><td>Operating company</td></tr>
+      <tr><td>Months 9 to 12</td><td>30 vehicles in service; Gate 1 review</td><td>Operating company, regulator</td></tr>
+      <tr><td>Years 2 to 3</td><td>Franchise award; 300 vehicles; Gate 2 review</td><td>Regulator, operating company</td></tr>
+      <tr><td>Years 4 to 6</td><td>Rollout towards 2,000 vehicles; battery swap review; evaluation published</td><td>Operating company, partners</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="s13">
+  <h1><span class="num">Section 13</span>Risk register</h1>
+  <p class="lead">Ratings are the proposal's judgement at concept stage <span class="tag">Proposed</span>. They would be re-scored at each gate, and no risk is rated low where the evidence is missing.</p>
+  <table>
+    <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td>Operator resistance or strike; the sector has forced a pause before<sup class="ref">[19]</sup></td><td>Medium</td><td>High</td><td>Co-design, shares or leases for owners, consultation board, no removal of service before replacement</td><td>Sponsor, associations</td></tr>
+      <tr><td>Policy reversal or inconsistent enforcement</td><td>Medium</td><td>High</td><td>Written pilot licence with fixed terms; design that works under several policy outcomes</td><td>Regulator</td></tr>
+      <tr><td>Fuel price fall or tariff reclassification</td><td>Medium</td><td>Medium</td><td>Plan on the conservative case; seek a depot tariff in writing</td><td>Sponsor, power utility</td></tr>
+      <tr><td>Foreign exchange: dollar costs, shilling fares</td><td>High</td><td>High</td><td>Local-currency tranche, price-indexed leases, hedging study</td><td>Financiers, operating company</td></tr>
+      <tr><td>Grid reliability and capacity at depots</td><td>Medium</td><td>High</td><td>Early utility engagement, phased connections; supply reliability was not researched</td><td>Operating company, utility</td></tr>
+      <tr><td>Vehicle supply, quality and price</td><td>Medium</td><td>High</td><td>Tender among at least three makers, warranties, acceptance tests, conversion option</td><td>Operating company</td></tr>
+      <tr><td>Battery life below warranty benchmark</td><td>Medium</td><td>High</td><td>Telemetry on battery health, warranty terms, replacement reserve</td><td>Operating company</td></tr>
+      <tr><td>Data protection breach or camera complaint</td><td>Medium</td><td>High</td><td>Officer, impact assessment, registration, minimisation, security testing</td><td>Platform provider</td></tr>
+      <tr><td>Safety incident</td><td>Medium</td><td>High</td><td>Driver vetting and coaching, cameras, inspection, speed limits, incident review</td><td>Operating company</td></tr>
+      <tr><td>Demand shortfall or fare resistance</td><td>Medium</td><td>High</td><td>Fares at current taxi levels, fare shown first, pilot measurement before scaling</td><td>Operating company</td></tr>
+      
+      <tr><td>Financing not secured at workable cost</td><td>High</td><td>High</td><td>Grants for the pilot, phased debt, concessional blends, owner equity</td><td>Sponsor, financiers</td></tr>
+      
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="s14">
+  <h1><span class="num">Section 14</span>Regulatory and compliance path</h1>
+  <p class="lead">The pilot needs a licence, a route and stage arrangement, a tax ruling, a charging arrangement and data protection registration. Several of these have no published precedent for electric 14-seaters.</p>
+  <table>
+    <thead><tr><th>Area</th><th>What is needed</th><th>Authority</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Public service vehicle licence and route chart</td><td>Licence and chart for each vehicle and route</td><td>Ministry of Works and Transport</td><td>Bus charts were recalled in August 2026; whether this applies to 14-seaters is not stated<sup class="ref">[69]</sup></td></tr>
+      
+      <tr><td>Vehicle inspection</td><td>Annual test and Certificate of Fitness</td><td>Ministry, Police</td><td>Fee for the 8 to 20 passenger band is UGX 49,500; free re-test within 30 days of a failure<sup class="ref">[113]</sup></td></tr>
+      <tr><td>Franchise and partnership</td><td>Contract or partnership approval</td><td>KCCA, finance ministry PPP unit</td><td>Major partnerships need cabinet and parliamentary approval; threshold not known<sup class="ref">[12]</sup></td></tr>
+      <tr><td>Electricity supply</td><td>Depot connection and a charging tariff</td><td>Power utility, Electricity Regulatory Authority</td><td>No electric vehicle tariff in the Q4 2026 schedule; the utility's role after the Umeme concession was not found<sup class="ref">[61]</sup></td></tr>
+      <tr><td>Depot environmental approval</td><td>Not researched</td><td>Not researched</td><td>Requirement to be confirmed</td></tr>
+      <tr><td>Data protection</td><td>Registration of the controller, annual renewal</td><td>Personal Data Protection Office, NITA-U</td><td>Enforcement against unregistered entities reported from December 2022<sup class="ref">[114]</sup></td></tr>
+    </tbody>
+  </table>
+  <h2>14.1 Standards</h2>
+  <p>Vehicles would meet the ministry's inspection scope of brakes, suspension, lighting, exhaust emissions and general condition.<sup class="ref">[113]</sup> Chargers would be required to support OCPP, and schedules and live positions would be published as GTFS and GTFS Realtime (Section 7.4). </p>
+  <h2>14.2 Tax position</h2>
+  <p>Reports conflict. A November 2025 report gives 25% import duty on fully built electric vehicles with VAT and income-tax relief aimed at local manufacturing,<sup class="ref">[42]</sup> while the 2024/25 budget was reported to exempt electric vehicles from 18% VAT, stamp duty and income tax.<sup class="ref">[45]</sup> The treatment of a 14-seat electric minibus is not known. A 2026 bill would lower the used-vehicle import limit to 13 years; its passage is unconfirmed and it does not affect new electric vehicles directly.<sup class="ref">[26]</sup> The proposal asks the revenue authority for a written ruling in the first 90 days. </p>
+  <h2>14.3 Data protection registration</h2>
+  <p>The operating company would register as a data controller before processing personal data, appoint a data protection officer and keep records of the legal basis and safeguards for any processing outside Uganda (Section 8.3). Rules on cameras in public vehicles were not found, so the company would ask the regulator for written guidance.</p>
+</section>
+
+<section class="sec" id="s15">
+  <h1><span class="num">Section 15</span>Performance indicators and evaluation</h1>
+  <p class="lead">The pilot is an evaluation as much as a service. Every target below is proposed and would be set formally at Gate 1 with the regulator, using the measured baseline.</p>
+  <table>
+    <thead><tr><th>Indicator</th><th>Definition</th><th>Target <span class="tag">Proposed</span></th></tr></thead>
+    <tbody>
+      <tr><td>Vehicle availability</td><td>Share of scheduled vehicle-days in service</td><td>At least 95%</td></tr>
+      <tr><td>Energy use</td><td>kWh per kilometre, measured at the meter and vehicle</td><td>At or below 0.50; model base case 0.39</td></tr>
+      <tr><td>Charging cost</td><td>UGX per kilometre</td><td>At or below UGX 333, the conservative case</td></tr>
+      <tr><td>Energy saving against petrol</td><td>UGX per vehicle per day against the surveyed petrol baseline</td><td>At least UGX 58,478, the conservative case</td></tr>
+      <tr><td>Fare shown first</td><td>Share of trips with the fare shown before boarding</td><td>100%</td></tr>
+      <tr><td>Arrival accuracy</td><td>Median error of the arrival estimate at five minutes out</td><td>Two minutes or less</td></tr>
+      
+      
+      
+      <tr><td>Safety</td><td>Incidents per million vehicle kilometres</td><td>Baseline set in the pilot; target at Gate 1</td></tr>
+      
+      <tr><td>Local workforce</td><td>Share of pilot driver and station roles filled from the existing taxi workforce</td><td>At least 70%</td></tr>
+      <tr><td>Data protection</td><td>Reportable breaches; consent records complete</td><td>None; 100%</td></tr>
+      <tr><td>Carbon</td><td>CO2 avoided, annualised, measured</td><td>Model value of 375 tonnes at 30 vehicles</td></tr>
+    </tbody>
+  </table>
+  <p>An independent university team would evaluate the pilot against a matched set of existing taxis on adjacent routes, publish its method before the pilot starts and report to the regulator and financiers at each gate. </p>
+</section>
+
+<section class="sec" id="s16">
+  <h1><span class="num">Section 16</span>What we are asking for and next steps</h1>
+  <p class="lead">The proposal asks four groups for specific, limited commitments that would allow a funded pilot to be designed. None is a commitment to the full plan.</p>
+  <table>
+    <thead><tr><th>Group</th><th>The ask</th></tr></thead>
+    <tbody>
+      <tr><td>Government: Ministry of Works and Transport, KCCA, finance ministry, Revenue Authority, Electricity Regulatory Authority, Personal Data Protection Office</td><td>A pilot licence for up to 30 electric 14-seaters on one corridor with access to gazetted stages; a written view on whether the franchise falls under the PPP Act; a ruling on duty and VAT for 14-seat electric minibuses; an interim depot charging tariff; guidance on cameras and telematics data.</td></tr>
+      <tr><td>Operators and associations</td><td>Nominate a working group; co-select the pilot corridor; share route and fleet information; state interest in shares or leases; join a consultation board with a grievance route.</td></tr>
+      <tr><td>Financiers</td><td>Fund feasibility and pilot preparation through a grant or concessional facility; indicate appetite for vehicle and depot debt, including a local-currency tranche; advise on carbon revenue. The amount needed is not yet costed.</td></tr>
+      <tr><td>Technology, vehicle and research partners</td><td>Vehicle makers quote for the pilot; mobile money operators agree integration terms; universities agree an evaluation design and data terms; platform partners bid for release 1.</td></tr>
+    </tbody>
+  </table>
+  <h2>16.1 The first 90 days</h2>
+  <table>
+    <thead><tr><th>Days</th><th>Actions</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td>0 to 30</td><td>Form the working group; meet the ministry, KCCA and associations; verify NDP IV and Vision 2040 transport targets; submit the tax ruling request; decide the legal form of the company</td><td>Working group terms of reference; alignment note</td></tr>
+      <tr><td>31 to 60</td><td>Select the corridor with stage surveys and a taxi count; issue a request for information to at least three vehicle makers; draft the data protection impact assessment; agree the evaluation design</td><td>Corridor shortlist; vehicle responses; assessment draft</td></tr>
+      <tr><td>61 to 90</td><td>File the pilot licence application; prepare a financing paper with a costed pilot budget; procure platform release 1; hold the first review with funders and the regulator</td><td>Licence application; budget; go or stop decision</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><span class="label">Status</span><p>eTaxi is a concept. Nothing described in this document is operating, no company is registered and no funding has been raised. The next step is a conversation, not a contract.</p></div>
+</section>
+
+<!-- data-renumbered -->
+<section class="sec" id="a1">
+  <h1><span class="num">Appendix A</span>Model assumptions and method</h1>
+  <p class="lead">Every cost, saving, emissions and fleet number in this document comes from one model, which compares energy cost only. This appendix reproduces its assumptions without change.</p>
+  <h2>A.1 Assumptions</h2>
+  <ol>
+    <li>Working days per year (312, six days a week) is an assumption, not a measured figure.</li>
+    <li>Daily distance is derived, not measured: 35,000 km a year from an old minibus survey spread over 312 days gives 112 km a day. The conservative and favourable cases use 130 and 150 km.</li>
+    <li>Fuel use is driver-reported litres per day from press interviews, treated as petrol.</li>
+    <li>Electric energy use of 0.39 and 0.50 kWh per km comes from the low end and a midpoint of published projections; the Joylong E6 maker claim implies 0.29.</li>
+    <li>Maintenance, insurance, driver pay, vehicle price and charger cost are excluded from the saving. Only energy is compared.</li>
+    <li>Present values use an eight-year life (the battery warranty term published for one comparable van) and Uganda average lending rates for shilling and foreign-currency loans.</li>
+    <li>Fleet phase sizes are planning targets set by this proposal, not forecasts.</li>
+  </ol>
+  <h2>A.2 Method in words</h2>
+  <ul>
+    <li>Petrol cost per day is litres used per day multiplied by the pump price per litre.</li>
+    <li>Electricity cost per day is distance per day, multiplied by kWh per kilometre, multiplied by the tariff per kWh.</li>
+    <li>Saving per day is petrol cost minus electricity cost; the percentage is that saving divided by petrol cost. Saving per year multiplies by 312 working days; the dollar figure divides by UGX 3,727 to the dollar.</li>
+    <li>Present value is the annual saving multiplied by the eight-year annuity factor at the stated lending rate.</li>
+    <li>Petrol CO2 is litres per year multiplied by 2.3 kg; grid CO2 is kWh per year multiplied by 0.137 kg; the difference is the CO2 avoided.</li>
+    <li>Fleet figures multiply the base-case per-vehicle figures by 30, 300 and 2,000 vehicles and by 14 seats. The pack cost of USD 9,299 is 86.1 kWh multiplied by USD 108 per kWh.</li>
+  </ul>
+  <h2>A.3 Inputs and sources</h2>
+  <table>
+    <thead><tr><th>Input</th><th>Value used</th><th>Source and grade</th></tr></thead>
+    <tbody>
+      <tr><td>Fuel use</td><td>20 litres a day (city); 27.5 (outskirts, midpoint of 25 to 30)</td><td>Driver-reported<sup class="ref">[35]</sup> (summary only)</td></tr>
+      <tr><td>Annual distance</td><td>35,000 km, giving 112 km a day</td><td>Old survey of 52 minibuses, attribution probable<sup class="ref">[115]</sup></td></tr>
+      <tr><td>Petrol price</td><td>UGX 5,090, 5,345 and 5,599 a litre</td><td>Spot surveys, April to May 2026<sup class="ref">[36]</sup> (summary only)</td></tr>
+      <tr><td>Electricity tariff</td><td>UGX 666.5, 562.1 and 429.7 a kWh</td><td>Q4 2026 commercial peak, average, off-peak; page read<sup class="ref">[61]</sup></td></tr>
+      <tr><td>Electric energy use</td><td>0.50 and 0.39 kWh a km</td><td>Published projections, 0.39 and 0.93 conflict<sup class="ref">[116]</sup></td></tr>
+      <tr><td>Joylong E6 pack and range</td><td>86.1 kWh; about 300 km</td><td>Importer claim<sup class="ref">[52]</sup></td></tr>
+      <tr><td>Grid emission factor</td><td>0.137 tonnes a megawatt hour</td><td>Standardised baseline PSB0058<sup class="ref">[100]</sup></td></tr>
+      <tr><td>Petrol emission factor</td><td>2.3 kg CO2 a litre</td><td>Fleet-software reference<sup class="ref">[99]</sup></td></tr>
+      <tr><td>Lending rates</td><td>18.26% shilling; 7.09% foreign currency</td><td>Bank of Uganda averages<sup class="ref">[33]</sup></td></tr>
+      <tr><td>Exchange rate</td><td>UGX 3,727 to the dollar</td><td>9 August 2026<sup class="ref">[108]</sup></td></tr>
+      <tr><td>Conventional taxi capital</td><td>UGX 80,000,000</td><td>Kenyan site, unclear vehicle age<sup class="ref">[57]</sup></td></tr>
+      <tr><td>Chargers</td><td>USD 2,500 slow; USD 35,800 fast</td><td>National strategy as reported<sup class="ref">[60]</sup></td></tr>
+      <tr><td>Battery pack price</td><td>USD 108 a kWh</td><td>2025 global average<sup class="ref">[58]</sup></td></tr>
+    </tbody>
+  </table>
+  <p class="small">Most dossier sources were seen only as search summaries; they should be re-read on the page before the figures are used in a funding document.</p>
+</section>
+
+<section class="sec" id="a2">
+  <h1><span class="num">Appendix B</span>Outlook and projections to 2040</h1>
+  <p class="lead">The outlook is uncertain on every axis, and the evidence is thinnest for vans and for Uganda. These are readings of published projections, not forecasts by this proposal.</p>
+  <table>
+    <thead><tr><th>Topic</th><th>Evidence</th><th>Reading for eTaxi</th></tr></thead>
+    <tbody>
+      <tr><td>Population</td><td>Kampala from about 4 million to 7 million at 5.32% a year (no year given);<sup class="ref">[117]</sup> metropolitan growth of 4.24% a year to 2030;<sup class="ref">[118]</sup> urban population of 21 million by 2040;<sup class="ref">[119]</sup> boundaries differ.</td><td>Demand rises on any reading; the question is who serves it.</td></tr>
+      <tr><td>Electric vehicle adoption</td><td>Electric vehicles were about 1% of new car sales in Africa in 2025; a 2026 study of 52 countries finds battery vehicles cost-effective well before 2040, with financing the main barrier.<sup class="ref">[120]</sup><sup class="ref">[121]</sup> An earlier forecast of 4 to 8% of the vehicle stock by 2030 in five countries compares with the observed 1%.<sup class="ref">[122]</sup></td><td>Adoption forecasts have run ahead of sales. The case should not depend on private-car uptake.</td></tr>
+      
+      <tr><td>Battery prices</td><td>The 2025 average pack price was USD 108 a kWh, down 8%, with LFP packs at USD 81; further falls were expected in 2026.<sup class="ref">[58]</sup> No projection to 2040 was retrieved, and no Africa van cost-parity study was found.</td><td>Vehicle price should keep falling; the model does not assume it.</td></tr>
+      
+      <tr><td>Automation</td><td>Waymo reported about 500,000 paid rides a week in 10 US cities in March 2026 and a target above 1 million by end-2026, not confirmed as reached.<sup class="ref">[123]</sup><sup class="ref">[124]</sup> BCG puts the cost of opening a new US city at USD 15 to 30 million and sees emerging markets perhaps viable only after 2040.<sup class="ref">[84]</sup></td><td>Plan on human drivers to 2040; collect assistance data now.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="a3">
+  <h1><span class="num">Appendix C</span>Glossary</h1>
+  <table>
+    <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Stage</td><td>A taxi pick-up and drop-off point; some are gazetted by KCCA and some are informal.</td></tr>
+      <tr><td>Masaawo</td><td>This proposal's name for the in-vehicle stop-request button, taken from the call riders make to ask for a stop.</td></tr>
+      <tr><td>DMC</td><td>Dangerous mechanical condition, the test applied in the 2026 crackdown.</td></tr>
+      <tr><td>Operation Ganyegenya</td><td>The 100-day crackdown on taxis in DMC, launched 24 August 2026.</td></tr>
+      <tr><td>PSV</td><td>Public service vehicle.</td></tr>
+      <tr><td>GKMA</td><td>Greater Kampala Metropolitan Area; the crackdown covers Kampala, Wakiso and Mukono, and wider definitions exist.</td></tr>
+      <tr><td>KCCA</td><td>Kampala Capital City Authority.</td></tr>
+      
+      <tr><td>UTOF</td><td>A taxi operators' body whose officials are quoted in 2026 reports; its full name is not given in the sources used.</td></tr>
+      <tr><td>UTODA</td><td>The association that managed taxis and parks under a KCCA arrangement until about 2012.</td></tr>
+      <tr><td>Boda boda</td><td>Motorcycle taxi.</td></tr>
+      <tr><td>GTFS</td><td>General Transit Feed Specification: an open format for schedules and stops.</td></tr>
+      <tr><td>GTFS Realtime</td><td>The companion format for live positions and delays.</td></tr>
+      <tr><td>OCPP</td><td>Open Charge Point Protocol, the communication standard proposed for chargers.</td></tr>
+      <tr><td>PDPO, NITA-U</td><td>The Personal Data Protection Office, which sits within the National Information Technology Authority.</td></tr>
+      <tr><td>ERA, UEDCL</td><td>The Electricity Regulatory Authority and the state power distribution utility.</td></tr>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="a4">
+  <h1><span class="num">Appendix D</span>Sources</h1>
+  <p class="small">Numbered in order of first citation. Web addresses are as given in the research record; several pages were seen only as search summaries and should be re-read before quotation in a funding document.</p>
+  <ol class="sources">
+<li>Daily Monitor, 3 Oct 2026. <a href="https://www.monitor.co.ug/uganda/news/national/only-69-impounded-taxis-cleared-to-return-to-kampala-roads-says-works-ministry-5618090">https://www.monitor.co.ug/uganda/news/national/only-69-impounded-taxis-cleared-to-return-to-kampala-roads-says-works-ministry-5618090</a></li>
+<li>Daily Monitor, 26 Aug 2026. <a href="https://www.monitor.co.ug/uganda/news/national/police-soften-dmc-taxi-crackdown-after-chaos-5571686">https://www.monitor.co.ug/uganda/news/national/police-soften-dmc-taxi-crackdown-after-chaos-5571686</a></li>
+<li>Commonwealth Secretariat, date not shown. <a href="https://www.thecommonwealth-ilibrary.org/index.php/comsec/catalog/download/1029/1025/9000?inline=1">https://www.thecommonwealth-ilibrary.org/index.php/comsec/catalog/download/1029/1025/9000?inline=1</a></li>
+<li>EngrXiv preprint, date not shown. <a href="https://engrxiv.org/preprint/download/1188/2501">https://engrxiv.org/preprint/download/1188/2501</a></li>
+<li>Ministry of Works and Transport, date not shown. <a href="https://www.ric.works.go.ug/rc/files/7.6_Development_Public_Transport_Policy_Kampala.docx">https://www.ric.works.go.ug/rc/files/7.6_Development_Public_Transport_Policy_Kampala.docx</a></li>
+<li>JICA, 2010. <a href="https://openjicareport.jica.go.jp/pdf/12013033_02.pdf">https://openjicareport.jica.go.jp/pdf/12013033_02.pdf</a></li>
+<li>ATC News, date not shown. <a href="https://atcnews.org/after-utodas-strangle-hold-on-public-transport-was-broken-it-is-karibu-to-the-new-city-busses/">https://atcnews.org/after-utodas-strangle-hold-on-public-transport-was-broken-it-is-karibu-to-the-new-city-busses/</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/utoda-out-kcca-takes-over-city-taxis-1596600">https://www.monitor.co.ug/uganda/news/national/utoda-out-kcca-takes-over-city-taxis-1596600</a></li>
+<li>The Independent, date not shown. <a href="https://independent.co.ug/ready-for-a-fight">https://independent.co.ug/ready-for-a-fight</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/kcca-finally-takes-over-city-taxi-parks-1508432">https://www.monitor.co.ug/uganda/news/national/kcca-finally-takes-over-city-taxi-parks-1508432</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/was-pioneer-bus-case-study-for-kampala-city-transport--1726448">https://www.monitor.co.ug/uganda/news/national/was-pioneer-bus-case-study-for-kampala-city-transport--1726448</a></li>
+<li>Songhai Advisory, 6 May 2022. <a href="https://songhaiadvisory.com/blog/2022/5/6/peak-troughs-and-people-surround-ugandan-capitals-bus-transit-plans">https://songhaiadvisory.com/blog/2022/5/6/peak-troughs-and-people-surround-ugandan-capitals-bus-transit-plans</a></li>
+<li>Pulse Uganda, 21 May 2026. <a href="https://www.pulse.ug/story/e-bus-xpress-kampala-kayoola-bus-fares-routes-how-to-pay-mobile-money-2026052117230378064">https://www.pulse.ug/story/e-bus-xpress-kampala-kayoola-bus-fares-routes-how-to-pay-mobile-money-2026052117230378064</a></li>
+<li>Pulse Uganda, 31 Aug 2026. <a href="https://www.pulse.ug/story/e-bus-xpress-free-rides-kampala-routes-fares-2026083114302199453">https://www.pulse.ug/story/e-bus-xpress-free-rides-kampala-routes-fares-2026083114302199453</a></li>
+<li>Nile Post via AllAfrica, 5 May 2026. <a href="https://allafrica.com/stories/202605060099.html">https://allafrica.com/stories/202605060099.html</a></li>
+<li>Parliament of Uganda, date not shown. <a href="https://www.parliament.go.ug/news/1514/importation-old-cars-banned">https://www.parliament.go.ug/news/1514/importation-old-cars-banned</a></li>
+<li>Eagle Online, 12 Dec 2019. <a href="https://eagle.co.ug/2019/12/12/govt-moves-to-introduce-980-buses-to-ease-traffic-flow-and-congestion-in-kampala/">https://eagle.co.ug/2019/12/12/govt-moves-to-introduce-980-buses-to-ease-traffic-flow-and-congestion-in-kampala/</a></li>
+<li>KCCA, 2020. <a href="https://www.kcca.go.ug/news/409">https://www.kcca.go.ug/news/409</a></li>
+<li>Daily Monitor, 2025. <a href="https://www.monitor.co.ug/uganda/news/national/uganda-extends-suspension-of-auto-eps-amid-ongoing-review-5116548">https://www.monitor.co.ug/uganda/news/national/uganda-extends-suspension-of-auto-eps-amid-ongoing-review-5116548</a></li>
+<li>Eagle Online, 5 Dec 2025. <a href="https://eagle.co.ug/2025/12/05/govt-takes-over-vehicle-inspections-from-swiss-firm-sgs/">https://eagle.co.ug/2025/12/05/govt-takes-over-vehicle-inspections-from-swiss-firm-sgs/</a></li>
+<li>Daily Monitor, 19 Mar 2026. <a href="https://www.monitor.co.ug/uganda/news/national/govt-bans-vehicles-in-dangerous-mechanical-condition-5396010">https://www.monitor.co.ug/uganda/news/national/govt-bans-vehicles-in-dangerous-mechanical-condition-5396010</a></li>
+<li>Pulse Uganda, 13 Aug 2026. <a href="https://www.pulse.ug/story/kampala-electric-taxis-2026-2026081312485458856">https://www.pulse.ug/story/kampala-electric-taxis-2026-2026081312485458856</a></li>
+<li>Daily Monitor, 9 Mar 2023. <a href="https://www.monitor.co.ug/uganda/news/national/why-kampala-city-s-taxis-are-falling-apart-4152234">https://www.monitor.co.ug/uganda/news/national/why-kampala-city-s-taxis-are-falling-apart-4152234</a></li>
+<li>ICCT, Jun 2025. <a href="https://theicct.org/wp-content/uploads/2025/06/ID-400-%E2%80%93-Kampala-remote-sensing_TRUE_final.pdf">https://theicct.org/wp-content/uploads/2025/06/ID-400-%E2%80%93-Kampala-remote-sensing_TRUE_final.pdf</a></li>
+<li>Business Times Uganda, date not shown. <a href="https://businesstimesug.com/kampalas-taxis-look-to-electric-minibuses-to-compete-with-electric-buses/">https://businesstimesug.com/kampalas-taxis-look-to-electric-minibuses-to-compete-with-electric-buses/</a></li>
+<li>Parliament of Uganda, Apr 2026. <a href="https://bills.parliament.ug/attachments/FPED3-26-Report%20on%20the%20Traffic%20and%20Road%20Safety%20(Amendment)%20Bill,%202026%20%20(Including%20Minority%20Report).pdf">https://bills.parliament.ug/attachments/FPED3-26-Report%20on%20the%20Traffic%20and%20Road%20Safety%20(Amendment)%20Bill,%202026%20%20(Including%20Minority%20Report).pdf</a></li>
+<li>Daily Monitor, 20 Aug 2026. <a href="https://www.monitor.co.ug/uganda/news/national/govt-launches-100-day-crackdown-on-unroadworthy-taxis-in-greater-kampala-5564908">https://www.monitor.co.ug/uganda/news/national/govt-launches-100-day-crackdown-on-unroadworthy-taxis-in-greater-kampala-5564908</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/police-impound-178-vehicles-on-day-one-of-crackdown-on-dmc-5569952">https://www.monitor.co.ug/uganda/news/national/police-impound-178-vehicles-on-day-one-of-crackdown-on-dmc-5569952</a></li>
+<li>ChimpReports, 16 Oct 2026. <a href="https://chimpreports.com/423-commuter-taxis-fail-dangerous-mechanical-condition-tests/">https://chimpreports.com/423-commuter-taxis-fail-dangerous-mechanical-condition-tests/</a></li>
+<li>The Independent (Uganda), Oct 2026. <a href="https://www.independent.co.ug/423-taxis-fail-mechanical-fitness-tests-in-namanve-kawanda/">https://www.independent.co.ug/423-taxis-fail-mechanical-fitness-tests-in-namanve-kawanda/</a></li>
+<li>The Independent (Uganda), Oct 2026. <a href="https://www.independent.co.ug/traffic-police-extend-operation-ganyegenya-into-night-hours/">https://www.independent.co.ug/traffic-police-extend-operation-ganyegenya-into-night-hours/</a></li>
+<li>Daily Monitor, 25 Aug 2026. <a href="https://www.monitor.co.ug/uganda/news/national/commuters-stranded-in-travel-chaos-5570062">https://www.monitor.co.ug/uganda/news/national/commuters-stranded-in-travel-chaos-5570062</a></li>
+<li>Eagle Online, 23 Apr 2026. <a href="https://eagle.co.ug/2026/04/23/ugandas-shilling-lending-rates-rise-to-18-73-in-february-2026/">https://eagle.co.ug/2026/04/23/ugandas-shilling-lending-rates-rise-to-18-73-in-february-2026/</a></li>
+<li>Daily Monitor, Aug 2026. <a href="https://www.monitor.co.ug/uganda/news/national/bank-of-uganda-holds-benchmark-rate-at-9-75-as-inflation-edge-prompts-caution-5557436">https://www.monitor.co.ug/uganda/news/national/bank-of-uganda-holds-benchmark-rate-at-9-75-as-inflation-edge-prompts-caution-5557436</a></li>
+<li>Daily Monitor, date not shown. <a href="https://monitor.co.ug/uganda/news/national/what-shs100-tax-levied-on-fuel-means-for-motorists-3388586">https://monitor.co.ug/uganda/news/national/what-shs100-tax-levied-on-fuel-means-for-motorists-3388586</a></li>
+<li>Daily Monitor, Apr 2026. <a href="https://www.monitor.co.ug/uganda/news/national/fuel-price-snapshot-kampala-pump-prices-vary-5426166">https://www.monitor.co.ug/uganda/news/national/fuel-price-snapshot-kampala-pump-prices-vary-5426166</a></li>
+<li>Daily Monitor, 2026. <a href="https://www.monitor.co.ug/uganda/news/national/uganda-s-fuel-prices-may-not-be-adjusted-even-after-us-iran-peace-agreement-say-experts-5498384">https://www.monitor.co.ug/uganda/news/national/uganda-s-fuel-prices-may-not-be-adjusted-even-after-us-iran-peace-agreement-say-experts-5498384</a></li>
+<li>UG Business, Mar 2026. <a href="https://ugbusiness.com/2026/03/energy-oil-gas/environment/uganda-ranks-among-worlds-most-polluted-countries-as-air-quality-worsens">https://ugbusiness.com/2026/03/energy-oil-gas/environment/uganda-ranks-among-worlds-most-polluted-countries-as-air-quality-worsens</a></li>
+<li>Eagle Online, 30 Mar 2026. <a href="https://eagle.co.ug/2026/03/30/road-carnage-over-4600-people-killed-in-26044-crashes-in-2025/">https://eagle.co.ug/2026/03/30/road-carnage-over-4600-people-killed-in-26044-crashes-in-2025/</a></li>
+<li>MobilityDatabase, May 2025. <a href="https://mobilitydatabase.org/feeds/gtfs/mdb-1813">https://mobilitydatabase.org/feeds/gtfs/mdb-1813</a></li>
+<li>The Independent via AllAfrica, 25 Aug 2026. <a href="https://allafrica.com/stories/202608250399.html">https://allafrica.com/stories/202608250399.html</a></li>
+<li>AllAfrica, 6 Nov 2025. <a href="https://allafrica.com/stories/202511060049.html">https://allafrica.com/stories/202511060049.html</a></li>
+<li>Techpoint Africa, date not shown. <a href="https://techpoint.africa/news/uganda-electric-motorcycle-tax-breaks/">https://techpoint.africa/news/uganda-electric-motorcycle-tax-breaks/</a></li>
+<li>PlusNews Uganda, date not shown. <a href="https://plusnews.ug/?p=31414">https://plusnews.ug/?p=31414</a></li>
+<li>The EastAfrican, Jun 2024. <a href="https://theeastafrican.co.ke/tea/business/uganda-banks-on-tax-exemption-incentive-for-e-mobility-drive--4658852">https://theeastafrican.co.ke/tea/business/uganda-banks-on-tax-exemption-incentive-for-e-mobility-drive--4658852</a></li>
+<li>The EastAfrican, 2024. <a href="https://theeastafrican.co.ke/tea/business/uganda-reinstates-tax-on-e-vehicles-4673578">https://theeastafrican.co.ke/tea/business/uganda-reinstates-tax-on-e-vehicles-4673578</a></li>
+<li>JICA, 2010. <a href="https://openjicareport.jica.go.jp/pdf/12013033_06.pdf">https://openjicareport.jica.go.jp/pdf/12013033_06.pdf</a></li>
+<li>Parliament of Uganda, date not shown. <a href="https://www.parliament.go.ug/news/6887/house-clears-us556-million-world-bank-loan-greater-kampala">https://www.parliament.go.ug/news/6887/house-clears-us556-million-world-bank-loan-greater-kampala</a></li>
+<li>KCCA, Apr 2026. <a href="https://www.kcca.go.ug/news/1108">https://www.kcca.go.ug/news/1108</a></li>
+<li>AllAfrica, 16 Mar 2026. <a href="https://allafrica.com/stories/202603160654.html">https://allafrica.com/stories/202603160654.html</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/launch-of-electric-buses-irks-taxi-operators-5448494">https://www.monitor.co.ug/uganda/news/national/launch-of-electric-buses-irks-taxi-operators-5448494</a></li>
+<li>Bus News Australia, 2022. <a href="https://www.busnews.com.au/detail/joylong-e6-1214-seater-full-electric-minibus-785503">https://www.busnews.com.au/detail/joylong-e6-1214-seater-full-electric-minibus-785503</a></li>
+<li>Australian Mining, 2022. <a href="https://www.australianmining.com.au/detail/joylong-e6-1214-seater-full-electric-minibus-785503">https://www.australianmining.com.au/detail/joylong-e6-1214-seater-full-electric-minibus-785503</a></li>
+<li>BasiGo, date not shown. <a href="https://www.basi-go.com/ma3e">https://www.basi-go.com/ma3e</a></li>
+<li>Move Electric, date not shown. <a href="https://www.moveelectric.com/node/51330">https://www.moveelectric.com/node/51330</a></li>
+<li>Autoindustriya, date not shown. <a href="https://www.autoindustriya.com/auto-industry-news/joylong-e6-is-an-all-electric-hiace-clone-from-china.html">https://www.autoindustriya.com/auto-industry-news/joylong-e6-is-an-all-electric-hiace-clone-from-china.html</a></li>
+<li>Streamline Feed, date not shown. <a href="https://streamlinefeed.co.ke/news/how-to-start-taxi-business-uganda-costs-regulations">https://streamlinefeed.co.ke/news/how-to-start-taxi-business-uganda-costs-regulations</a></li>
+<li>BloombergNEF, Dec 2025. <a href="https://about.bnef.com/insights/commodities/lithium-ion-battery-pack-prices-fall-to-108-per-kilowatt-hour-despite-rising-metal-prices/">https://about.bnef.com/insights/commodities/lithium-ion-battery-pack-prices-fall-to-108-per-kilowatt-hour-despite-rising-metal-prices/</a></li>
+<li>ImpactAlpha, date not shown. <a href="https://impactalpha.com/?p=111969">https://impactalpha.com/?p=111969</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/business/markets/govt-to-install-3-500-e-vehicle-charging-stations--4690636">https://www.monitor.co.ug/uganda/business/markets/govt-to-install-3-500-e-vehicle-charging-stations--4690636</a></li>
+<li>Daily Monitor, 5 Oct 2026. <a href="https://www.monitor.co.ug/uganda/news/national/uedcl-sets-new-power-tariffs-for-final-quarter-5620680">https://www.monitor.co.ug/uganda/news/national/uedcl-sets-new-power-tariffs-for-final-quarter-5620680</a></li>
+<li>The EastAfrican, 2023. <a href="https://theeastafrican.co.ke/tea/business/kiira-motors-seeks-cut-in-power-tariffs-4370652">https://theeastafrican.co.ke/tea/business/kiira-motors-seeks-cut-in-power-tariffs-4370652</a></li>
+<li>World Bank PPP Knowledge Lab, date not shown. <a href="https://ppp.worldbank.org/node/8507">https://ppp.worldbank.org/node/8507</a></li>
+<li>GroundUp, date not shown. <a href="https://groundup.org.za/article/dunoon-long-battle-between-taxis-and-city">https://groundup.org.za/article/dunoon-long-battle-between-taxis-and-city</a></li>
+<li>Parliament of South Africa, date not shown. <a href="https://www.parliament.gov.za/storage/app/media/Docs/exe_rq_na/211b4f13-85f2-4c82-ab18-eea62f29d8f0.pdf">https://www.parliament.gov.za/storage/app/media/Docs/exe_rq_na/211b4f13-85f2-4c82-ab18-eea62f29d8f0.pdf</a></li>
+<li>Parliamentary Monitoring Group, date not shown. <a href="https://www.pmg.org.za/committee-meeting/31039/">https://www.pmg.org.za/committee-meeting/31039/</a></li>
+<li>AllAfrica, 25 May 2026. <a href="https://allafrica.com/stories/202605250095.html">https://allafrica.com/stories/202605250095.html</a></li>
+<li>Hogan Lovells, date not shown. <a href="https://hlc.com/en/news/hogan-lovells-advises-proparco-and-eaif-on-the-financing-of-dakar-s-future-electric-brt-bus-network">https://hlc.com/en/news/hogan-lovells-advises-proparco-and-eaif-on-the-financing-of-dakar-s-future-electric-brt-bus-network</a></li>
+<li>Nile Post via AllAfrica, 19 Aug 2026. <a href="https://allafrica.com/stories/202608200167.html">https://allafrica.com/stories/202608200167.html</a></li>
+<li>Digital Matatus, date not shown. <a href="https://digitalmatatus.com/post5.html">https://digitalmatatus.com/post5.html</a></li>
+<li>Dublin Core Metadata Initiative, date not shown. <a href="https://msi.dublincore.org/standards/gtfs">https://msi.dublincore.org/standards/gtfs</a></li>
+<li>TUMI Data Hub, date not shown. <a href="https://hub.tumidata.org/dataset/gtfs_kampala_kampala">https://hub.tumidata.org/dataset/gtfs_kampala_kampala</a></li>
+<li>Civic Tech Guide, date not shown. <a href="https://civictech.guide/projects/digital-public-goods-standard">https://civictech.guide/projects/digital-public-goods-standard</a></li>
+<li>Uganda National Research Repository, date not shown. <a href="https://nru.uncst.go.ug/handle/123456789/3670">https://nru.uncst.go.ug/handle/123456789/3670</a></li>
+<li>University of Luxembourg, date not shown. <a href="https://orbilu.uni.lu/bitstream/10993/67355/1/Bus%20Station%20Demand%20Prediction.pdf">https://orbilu.uni.lu/bitstream/10993/67355/1/Bus%20Station%20Demand%20Prediction.pdf</a></li>
+<li>UITP, date not shown. <a href="https://www.uitp.org/case-studies/expanding-prognostics-and-integrating-machine-learning-with-bus-telematics/">https://www.uitp.org/case-studies/expanding-prognostics-and-integrating-machine-learning-with-bus-telematics/</a></li>
+<li>Oxmaint (vendor), date not shown. <a href="https://oxmaint.com/industries/education/school-bus-predictive-maintenance">https://oxmaint.com/industries/education/school-bus-predictive-maintenance</a></li>
+<li>NYU Tandon, date not shown. <a href="https://engineering.nyu.edu/research-innovation/centers/cusp/research/capstone-projects/directory/telematics-nyc-school-buses">https://engineering.nyu.edu/research-innovation/centers/cusp/research/capstone-projects/directory/telematics-nyc-school-buses</a></li>
+<li>Ken Research, date not shown. <a href="https://www.kenresearch.com/industry-reports/africa-fleet-management-services-market">https://www.kenresearch.com/industry-reports/africa-fleet-management-services-market</a></li>
+<li>Transport for Cairo, Dec 2024. <a href="https://transportforcairo.com/wp-content/uploads/2024/12/GKMA_task-final-report_Obj_1-2_fixed.pdf">https://transportforcairo.com/wp-content/uploads/2024/12/GKMA_task-final-report_Obj_1-2_fixed.pdf</a></li>
+<li>ETASR, 2026. <a href="https://etasr.com/index.php/ETASR/article/view/17251">https://etasr.com/index.php/ETASR/article/view/17251</a></li>
+<li>Verra, date not shown. <a href="https://verra.org/?p=65566">https://verra.org/?p=65566</a></li>
+<li>Ecofin Agency, date not shown. <a href="https://www.ecofinagency.com/news-industry/1304-54628-kenyan-e-mobility-firm-basigo-certified-to-sell-carbon-credits-from-buses">https://www.ecofinagency.com/news-industry/1304-54628-kenyan-e-mobility-firm-basigo-certified-to-sell-carbon-credits-from-buses</a></li>
+<li>Boston Consulting Group, date not shown. <a href="https://web-assets.bcg.com/pdf-src/prod-live/here-at-last-the-evolution-of-the-robotaxi.pdf">https://web-assets.bcg.com/pdf-src/prod-live/here-at-last-the-evolution-of-the-robotaxi.pdf</a></li>
+<li>DLA Piper, date not shown. <a href="https://www.dlapiperdataprotection.com/?c=UG&amp;amp;t=law">https://www.dlapiperdataprotection.com/?c=UG&amp;amp;t=law</a></li>
+<li>ULII, 2019. <a href="https://ulii.org/en/akn/ug/act/2019/9/eng@2019-05-03">https://ulii.org/en/akn/ug/act/2019/9/eng@2019-05-03</a></li>
+<li>ULII, 3 May 2019. <a href="https://ulii.org/akn/ug/act/2019/9/eng@2019-05-03/source">https://ulii.org/akn/ug/act/2019/9/eng@2019-05-03/source</a></li>
+<li>DLA Piper Privacy Matters, Aug 2025. <a href="https://privacymatters.dlapiper.com/2025/08/uganda-data-protection-regulator-clarifies-compliance-requirements-for-offshore-entities">https://privacymatters.dlapiper.com/2025/08/uganda-data-protection-regulator-clarifies-compliance-requirements-for-offshore-entities</a></li>
+<li>Google, date not shown. <a href="https://about.google/intl/en_uk/stories/clean-air-for-kampala/">https://about.google/intl/en_uk/stories/clean-air-for-kampala/</a></li>
+<li>World Resources Institute, date not shown. <a href="https://www.wri.org/initiatives/digital-transport-africa">https://www.wri.org/initiatives/digital-transport-africa</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/uganda-s-population-now-at-45-9m-people-says-ubos-4671332">https://www.monitor.co.ug/uganda/news/national/uganda-s-population-now-at-45-9m-people-says-ubos-4671332</a></li>
+<li>Daily Monitor, Jun 2024. <a href="https://www.monitor.co.ug/uganda/news/national/2024-census-northern-districts-register-population-surge-4672464">https://www.monitor.co.ug/uganda/news/national/2024-census-northern-districts-register-population-surge-4672464</a></li>
+<li>Daily Monitor, date not shown. <a href="https://monitor.co.ug/uganda/news/national/50-of-workers-walk-to-and-from-kampala-study-says-3598394">https://monitor.co.ug/uganda/news/national/50-of-workers-walk-to-and-from-kampala-study-says-3598394</a></li>
+<li>TUMI, 2023. <a href="https://transformative-mobility.org/wp-content/uploads/2023/03/Tumi_Kampala_Factsheet-S3MGEE.pdf">https://transformative-mobility.org/wp-content/uploads/2023/03/Tumi_Kampala_Factsheet-S3MGEE.pdf</a></li>
+<li>International Growth Centre, 2020. <a href="https://www.theigc.org/wp-content/uploads/2020/10/Baertsch-2020-policy-brief-19148.pdf">https://www.theigc.org/wp-content/uploads/2020/10/Baertsch-2020-policy-brief-19148.pdf</a></li>
+<li>Business Times Uganda, date not shown. <a href="https://businesstimesug.com/how-much-does-the-masaka-highway-jam-cost-uganda-each-year/">https://businesstimesug.com/how-much-does-the-masaka-highway-jam-cost-uganda-each-year/</a></li>
+<li>The Independent, date not shown. <a href="https://independent.co.ug/12000-taxis-registered-so-far-by-kcca">https://independent.co.ug/12000-taxis-registered-so-far-by-kcca</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/over-8-000-taxis-have-no-routes-1894106">https://www.monitor.co.ug/uganda/news/national/over-8-000-taxis-have-no-routes-1894106</a></li>
+<li>Husqvarna, date not shown. <a href="https://www.husqvarna.com/uk/support/articles/how-does-husqvarna-fleet-services-calculate-my-carbon-footprint-ka-01138/">https://www.husqvarna.com/uk/support/articles/how-does-husqvarna-fleet-services-calculate-my-carbon-footprint-ka-01138/</a></li>
+<li>UNFCCC, 2022. <a href="https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20220811123519440/PSB0058_Final_Recommendation.pdf">https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20220811123519440/PSB0058_Final_Recommendation.pdf</a></li>
+<li>UNFCCC, Dec 2013. <a href="https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20140407115440958/Uganda%20GEF%20Report%2003Dec2013%20TR.pdf">https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20140407115440958/Uganda%20GEF%20Report%2003Dec2013%20TR.pdf</a></li>
+<li>International REC Standard, date not shown. <a href="https://www.trackingstandard.org/wp-content/uploads/I-REC-Country-Assessment-Uganda_v1.pdf">https://www.trackingstandard.org/wp-content/uploads/I-REC-Country-Assessment-Uganda_v1.pdf</a></li>
+<li>UNFCCC, 2014. <a href="https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20150727164902965/Assessment_report_Uganda%20GEF_final_20140922.pdf">https://cdm.unfccc.int/sunsetcms/storage/contents/stored-file-20150727164902965/Assessment_report_Uganda%20GEF_final_20140922.pdf</a></li>
+<li>AllAfrica, 8 Sep 2026. <a href="https://allafrica.com/stories/202609080064.html">https://allafrica.com/stories/202609080064.html</a></li>
+<li>University of Michigan, Feb 2022. <a href="https://news.umich.edu/electrifying-motorcycle-taxis-in-kampala-uganda-shows-air-pollution-benefits">https://news.umich.edu/electrifying-motorcycle-taxis-in-kampala-uganda-shows-air-pollution-benefits</a></li>
+<li>AllAfrica, 26 Jun 2026. <a href="https://allafrica.com/stories/202606260486.html">https://allafrica.com/stories/202606260486.html</a></li>
+<li>ValutaFX, 2026. <a href="https://www.valutafx.com/history/ugx-usd-2026">https://www.valutafx.com/history/ugx-usd-2026</a></li>
+<li>CurrencyFreaks, 9 Aug 2026. <a href="https://currencyfreaks.com/historical/convert/2026-08-09/UGX/USD/5">https://currencyfreaks.com/historical/convert/2026-08-09/UGX/USD/5</a></li>
+<li>CNBC Africa, date not shown. <a href="https://cnbcafrica.com/media/6363682685112/basigo-secures-42mn-to-accelerate-electric-bus-expansion-across-east-africa-">https://cnbcafrica.com/media/6363682685112/basigo-secures-42mn-to-accelerate-electric-bus-expansion-across-east-africa-</a></li>
+<li>The Condia, date not shown. <a href="https://thecondia.com/basigo-secures-41-5m-to-drive-electric-bus-expansion-in-kenya-and-rwanda/">https://thecondia.com/basigo-secures-41-5m-to-drive-electric-bus-expansion-in-kenya-and-rwanda/</a></li>
+<li>LogistAfrica, Jun 2026. <a href="https://logistafrica.com/en/highlights/gef-approves-13-46-million-for-african-development-bank-led-initiative-to-accelerate-green-mobility-solutions-across-africa/">https://logistafrica.com/en/highlights/gef-approves-13-46-million-for-african-development-bank-led-initiative-to-accelerate-green-mobility-solutions-across-africa/</a></li>
+<li>Africa.com, date not shown. <a href="https://africa.com/headlines/1-million-sustainable-energy-fund-for-africa-grant-to-drive-electric-mobility-shift-in-seven-african-countries">https://africa.com/headlines/1-million-sustainable-energy-fund-for-africa-grant-to-drive-electric-mobility-shift-in-seven-african-countries</a></li>
+<li>Eagle Online, 23 Dec 2025. <a href="https://eagle.co.ug/2025/12/23/govt-unveils-reduced-motor-vehicle-inspection-fees-as-mandatory-checks-take-effect">https://eagle.co.ug/2025/12/23/govt-unveils-reduced-motor-vehicle-inspection-fees-as-mandatory-checks-take-effect</a></li>
+<li>Afriwise, date not shown. <a href="https://insights.afriwise.com/blog/beat-the-data-protection-registration-deadline">https://insights.afriwise.com/blog/beat-the-data-protection-registration-deadline</a></li>
+<li>Transport Links / FCDO, 2002 conference. <a href="https://transport-links.com/fcdo-publications/urban-transport-services-in-sub-saharan-africa-recommendations-for-reform-in-uganda-codatu-x-conference-lome-togo-12-15-november-2002/">https://transport-links.com/fcdo-publications/urban-transport-services-in-sub-saharan-africa-recommendations-for-reform-in-uganda-codatu-x-conference-lome-togo-12-15-november-2002/</a></li>
+<li>DOAJ record, Aug 2023. <a href="https://doaj.org/article/577a9283014a4f5fae423f9c85a19af1">https://doaj.org/article/577a9283014a4f5fae423f9c85a19af1</a></li>
+<li>Daily Monitor, date not shown. <a href="https://monitor.co.ug/uganda/business/markets/kampala-s-population-to-grow-to-seven-million-people--4759018">https://monitor.co.ug/uganda/business/markets/kampala-s-population-to-grow-to-seven-million-people--4759018</a></li>
+<li>Daily Monitor, date not shown. <a href="https://monitor.co.ug/uganda/business/markets/greater-kampala-needs-62-000-housing-units-annually-to-contain-rising-population-says-report--4726114">https://monitor.co.ug/uganda/business/markets/greater-kampala-needs-62-000-housing-units-annually-to-contain-rising-population-says-report--4726114</a></li>
+<li>Daily Monitor, date not shown. <a href="https://www.monitor.co.ug/uganda/news/national/urban-population-to-hit-21-million-by-2040-ubos-3816050">https://www.monitor.co.ug/uganda/news/national/urban-population-to-hit-21-million-by-2040-ubos-3816050</a></li>
+<li>ETH Zurich Research Collection, 2026. <a href="https://www.research-collection.ethz.ch/items/e9beae22-2d8b-4036-bd67-e28560c12e4e">https://www.research-collection.ethz.ch/items/e9beae22-2d8b-4036-bd67-e28560c12e4e</a></li>
+<li>MIT Technology Review, 11 Feb 2026. <a href="https://www.technologyreview.com/2026/02/11/1132714/evs-africa-cost/amp/">https://www.technologyreview.com/2026/02/11/1132714/evs-africa-cost/amp/</a></li>
+<li>McKinsey, date not shown. <a href="https://www.mckinsey.com/za/our-insights/power-to-move-accelerating-the-electric-transport-transition-in-sub-saharan-africa">https://www.mckinsey.com/za/our-insights/power-to-move-accelerating-the-electric-transport-transition-in-sub-saharan-africa</a></li>
+<li>Noqta, Mar 2026. <a href="https://noqta.tn/en/news/waymo-500k-weekly-rides-robotaxi-10-cities-2026">https://noqta.tn/en/news/waymo-500k-weekly-rides-robotaxi-10-cities-2026</a></li>
+<li>Claims Journal, 12 Feb 2026. <a href="https://amp.claimsjournal.com/news/national/2026/02/12/335668.htm">https://amp.claimsjournal.com/news/national/2026/02/12/335668.htm</a></li>
+</ol>
+</section>
+
+</body>
+</html>
