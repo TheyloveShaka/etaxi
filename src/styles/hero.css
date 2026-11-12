@@ -255,3 +255,26 @@
     padding-top: var(--sp-8);
   }
 }
+
+.van-reflect {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--band-top) - var(--van-h) * 0.01151);
+  left: var(--van-left);
+  width: var(--van-w);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 2214 / 1043;
+  scale: 1 -1;
+  opacity: var(--reflect);
+  -webkit-mask-image: linear-gradient(to top, var(--ink), transparent 42%);
+  mask-image: linear-gradient(to top, var(--ink), transparent 42%);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 1023px) {
+  .hero-title__part {
+    display: inline-block;
+  }
+}

@@ -76,10 +76,6 @@
   text-decoration: none;
 }
 
-.footer__link:hover {
-  text-decoration: underline;
-  text-underline-offset: var(--sp-1);
-}
 
 .footer__bottom {
   display: flex;

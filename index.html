@@ -57,12 +57,13 @@
             <img class="van__wheel" data-wheel="front" src="/img/wheel-front.webp" alt="" draggable="false">
             <img class="van__wheel" data-wheel="rear" src="/img/wheel-rear.webp" alt="" draggable="false">
           </div>
+          <img class="van-reflect" data-van-reflect src="/img/etaxi-side.webp" width="1760" height="829" alt="" aria-hidden="true" draggable="false">
 
           <div class="hero-copy" data-hero-copy>
             <p class="eyebrow">Electric public taxis for Kampala</p>
             <h1 class="hero-title" id="hero-title">
-              <span class="hero-title__line"><span class="hero-title__part">The taxi</span> <span class="hero-title__part">you know.</span></span>
-              <span class="hero-title__line hero-title__line--accent"><span class="hero-title__part">Now</span> <span class="hero-title__part">electric.</span></span>
+              <span class="hero-title__line"><span class="hero-title__part" data-title-part>The taxi</span> <span class="hero-title__part" data-title-part>you know.</span></span>
+              <span class="hero-title__line hero-title__line--accent"><span class="hero-title__part" data-title-part>Now</span> <span class="hero-title__part" data-title-part>electric.</span></span>
             </h1>
             <p class="hero-lede">The blue and white you flag down every day, without the smoke. Open the app and watch yours come to you.</p>
             <div class="hero-actions">
@@ -85,7 +86,10 @@
         <div class="world-clip" data-world-clip aria-hidden="true">
           <div class="world" data-world>
             <svg class="world__svg" data-road-svg width="1" height="1" focusable="false">
+              <path class="world__kerb" data-road-shape data-road-dress d=""/>
               <path class="world__road" data-road d=""/>
+              <path class="world__edge" data-road-shape data-road-dress d=""/>
+              <path class="world__road world__road--inner" data-road-shape d=""/>
               <path class="world__centre" data-centre d=""/>
               <path class="world__lane" data-lane d=""/>
               <path class="world__trail" data-trail d=""/>
@@ -130,12 +134,13 @@
             <div class="sign" data-sign><span class="sign__plate">Wandegeya</span></div>
             <div class="sign" data-sign><span class="sign__plate">City Square</span></div>
 
-            <img class="world__van" data-van-top src="/img/etaxi-top.webp" width="900" height="374" alt="">
+            <div class="world__van" data-van-top><span class="world__beam" data-beam></span><img src="/img/etaxi-top.webp" width="900" height="374" alt=""></div>
           </div>
         </div>
 
         <div class="road-copy" data-road-copy>
           <h2 class="road-title" data-road-title><span class="road-title__word" data-road-word>Every</span> <span class="road-title__word" data-road-word>stage,</span> <span class="road-title__word" data-road-word>sorted.</span></h2>
+          <div class="stage-dots" data-stage-dots aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
           <ol class="stops" data-stops>
             <li class="stop" data-stop="1">
@@ -293,7 +298,7 @@
     </section>
 
     <section class="arrival" data-arrival>
-      <div class="arrival__frame">
+      <div class="arrival__frame" data-arrival-frame>
         <picture class="arrival__picture" data-arrival-picture>
           <source media="(max-width: 480px)" srcset="/img/interior-tall.avif" type="image/avif">
           <source media="(max-width: 480px)" srcset="/img/interior-tall.webp" type="image/webp">
@@ -301,6 +306,7 @@
           <source srcset="/img/interior-wide.webp" type="image/webp">
           <img src="/img/interior-wide.webp" width="1920" height="1097" alt="Passengers and a smiling driver inside an eTaxi" loading="lazy" decoding="async">
         </picture>
+        <div class="arrival__veil" data-arrival-veil aria-hidden="true"></div>
         <div class="arrival__copy" data-arrival-copy>
           <h2 class="arrival__title">Sit back.</h2>
           <p class="arrival__line">Kampala just got quieter.</p>

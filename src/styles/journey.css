@@ -237,8 +237,8 @@
 .arrival {
   position: relative;
   z-index: 2;
-  height: 160svh;
-  margin-top: -100svh;
+  height: 260svh;
+  margin-top: -200svh;
 }
 
 .arrival__frame {
@@ -331,4 +331,61 @@ html[data-motion='on'] .arrival__copy > * {
   .sign {
     display: none;
   }
+}
+
+.world__kerb {
+  fill: none;
+  stroke: var(--kerb);
+  stroke-width: calc(var(--road-w) * 1.06);
+  stroke-linejoin: round;
+}
+
+.world__edge {
+  fill: none;
+  stroke: var(--road-line);
+  stroke-width: calc(var(--road-w) * 0.95);
+  stroke-linejoin: round;
+}
+
+.world__road--inner {
+  stroke-width: calc(var(--road-w) * 0.95 - var(--dash) * 0.5);
+}
+
+html[data-motion='on'] .world__kerb,
+html[data-motion='on'] .world__edge {
+  opacity: 0;
+}
+
+.world__van img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.world__beam {
+  position: absolute;
+  top: -22%;
+  right: 94%;
+  width: 120%;
+  height: 144%;
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--field) calc(var(--beam) * 100%), transparent),
+    transparent
+  );
+  clip-path: polygon(100% 30%, 100% 70%, 0 100%, 0 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.arrival__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--road);
+  pointer-events: none;
+}
+
+html[data-motion='on'] .arrival__frame {
+  visibility: hidden;
 }

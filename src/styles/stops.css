@@ -30,7 +30,7 @@
 }
 
 html[data-motion='on'] .road-title__word {
-  opacity: 0;
+  clip-path: inset(0 0 100% 0);
 }
 
 .stops {
@@ -52,19 +52,95 @@ html[data-motion='on'] .road-title__word {
   min-height: 0;
 }
 
-.stop__copy,
-.stop__visual {
+.stop__copy {
+  opacity: 0;
+  transition: opacity var(--t-std) var(--ease-roll);
+}
+
+.stop__copy > * {
   opacity: 0;
   translate: 0 var(--sp-4);
   transition:
-    opacity var(--t-enter) var(--ease-roll),
-    translate var(--t-enter) var(--ease-roll);
+    opacity var(--t-std) var(--ease-roll),
+    translate var(--t-std) var(--ease-roll);
 }
 
-.stop.is-active .stop__copy,
+.stop__copy > :nth-child(2) {
+  --i: 1;
+}
+
+.stop__copy > :nth-child(3) {
+  --i: 2;
+}
+
+.stop__visual {
+  opacity: 0;
+  translate: 0 var(--sp-8);
+  scale: 0.97;
+  transition:
+    opacity var(--t-std) var(--ease-roll),
+    translate var(--t-std) var(--ease-roll),
+    scale var(--t-std) var(--ease-roll);
+}
+
+.stop.is-past .stop__copy > * {
+  translate: 0 calc(var(--sp-4) * -1);
+}
+
+.stop.is-past .stop__visual {
+  translate: 0 calc(var(--sp-8) * -1);
+}
+
+.stop.is-active .stop__copy {
+  opacity: 1;
+  transition-delay: var(--t-std);
+}
+
+.stop.is-active .stop__copy > * {
+  opacity: 1;
+  translate: none;
+  transition-duration: var(--t-enter);
+  transition-delay: calc(var(--t-std) + var(--stagger) * var(--i, 0));
+}
+
 .stop.is-active .stop__visual {
   opacity: 1;
   translate: none;
+  scale: 1;
+  transition-duration: var(--t-story);
+  transition-delay: var(--t-std);
+}
+
+.stage-dots {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: var(--sp-3);
+  opacity: 0;
+  transition: opacity var(--t-enter) var(--ease-roll);
+}
+
+.stage-dots i {
+  width: var(--sp-2);
+  height: var(--sp-2);
+  background: var(--n-200);
+  transition:
+    background-color var(--t-std) var(--ease-roll),
+    scale var(--t-std) var(--ease-settle);
+}
+
+.stage-dots i.is-done {
+  background: var(--blue-400);
+}
+
+.stage-dots i.is-now {
+  background: var(--blue-700);
+  scale: 1.5;
+}
+
+[data-active-stage]:not([data-active-stage='0']) .stage-dots {
+  opacity: 1;
 }
 
 .stop__copy {

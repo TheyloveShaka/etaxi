@@ -13,6 +13,7 @@ const RADIANS_TO_DEGREES = 180 / Math.PI;
 const FRONT_FACING_OFFSET = 180;
 const HERO_RELEASE_PX = 1;
 const NAV_SOLID_AT = 0.5;
+const NAV_AWAY_FROM = 1;
 const KERB_SIGNS_QUERY = '(min-width: 1024px)';
 const ROAD_LEAD = 0.2;
 const EXIT_RUN = 0.6;
@@ -27,6 +28,7 @@ const ICON_RAMP = 0.35;
 const ICON_POP = 0.4;
 const FACT_AT = 0.5;
 const FACT_SPAN = 8;
+const REFLECT_SPAN = 5;
 const COPY_AT = 1;
 const COPY_SPAN = 10;
 const COPY_STAGGER = 1.2;
@@ -40,6 +42,14 @@ const PRESS_AT = 0.5;
 const COMPACT_QUERY = '(max-width: 1023px)';
 const COMPACT_LAND_DELAY = 19;
 const MS_PER_SECOND = 1000;
+const BEAM_AT = 0.2;
+const BEAM_RAMP = 0.3;
+const DRESS_RAMP = 0.2;
+const OPEN_FADE = 0.08;
+const VEIL_AT = 0.25;
+const VEIL_SPAN = 0.5;
+const WORD_HIDDEN = 'inset(0% 0% 100% 0%)';
+const WORD_SHOWN = 'inset(0% 0% -12% 0%)';
 
 interface Point {
   x: number;
@@ -64,6 +74,8 @@ interface Geo {
   roadY: number;
   roadTop: number;
   roadBottom: number;
+  roadLeft: number;
+  roadRight: number;
   wipeDist: number;
   turnDist: number;
   roadDist: number;
@@ -102,6 +114,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   const ruler = find<HTMLElement>('[data-ruler]', view);
   const ground = find<HTMLElement>('[data-ground]', view);
   const van = find<HTMLElement>('[data-van]', view);
+  const reflect = view.querySelector<HTMLElement>('[data-van-reflect]');
   const wheels = Array.from(van.querySelectorAll<HTMLElement>('[data-wheel]'));
   const copyBox = find<HTMLElement>('[data-hero-copy]', view);
   const copy = Array.from(copyBox.querySelectorAll<HTMLElement>(':scope > *'));
@@ -110,32 +123,45 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   const world = find<HTMLElement>('[data-world]', worldClip);
   const roadPath = find<SVGPathElement>('[data-road]', world);
   const centrePath = find<SVGPathElement>('[data-centre]', world);
+  const roadShapes = Array.from(world.querySelectorAll<SVGPathElement>('[data-road-shape]'));
+  const roadDress = Array.from(world.querySelectorAll<SVGPathElement>('[data-road-dress]'));
   const lanePath = find<SVGPathElement>('[data-lane]', world);
   const trailPath = find<SVGPathElement>('[data-trail]', world);
   const iconLayer = find<SVGGElement>('[data-trail-icons]', world);
   const vanTop = find<HTMLElement>('[data-van-top]', world);
+  const beam = find<HTMLElement>('[data-beam]', vanTop);
   const signs = Array.from(world.querySelectorAll<HTMLElement>('[data-sign]'));
   const trafficAll = Array.from(world.querySelectorAll<HTMLElement>('[data-traffic]'));
   const title = find<HTMLElement>('[data-road-title]', view);
   const words = Array.from(title.querySelectorAll<HTMLElement>('[data-road-word]'));
+  const dots = Array.from(view.querySelectorAll<HTMLElement>('[data-stage-dots] > i'));
   const stops = Array.from(view.querySelectorAll<HTMLElement>('[data-stop]'));
   const nav = find<HTMLElement>('[data-nav]');
   const arrival = find<HTMLElement>('[data-arrival]');
+  const frame = find<HTMLElement>('[data-arrival-frame]', arrival);
+  const veil = find<HTMLElement>('[data-arrival-veil]', arrival);
   const picture = find<HTMLElement>('[data-arrival-picture]', arrival);
   const arrivalCopy = Array.from(arrival.querySelectorAll<HTMLElement>('[data-arrival-copy] > *'));
 
   CustomEase.create('journey-roll', bezier('--ease-roll'));
+  const openEase = gsap.parseEase('power2.inOut');
 
-  const state = { wipe: 0, turn: 0, anchor: 0, road: 0 };
+  const state = { wipe: 0, turn: 0, anchor: 0, road: 0, open: 0 };
+  const last = { wipe: NaN, turn: NaN, anchor: NaN, road: NaN, open: NaN, dress: NaN, beam: NaN };
   const here: Point = { x: 0, y: 0 };
   const ahead: Point = { x: 0, y: 0 };
   const behind: Point = { x: 0, y: 0 };
+  const pressed: boolean[] = stops.map(() => false);
   let geo: Geo;
   let raw: ReturnType<typeof MotionPathPlugin.getRawPath> = [];
   let traffic: Traffic[] = [];
   let icons: TrailIcon[] = [];
   let wheelBase: number[] | null = null;
   let activeStage = -1;
+  let firstShare = '';
+  let navSolid = false;
+  let navAway = false;
+  let copyInert = false;
 
   const heroDone = (): boolean => hero === null || hero.progress() >= 1;
 
@@ -188,6 +214,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     const laneD = `M${startX} ${lane}H${turn}A${arcRadius} ${arcRadius} 0 0 0 ${lane} ${turn}V${laneEndY}`;
     roadPath.setAttribute('d', roadD);
     centrePath.setAttribute('d', roadD);
+    roadShapes.forEach((shape) => shape.setAttribute('d', roadD));
     lanePath.setAttribute('d', laneD);
     trailPath.setAttribute('d', laneD);
     trailPath.style.strokeDasharray = `${laneLength} ${laneLength}`;
@@ -210,6 +237,8 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       roadY,
       roadTop: height / 2 - half,
       roadBottom: height / 2 + half,
+      roadLeft: Math.max(0, roadX - road / 2),
+      roadRight: Math.max(0, width - roadX - road / 2),
       wipeDist,
       turnDist: straightIn + arcLength + (exitY - turn),
       roadDist,
@@ -259,12 +288,23 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       gsap.set(item.el, { x: oncomingX, xPercent: -50, yPercent: -50 });
     });
 
+    forget();
+
     return geo;
   }
 
-  function apply(): void {
+  function forget(): void {
+    last.wipe = NaN;
+    last.turn = NaN;
+    last.anchor = NaN;
+    last.road = NaN;
+    last.open = NaN;
+    last.dress = NaN;
+    last.beam = NaN;
+  }
+
+  function applyCamera(): void {
     const g = geo;
-    const wipe = state.wipe;
     const distance =
       state.wipe * g.wipeDist + state.turn * (g.turnDist - g.wipeDist) + state.road * g.roadDist;
 
@@ -276,7 +316,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     const scale = Math.pow(g.scale0, 1 - state.turn);
     const sideX = g.mid + Math.max(0, g.wipeDist - distance) * g.scale0;
     const anchorX = lerp(sideX, g.pinX, state.anchor);
-    const anchorY = lerp(lerp(g.sideY, g.roadY, wipe), g.pinY, state.anchor);
+    const anchorY = lerp(lerp(g.sideY, g.roadY, state.wipe), g.pinY, state.anchor);
 
     gsap.set(world, {
       x: anchorX - scale * here.x,
@@ -298,9 +338,15 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       icon.el.style.opacity = String(t);
       icon.el.style.transform = `scale(${ICON_POP + (1 - ICON_POP) * t})`;
     }
+  }
 
+  function applyWipe(): void {
+    const g = geo;
+    const wipe = state.wipe;
+    const sideX = g.mid + Math.max(0, g.wipeDist - wipe * g.wipeDist) * g.scale0;
     const edgeY = lerp(g.bandTop, g.roadTop, wipe);
     const bandEndY = lerp(g.bandBottom, g.roadBottom, wipe);
+
     gsap.set(ground, {
       y: edgeY - g.bandTop,
       scaleY: (bandEndY - edgeY) / (g.bandBottom - g.bandTop),
@@ -322,13 +368,66 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       const shift = sideX - g.sideCentre;
       const base = baseRotation();
       gsap.set(van, { x: shift });
+      if (reflect) gsap.set(reflect, { x: shift, y: edgeY - g.bandTop });
       gsap.set(wheels, { rotation: (index: number) => base[index] + (shift / g.tyre) * RADIANS_TO_DEGREES });
     }
 
-    traffic.forEach((item) => {
+    const lit = clamp01((wipe - BEAM_AT) / BEAM_RAMP);
+    if (lit !== last.beam) {
+      last.beam = lit;
+      beam.style.opacity = String(lit);
+    }
+  }
+
+  function applyTraffic(): void {
+    const g = geo;
+    for (const item of traffic) {
       const y = g.exitY + g.roadDist * item.pass - item.speed * g.roadDist * (state.road - item.pass);
       gsap.set(item.el, { y });
-    });
+    }
+  }
+
+  function applyArrival(): void {
+    const g = geo;
+    const open = state.open;
+    if (open <= 0) {
+      frame.style.visibility = 'hidden';
+      return;
+    }
+    const closed = 1 - openEase(open);
+    frame.style.visibility = 'visible';
+    frame.style.opacity = String(clamp01(open / OPEN_FADE));
+    frame.style.clipPath =
+      open >= 1
+        ? 'none'
+        : `inset(0 ${(g.roadRight * closed).toFixed(1)}px 0 ${(g.roadLeft * closed).toFixed(1)}px)`;
+    veil.style.opacity = String(1 - clamp01((open - VEIL_AT) / VEIL_SPAN));
+  }
+
+  function apply(): void {
+    const wipeMoved = state.wipe !== last.wipe;
+    const roadMoved = state.road !== last.road;
+    const cameraMoved =
+      wipeMoved || roadMoved || state.turn !== last.turn || state.anchor !== last.anchor;
+
+    if (cameraMoved) applyCamera();
+    if (wipeMoved) applyWipe();
+    if (roadMoved) applyTraffic();
+
+    const dress = clamp01(state.turn / DRESS_RAMP);
+    if (dress !== last.dress) {
+      last.dress = dress;
+      const value = String(dress);
+      for (const shape of roadDress) shape.style.opacity = value;
+    }
+
+    if (state.open !== last.open) applyArrival();
+
+    last.wipe = state.wipe;
+    last.turn = state.turn;
+    last.anchor = state.anchor;
+    last.road = state.road;
+    last.open = state.open;
   }
 
   const tl = gsap.timeline({ paused: true });
@@ -336,21 +435,43 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   function sync(): void {
     const progress = state.road;
     const count = stops.length;
-    const stage = progress <= 0 ? 0 : Math.min(count, Math.floor(progress * count) + 1);
+    const scaled = progress * count;
+    const stage = progress <= 0 ? 0 : Math.min(count, Math.floor(scaled) + 1);
     if (stage !== activeStage) {
       activeStage = stage;
       view.dataset.activeStage = String(stage);
-      stops.forEach((stop, index) => stop.classList.toggle('is-active', index + 1 === stage));
+      stops.forEach((stop, index) => {
+        stop.classList.toggle('is-active', index + 1 === stage);
+        stop.classList.toggle('is-past', index + 1 < stage);
+      });
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('is-now', index + 1 === stage);
+        dot.classList.toggle('is-done', index + 1 < stage);
+      });
     }
     stops.forEach((stop, index) => {
-      const share = clamp01(progress * count - index);
-      stop.style.setProperty('--p', share.toFixed(3));
-      if (share > PRESS_AT) stop.dataset.pressed = 'true';
+      const isPressed = scaled - index > PRESS_AT;
+      if (isPressed === pressed[index]) return;
+      pressed[index] = isPressed;
+      if (isPressed) stop.dataset.pressed = 'true';
       else delete stop.dataset.pressed;
     });
-    view.style.setProperty('--journey', tl.progress().toFixed(4));
-    nav.classList.toggle('is-solid', tl.time() > NAV_SOLID_AT);
-    copyBox.inert = tl.time() > EXIT_RUN;
+    const share = clamp01(scaled).toFixed(2);
+    if (share !== firstShare && stops[0]) {
+      firstShare = share;
+      stops[0].style.setProperty('--p', share);
+    }
+    const time = tl.time();
+    const solid = time > NAV_SOLID_AT;
+    if (solid !== navSolid) {
+      navSolid = solid;
+      nav.classList.toggle('is-solid', solid);
+    }
+    const inert = time > EXIT_RUN;
+    if (inert !== copyInert) {
+      copyInert = inert;
+      copyBox.inert = inert;
+    }
   }
 
   function update(): void {
@@ -377,7 +498,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     .to(state, { turn: 1, duration: turnLen, ease: 'none' }, wipeLen)
     .to(state, { anchor: 1, duration: turnLen, ease: 'journey-roll' }, wipeLen)
     .to(state, { road: 1, duration: beat3, ease: 'none' }, beat2)
-    .to({}, { duration: cover }, beat2 + beat3);
+    .to(state, { open: 1, duration: cover, ease: 'none' }, beat2 + beat3);
 
   tl.fromTo(
     facts,
@@ -385,6 +506,14 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     { opacity: 0, y: lift, duration: FACT_SPAN, ease: 'none', immediateRender: false },
     FACT_AT,
   );
+  if (reflect) {
+    tl.fromTo(
+      reflect,
+      { opacity: cssNumber('--reflect') },
+      { opacity: 0, duration: REFLECT_SPAN, ease: 'none', immediateRender: false },
+      0,
+    );
+  }
   copy.forEach((element, index) => {
     tl.fromTo(
       element,
@@ -396,8 +525,14 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   words.forEach((word, index) => {
     tl.fromTo(
       word,
-      { opacity: 0, y: lift },
-      { opacity: 1, y: 0, duration: LAND_SPAN, ease: 'journey-roll', immediateRender: false },
+      { yPercent: 100, clipPath: WORD_HIDDEN },
+      {
+        yPercent: 0,
+        clipPath: WORD_SHOWN,
+        duration: LAND_SPAN,
+        ease: 'journey-roll',
+        immediateRender: false,
+      },
       landAt + index * LAND_STAGGER,
     );
     tl.fromTo(
@@ -413,7 +548,10 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
   ScrollTrigger.addEventListener('refreshInit', () => {
     geo = measure();
   });
-  ScrollTrigger.addEventListener('refresh', update);
+  ScrollTrigger.addEventListener('refresh', () => {
+    forget();
+    update();
+  });
 
   ScrollTrigger.create({
     animation: tl,
@@ -427,6 +565,17 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     },
   });
 
+  ScrollTrigger.create({
+    start: 0,
+    end: 'max',
+    onUpdate: (self) => {
+      const away = self.direction === 1 && self.scroll() > geo.height * NAV_AWAY_FROM;
+      if (away === navAway) return;
+      navAway = away;
+      nav.classList.toggle('is-away', away);
+    },
+  });
+
   if (hero && window.scrollY > HERO_RELEASE_PX) hero.progress(1);
 
   const reveal = gsap.fromTo(
@@ -437,13 +586,14 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       y: 0,
       duration: cssNumber('--t-enter') / MS_PER_SECOND,
       ease: 'journey-roll',
+      stagger: cssNumber('--stagger') / MS_PER_SECOND,
       paused: true,
     },
   );
 
   ScrollTrigger.create({
-    trigger: arrival,
-    start: 'top top',
+    trigger: section,
+    start: 'bottom bottom',
     onEnter: () => {
       reveal.play();
     },
@@ -461,7 +611,7 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
       ease: 'none',
       scrollTrigger: {
         trigger: arrival,
-        start: 'top bottom',
+        start: 'top top',
         end: 'bottom bottom',
         scrub: ScrollTrigger.isTouch ? SCRUB_TOUCH : SCRUB,
         invalidateOnRefresh: true,
@@ -469,5 +619,6 @@ export function initJourney(hero: gsap.core.Timeline | null): void {
     },
   );
 
+  forget();
   update();
 }
