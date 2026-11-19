@@ -1,10 +1,10 @@
 node_modules
-dist
+/dist
 .env
 .env.*
-assets
-refs
-docs
-proposal
-scripts
+/assets
+/refs
+/docs
+/proposal
+/scripts
 *.toc.json

@@ -8,3 +8,5 @@ docs/*
 !docs/proposal/
 proposal/_sample.html
 *.toc.json
+
+.vercel
