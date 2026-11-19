@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+assets
+refs
+docs
+proposal
+scripts
+*.toc.json
